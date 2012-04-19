@@ -1,0 +1,41 @@
+
+4 tables.
+
+Person
+	uniqueIdentifier	integer
+	firstName	string
+	lastName	string
+	dateOfBirth	date
+	sex	char -- M or F
+	physicalAddress	string
+	phoneNumber	string
+	email	string
+	isClient	bool
+	isEmployee	bool
+	isAdministrator	bool
+
+Bike
+	uniqueIdentifier	integer
+	vendorName	string
+	modelName	string
+	serialNumber	string
+	acquisitionDate	date
+
+Repair
+
+	uniqueIdentifier	integer
+	bikeIdentifier	integer
+	description	string
+	employeePersonIdentifier	integer
+	repairIsCompleted	bool
+
+Loan
+
+	uniqueIdentifier	integer
+	bikeIdentifier	integer
+	employeePersonIdentifier	integer
+	clientPersonIdentifier	integer
+	startingDate	date+time
+	expectedEndingDate	date+time
+	actualEndingDate	date+time
+

@@ -1,0 +1,70 @@
+From: 	Maude lemieux-lambert <maude113@hotmail.com>
+To: 	Sébastien Boisvert <sebastien.boisvert.3@ulaval.ca>
+Cc: 	coop roue-libre <info@cooprouelibre.com>, Carl Lebel <carl.lebel.1@ulaval.ca>, jean-françois verville <jf_verville@hotmail.com>
+Subject: 	RE: Logiciel de gestion de prêt de vélos 
+Date: 	Wed, 18 Apr 2012 14:47:13 -0400
+
+
+Bonjour Sébastien,
+
+Je t'écris car j'étais employée à la Coop Roue-Libre l'an passé et que j'utilisais le logiciel de prêt de vélos. J'ai mis en cc un membre du CA de la Coop (Carl pour qu'il soit au courant de nos échanges) et Jean-François (l'autre employé de l'été passé pour qu'il complète mes propos si j'oublie de quoi).
+
+Premièrement, je vais te décrire à quoi sert la fiche de l'utilisateur dans le logiciel:
+Prénom, Nom de famille, Date de naissance, Sexe, Adresse résidentielle, Numéro de téléphone, courriel. Grâce à cette fiche de l'utilisateur, on peut le contacter en cas de retard. Par cette fiche, il est aussi possible de bloquer un membre; en fait, le logiciel bloque de lui-même un utilisateur qui remet son vélo en retard. Les employés peuvent les débloquer en faisant une certaine procédure .
+Mais il y a une lacune que j'ai constatée l'an passé. Il faudrait ajouter à cette fiche d'utilisateur un numéro de membre à chaque utilisateur, numéro que l'on marquerait sur le contrat de location, ce qui rendrait la tâche plus facile aux employés lorsqu'on doit retrouver le contrat signé par cet utilisateur, car des erreurs de lecture et de tapage d'informations personnelles (téléphone, courriel) dans la base de données arrivaient souvent, et c'est très long de trouver le bon contrat dans une pile de plus de 1000 contrats (que l'on classerait en ordre numérique). Nous devons avoir ces coordonnées pour le rejoindre en cas de retard.
+
+Deuxièment, je te décris l'utilité de la fiche du vélo dans le logiciel:
+Numéro du vélo, s'il est brisé ou non, le type de réparation à effectuer s'il y a lieu, les réparations faites, s'il est disponible ou non, qui l'a loué et quand. 
+
+Concernant les statistiques à rendre, voici ce que j'en sais (je ne parlerai pas des stats concernant les réparations, car la Coop tient un autre registre pour celles-ci):
+
+1. Le nombre de prêts de vélos pour différentes périodes (l'an passé, on a eu 4 rapports à rendre). L'an passé, c'était de l'ouverture au 15 juin, du 16 juin au 15 juillet, du 16 juillet au 15 septembre et du 15 septembre à la fermeture. Cette année, je ne sais pas combien de rapports doivent être faits. Carl? Jean-François?
+
+2. Le nombre de personnes utilisant le services sur différentes périodes.
+
+3. Le pourcentage de vélos effectifs sur l'ensemble de la flotte. Carl et Jean-François ont peut-être des spécificités à rajouter ici.
+
+Je crois que c'est tout en ce qui concerne des statistiques venant du logiciel de location. Je ne sais pas si l'UL demande à savoir quand se font les prêts, combien ils durent, combien de retard, la moyenne des retards, etc.... Carl et Jean-François ont peut-être des réponses ici.
+
+N'hésite pas à communiquer avec moi si tu as des questions. Je reviens à Québec au début de la semaine du 30 avril. D'ici là, je lis mes courriels quotidiennement.
+
+Bonne journée et merci!
+
+Maude
+
+
+
+
+
+
+
+Date: Wed, 18 Apr 2012 08:22:21 -0400
+Subject: Fwd: Logiciel de gestion de prêt de vélos
+From: info@cooprouelibre.com
+To: esther_boissonneault@msn.com; maude113@hotmail.com; audreepm@gmail.com; carl.lebel.1@ulaval.ca; christophenavel@hotmail.com; richardl-l@hotmail.com
+
+
+qui est en charge du dossier ??
+
+
+N
+---------- Message transféré ----------
+De : Sébastien Boisvert <sebastien.boisvert.3@ulaval.ca>
+Date : 16 avril 2012 19:50
+Objet : Logiciel de gestion de prêt de vélos
+À : jf_verville@hotmail.com
+Cc : info@cooprouelibre.com
+
+
+Salut,
+
+J'ai obtenu une copie du logiciel de prêt de vélos.
+
+Peux-tu me dire ce qui était requis comme statistiques à transmettre à
+l'Université Laval la dernière fois ?
+
+
+
+
+
+

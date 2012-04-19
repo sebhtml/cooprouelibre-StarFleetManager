@@ -1,0 +1,27 @@
+
+Administrator
+	- add an employee
+	- edit its information
+
+Employee
+	- edit its information
+
+	- add a client
+	- edit a client
+
+	- add a bike
+	- edit a bike
+
+	- add a repair
+	- edit a repair
+
+	- add a loan
+	- edit a loan
+
+	- view repairs (can select bike, employee, client, start and end dates)
+	- view loans (can select bike, employee, client, start and end dates)
+
+Client
+	the client can not do anything with the software interface
+
+
