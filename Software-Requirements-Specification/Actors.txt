@@ -6,11 +6,15 @@ Administrator
 Employee
 	- edit its information
 
-	- add a client
+	- view client list
+	- view client
 	- edit a client
+	- add a client
 
-	- add a bike
+	- view bike list
+	- view bike
 	- edit a bike
+	- add a bike
 
 	- add a repair
 	- edit a repair

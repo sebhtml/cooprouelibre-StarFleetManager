@@ -19,6 +19,7 @@ Bike
 	vendorName	string
 	modelName	string
 	serialNumber	string
+	commonName	string
 	acquisitionDate	date
 
 Repair
