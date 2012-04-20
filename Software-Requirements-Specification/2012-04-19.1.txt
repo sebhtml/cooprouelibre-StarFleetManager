@@ -1,0 +1,143 @@
+From: 	Maude lemieux-lambert 
+To: 	Sébastien Boisvert 
+Cc: 	coop roue-libre , Carl Lebel , jean-françois verville 
+Subject: 	RE: Logiciel de gestion de prêt de vélos 
+Date: 	Thu, 19 Apr 2012 18:01:46 -0400
+
+
+Bonjour,
+
+Si j'ai bonne mémoire, le champs de l'adresse était un grand espace vague, une boîte ouverte.
+Car souvent, les utilisateurs sont sur le campus, dans ce cas-là, on ne marquait que le pavillon de résidence et le numéro de chambre (ex: Moreau 320). Tiens, tu me fais penser à autre chose. Il faudrait ajouter aux cases de numéros de téléphone un espace pour les extensions. L'an passé, on mettait l'extension dans l'adresse, à défaut d'avoir un espace adéquat pour l'inscrire, ce qui menait à des confusions avec le numéro de la chambre.
+Dans le cas d'un utilisateur extérieur, on marquait l'adresse tout d'un coup (numéro civique, rue, app.) dans le grand espace vague.
+
+Pour le bloquage, cela s'effectuait automatiquement par le logiciel, une heure de retard, une journée de pénalité (le lendemain du retard du prêt). Le prêt de jour (vélo emprunté entre 8h et 16h) devrait être ramené la journée même avant 18h. Le prêt de soir (entre 16h et 18h), le vélo devait revenir le lendemain matin entre 8h et 10h. 
+Ex de l'an passé: Vélo emprunté le 15 mai pour le prêt de soirée, devait être rapporté le 16 mai entre 8h et 10h. Mais le vélo est rapporté à 10h15, une journée de pénalité pour le membre. Il ne peut pas en avoir pour la journée en cours ni pour le 17. Il peut recommencer le 18. 
+Même exemple, s'il le rapporte à 18h le 16 mai, 8 heures de retard, 8 jours de pénalité. Il peut recommencer le 24 mai.
+Il a droit à 3 retards. Après, barré du système par les employés.
+
+Quand l'utilisateur faisait un retard, le système le barrait, c'est-à-dire qu'il rendait impossible aux employés de trouver son nom dans la base de donnée lorsqu'il voulait qu'on lui en loue un. On ne trouvait pas son nom dans la base de données des utilisateurs dans l'onglet "Prêt". Par contre, si on allait dans l'onglet "Membre", on pouvait le trouver et voir pourquoi il était barré (quand il avait fait son dernier emprunt, le temps de retard, la date quand il pourrait recommencer à emprunter un vélo.). 
+
+Le débloquage de l'utilisateur fautif se faisait aussi automatiquement pour la plupart des cas. Le logiciel permettait aussi aux employés de débloquer un utilisateur pour un retard justifié (bris du vélo lors de la location, journée où la Coop n'a pas pu ouvrir, etc.). Il fallait alors aller dans l'onglet "Membres", le trouver, cliquer 2 fois et justifier son retard. Une chose importante à faire ici, ce serait de rentrer les jours où le campus est fermé dans le logiciel, pour éviter d'avoir à enlever manuellement 40 retards (la St-Jean, la fête du Canada, la Fête du Travail, et autres).
+
+*** Il faut vérifier avec Carl et Jean-François si les pénalités et les heures sont les mêmes que l'an passé. Il faut aussi vérifier les dates auxquelles la Coop sera fermée.*** Je te donne cela à titre indicatif.
+
+J'ai essayé d'être la plus claire possible par écrit. Si tu veux me rejoindre, je suis sur skype: (trois fois la lettre "L" minuscule).
+Merci et bonne journée!
+
+Maude
+
+
+
+> Subject: RE: Logiciel de gestion de prêt de vélos
+> From: 
+> To: 
+> Date: Thu, 19 Apr 2012 17:34:06 -0400
+> 
+> Quels champs étaient requis pour l'adresse ?
+> 
+> Quelle était la politique de bloquage pour les retards ?
+> 
+> On Wed, 2012-04-18 at 14:47 -0400, Maude lemieux-lambert wrote:
+> > Bonjour Sébastien,
+> > 
+> > Je t'écris car j'étais employée à la Coop Roue-Libre l'an passé et que
+> > j'utilisais le logiciel de prêt de vélos. J'ai mis en cc un membre du
+> > CA de la Coop (Carl pour qu'il soit au courant de nos échanges) et
+> > Jean-François (l'autre employé de l'été passé pour qu'il complète mes
+> > propos si j'oublie de quoi).
+> > 
+> > Premièrement, je vais te décrire à quoi sert la fiche de l'utilisateur
+> > dans le logiciel:
+> > Prénom, Nom de famille, Date de naissance, Sexe, Adresse
+> > résidentielle, Numéro de téléphone, courriel. Grâce à cette fiche de
+> > l'utilisateur, on peut le contacter en cas de retard. Par cette fiche,
+> > il est aussi possible de bloquer un membre; en fait, le logiciel
+> > bloque de lui-même un utilisateur qui remet son vélo en retard. Les
+> > employés peuvent les débloquer en faisant une certaine procédure .
+> > Mais il y a une lacune que j'ai constatée l'an passé. Il faudrait
+> > ajouter à cette fiche d'utilisateur un numéro de membre à chaque
+> > utilisateur, numéro que l'on marquerait sur le contrat de location, ce
+> > qui rendrait la tâche plus facile aux employés lorsqu'on doit
+> > retrouver le contrat signé par cet utilisateur, car des erreurs de
+> > lecture et de tapage d'informations personnelles (téléphone, courriel)
+> > dans la base de données arrivaient souvent, et c'est très long de
+> > trouver le bon contrat dans une pile de plus de 1000 contrats (que
+> > l'on classerait en ordre numérique). Nous devons avoir ces coordonnées
+> > pour le rejoindre en cas de retard.
+> > 
+> > Deuxièment, je te décris l'utilité de la fiche du vélo dans le
+> > logiciel:
+> > Numéro du vélo, s'il est brisé ou non, le type de réparation à
+> > effectuer s'il y a lieu, les réparations faites, s'il est disponible
+> > ou non, qui l'a loué et quand. 
+> > 
+> > Concernant les statistiques à rendre, voici ce que j'en sais (je ne
+> > parlerai pas des stats concernant les réparations, car la Coop tient
+> > un autre registre pour celles-ci):
+> > 
+> > 1. Le nombre de prêts de vélos pour différentes périodes (l'an passé,
+> > on a eu 4 rapports à rendre). L'an passé, c'était de l'ouverture au 15
+> > juin, du 16 juin au 15 juillet, du 16 juillet au 15 septembre et du 15
+> > septembre à la fermeture. Cette année, je ne sais pas combien de
+> > rapports doivent être faits. Carl? Jean-François?
+> > 
+> > 2. Le nombre de personnes utilisant le services sur différentes
+> > périodes.
+> > 
+> > 3. Le pourcentage de vélos effectifs sur l'ensemble de la flotte. Carl
+> > et Jean-François ont peut-être des spécificités à rajouter ici.
+> > 
+> > Je crois que c'est tout en ce qui concerne des statistiques venant du
+> > logiciel de location. Je ne sais pas si l'UL demande à savoir quand se
+> > font les prêts, combien ils durent, combien de retard, la moyenne des
+> > retards, etc.... Carl et Jean-François ont peut-être des réponses ici.
+> > 
+> > N'hésite pas à communiquer avec moi si tu as des questions. Je reviens
+> > à Québec au début de la semaine du 30 avril. D'ici là, je lis mes
+> > courriels quotidiennement.
+> > 
+> > Bonne journée et merci!
+> > 
+> > Maude
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > ______________________________________________________________________
+> > Date: Wed, 18 Apr 2012 08:22:21 -0400
+> > Subject: Fwd: Logiciel de gestion de prêt de vélos
+> > From: 
+> > To: 
+> > 
+> > 
+> > qui est en charge du dossier ??
+> > 
+> > 
+> > N
+> > ---------- Message transféré ----------
+> > De : Sébastien Boisvert 
+> > Date : 16 avril 2012 19:50
+> > Objet : Logiciel de gestion de prêt de vélos
+> > À : 
+> > Cc : 
+> > 
+> > 
+> > Salut,
+> > 
+> > J'ai obtenu une copie du logiciel de prêt de vélos.
+> > 
+> > Peux-tu me dire ce qui était requis comme statistiques à transmettre à
+> > l'Université Laval la dernière fois ?
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> 
+> 
+
