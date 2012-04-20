@@ -1,42 +1,58 @@
+create table TablePrefix_Person(
+	uniqueIdentifier	integer auto_increment,
+		primary key(uniqueIdentifier),
+	firstName	varchar(255) not null,
+	lastName	varchar(255) not null,
+	dateOfBirth	datetime not null,
+	sex	char not null,
+	physicalAddress	varchar(255) not null,
+	phoneNumber	varchar(255) not null,
+	email	varchar(255) not null,
+	isClient	bool not null,
+	isEmployee	bool not null,
+	isAdministrator	bool not null,
+	md5_password	char(32) not null
+);
 
-4 tables.
+create table TablePrefix_Bike(
+	uniqueIdentifier	integer auto_increment,
+		primary key(uniqueIdentifier),
+	vendorName	varchar(255) not null,
+	modelName	varchar(255) not null,
+	serialNumber	varchar(255) not null,
+	commonName	varchar(255) not null,
+	acquisitionDate	date not null
+);
 
-Person
-	uniqueIdentifier	integer
-	firstName	string
-	lastName	string
-	dateOfBirth	date
-	sex	char -- M or F
-	physicalAddress	string
-	phoneNumber	string
-	email	string
-	isClient	bool
-	isEmployee	bool
-	isAdministrator	bool
+create table TablePrefix_Repair(
+	uniqueIdentifier	integer auto_increment,
+		primary key(uniqueIdentifier),
+	bikeIdentifier	integer not null,
+		index bikeIdentifier_index (bikeIdentifier),
+		foreign key (bikeIdentifier) references TablePrefix_Bike(uniqueIdentifier),
+	description	varchar(255) not null,
+	employeePersonIdentifier	integer not null,
+		index employeePersonIdentifier_index (employeePersonIdentifier),
+		foreign key (employeePersonIdentifier) references TablePrefix_Person(uniqueIdentifier),
+	repairIsCompleted	bool not null
+);
 
-Bike
-	uniqueIdentifier	integer
-	vendorName	string
-	modelName	string
-	serialNumber	string
-	commonName	string
-	acquisitionDate	date
+create table TablePrefix_Loan(
 
-Repair
+	uniqueIdentifier	integer auto_increment,
+		primary key(uniqueIdentifier),
+	bikeIdentifier	integer not null,
+		index bikeIdentifier_index (bikeIdentifier),
+		foreign key (bikeIdentifier) references TablePrefix_Bike(uniqueIdentifier),
+	employeePersonIdentifier	integer not null,
+		index employeePersonIdentifier_index (employeePersonIdentifier),
+		foreign key (employeePersonIdentifier) references TablePrefix_Person(uniqueIdentifier),
+	clientPersonIdentifier integer not null,
+		index clientPersonIdentifier_index (clientPersonIdentifier),
+		foreign key (clientPersonIdentifier) references TablePrefix_Person(uniqueIdentifier),
+	startingDate	datetime not null,
+	expectedEndingDate	datetime not null,
+	actualEndingDate	datetime not null
 
-	uniqueIdentifier	integer
-	bikeIdentifier	integer
-	description	string
-	employeePersonIdentifier	integer
-	repairIsCompleted	bool
-
-Loan
-
-	uniqueIdentifier	integer
-	bikeIdentifier	integer
-	employeePersonIdentifier	integer
-	clientPersonIdentifier	integer
-	startingDate	date+time
-	expectedEndingDate	date+time
-	actualEndingDate	date+time
+);
 
