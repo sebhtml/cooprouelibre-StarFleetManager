@@ -1,6 +1,6 @@
-From: 	Maude lemieux-lambert <maude113@hotmail.com>
-To: 	Sébastien Boisvert <sebastien.boisvert.3@ulaval.ca>
-Cc: 	coop roue-libre <info@cooprouelibre.com>, Carl Lebel <carl.lebel.1@ulaval.ca>, jean-françois verville <jf_verville@hotmail.com>
+From: 	Maude lemieux-lambert 
+To: 	Sébastien Boisvert 
+Cc: 	coop roue-libre , Carl Lebel , jean-françois verville 
 Subject: 	RE: Logiciel de gestion de prêt de vélos 
 Date: 	Wed, 18 Apr 2012 14:47:13 -0400
 
@@ -49,11 +49,11 @@ qui est en charge du dossier ??
 
 N
 ---------- Message transféré ----------
-De : Sébastien Boisvert <sebastien.boisvert.3@ulaval.ca>
+De : Sébastien Boisvert 
 Date : 16 avril 2012 19:50
 Objet : Logiciel de gestion de prêt de vélos
-À : jf_verville@hotmail.com
-Cc : info@cooprouelibre.com
+À : 
+Cc : 
 
 
 Salut,
