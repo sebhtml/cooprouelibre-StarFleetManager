@@ -5,10 +5,12 @@
 
 class Authentification extends Controller{
 
-	public function call_login($core){
+	public function registerController($core){
+		$core->registerControllerName("Authentification",$this);
+		//$core->secureController("Authentification");
+	}
 
-		$person=new Person();
-		//$users=$person->getList($core);
+	public function call_login($core){
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}
@@ -21,13 +23,11 @@ class Authentification extends Controller{
 	}
 
 	public function call_loginCheck($core){
-		$getData=$core->getGETObject();
-		$postData=$core->getPOSTObject();
 
-		$username=$core->getKey($postData,"username");
-		$password=$core->getKey($postData,"password");
+		$username=$core->getKey($core->getPostData(),"username");
+		$password=$core->getKey($core->getPostData(),"password");
 
-		$person=new Person();
+		$person=new User();
 		$connectedPerson=$person->findPerson($core,$username,$password);
 
 		$connected=false;
@@ -38,9 +38,10 @@ class Authentification extends Controller{
 			//echo "Setting username<br />";
 			$_SESSION["username"]=$username;
 
+			//$core->callController("Dashboard","view");
+		//}else{
 		}
-
-	
+		
 		include($this->getView(__CLASS__,__METHOD__));
 	}
 }

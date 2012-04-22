@@ -1,7 +1,17 @@
+/*
+dark green: 
+light green: #88bf3f;
+gray: #b4b6b1
+*/
+
 body{
 color: black;
 font-family: Arial;
-/*color: #209048; */
+}
+
+a{
+
+color: #209048; 
 }
 
 .container1{
@@ -21,40 +31,106 @@ top: +0px;
 }
 
 .topPanel{
-background-color: #88bf3f;
+/*border-color: #88bf3f;*/
+/*
+border-color: #209048; 
+border-style: solid;
+border-width: 2px;
+*/
 width: 596px;
-height: 20px;
+height: 80px;
 margin-top: -462px;
 margin-left: 204px;
+
+position: absolute;
+
+
+background-color: #88bf3f;
 }
 
 .contentPanel{
 position: absolute;
 margin-left: 204px;
-margin-top: 20px;
+margin-top: -380px;
 width: 596px;
-height: 500px;
+/*height: 500px;*/
 }
 
-.footer{
+.bottomPanel{
 
-margin-top: 500px;
+/*margin-top: 100px;*/
 position: absolute;
 margin-left: 204px;
 width: 596px;
 height: 40px;
 text-align: center;
+
+background-color: #88bf3f;
+/*
+border-color: #209048; 
+border-style: solid;
+border-width: 2px;
+*/
+
 }
 
+.text{
+margin: 10px;
+}
+
+/*
 .bottomPanel{
 
+border-color: #209048; 
+border-style: solid;
+border-width: 2px;
+
 margin-top: 530px;
-/*position: absolute;*/
+position: absolute;
 background-color: #88bf3f;
+
 width: 596px;
 height: 20px;
-/*margin-top: 0px;*/
+margin-top: 0px;
 margin-left: 204px;
 }
 
+*/
 
+.buttonLink{
+color: white;
+}
+
+.userLink{
+color: #209048; 
+}
+
+.button{
+display: inline-block;
+margin: 2px;
+padding: 3px;
+background-color:  #209048; 
+border-color: #209048; 
+border-style: solid;
+border-width: 2px;
+
+}
+
+.button:hover{
+display: inline-block;
+margin: 2px;
+padding: 3px;
+background-color: #88bf3f;
+border-color: #209048; 
+border-style: solid;
+border-width: 2px;
+
+}
+
+.userButton{
+display: inline-block;
+margin: 2px;
+padding: 5px;
+background-color: white;
+color: white;
+}

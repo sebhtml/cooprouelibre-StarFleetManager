@@ -17,7 +17,13 @@ Vous êtes connecté.
 
 	La combinaison est invalide. 
 
-Vous pouvez <a href="index.php?controller=Authentification&action=login">ré-essayer</a>.
+Vous pouvez 
+
+<?php
+
+$core->makeButton("index.php?controller=Authentification&action=login","ré-essayer");
+
+?>
 
 
 <?php

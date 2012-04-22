@@ -24,19 +24,51 @@ echo($pageTitle);
 		<img src="logo.jpg" />
 	</div>
 
-	<div class="topPanel"></div>
+	<div class="topPanel">
+<div class="text">
 
-	<div class="contentPanel">
+<?php
+if($username!=NULL){
 
+	$core->makeButton("index.php?controller=UserManagement&action=view&username=$username",$username);
+	$core->makeButton("index.php?controller=Authentification&action=logout","se déconnecter");
+	$core->makeButton("index.php?controller=UserManagement&action=selfEdit","changer son profil");
+	echo "<br />";
+
+}
+
+?>
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
 <?php
 
 if($username!=NULL){
-	echo $username." ";
-	echo "(<a href=\"index.php?controller=Authentification&action=logout\">se déconnecter</a>) ";
-	echo "(<a href=\"index.php?controller=User&action=selfEdit\">changer son profil</a>) ";
-	echo "<br /><br />";
+
+$core->makeButton("index.php?controller=ClientManagement&action=list","clients");
+$core->makeButton("index.php?controller=BikeManagement&action=list","vélos");
+$core->makeButton("index.php?controller=RepairManagement&action=list","réparations");
+$core->makeButton("index.php?controller=LoanManagement&action=list","prêts");
+$core->makeButton("index.php?controller=UserManagement&action=list","comptes");
+
 }
+
+?>
+
+
+</div>
+</div>
+
+	<div class="contentPanel">
+
+<?php
+
+echo "<h2>".$pageTitle."</h2>";
 
 echo $pageContent ;
 ?>
@@ -44,12 +76,14 @@ echo $pageContent ;
 	</div>
 
 
-	<div class="footer">
+	<div class="bottomPanel">
+
+<div class="text">
 	Coop Roue-Libre
+</div>
 
 </div>
 
-	<div class="bottomPanel"></div>
 </div>
 </div>
 

@@ -4,17 +4,18 @@
 // License: GPLv3
 
 class Dashboard extends Controller{
+	public function registerController($core){
+		$core->registerControllerName("Dashboard",$this);
+		$core->secureController("Dashboard");
+	}
 
 	public function call_view($core){
 
 		$core->setPageTitle("Tableau de bord");
 
-		$person=new Person();
-	
-		$session=$core->getSESSIONObject();
-		$user=$person->findWithUsername($core,$session["username"]);
-
-		$isAdministrator=$user->isAdministrator();
+		if($core->debugMode()){
+			echo "Calling call_view";
+		}
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}

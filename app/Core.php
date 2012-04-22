@@ -7,12 +7,17 @@
 
 class Core{
 
-	private $m_SESSION;
-	private $m_GET;
-	private $m_POST;
+	private $m_sessionData;
+	private $m_getData;
+	private $m_postData;
+
+	private $m_debug;
 
 	private $m_pageTitle;
+	private $m_pageContent;
+
 	private $m_registeredControllers;
+	private $m_securedControllers;
 
 	private $m_databaseHost;
 	private $m_databaseUsername;
@@ -21,6 +26,28 @@ class Core{
 	private $m_databaseName;
 
 	private $m_databaseConnection;
+
+	private $m_controllerName;
+	private $m_actionName;
+
+	private function getPageContent(){
+		return $this->m_pageContent;
+	}
+
+	private function canAccess($controllerName,$actionName){
+		$answer=false;
+		if(!array_key_exists($controllerName,$this->m_securedControllers)){
+			$answer=true;
+		}else{
+			$answer=array_key_exists("username",$this->m_sessionData);
+		}
+
+		if(!$answer && $this->m_debug){
+			echo "Access denied for controller $controllerName<br />";
+		}
+
+		return $answer;
+	}
 
 	private function checkDatabase(){
 		$this->m_databaseConnection=new Driver();
@@ -39,9 +66,6 @@ class Core{
 		return $this->m_pageTitle;
 	}
 
-	private function getPageContent(){
-		return $this->m_pageContent;
-	}
 
 	private function getControllerObject($controller){
 	
@@ -67,7 +91,11 @@ class Core{
 		$this->m_databaseName=$database;
 	}
 
-	public function registerController($controller,$controllerObject){
+	public function registerController($object){
+		$object->registerController($this);
+	}
+
+	public function registerControllerName($controller,$controllerObject){
 
 		$this->m_registeredControllers[$controller]=$controllerObject;
 	}
@@ -80,25 +108,13 @@ class Core{
 		$this->m_pageContent=$content;
 	}
 
-	public function setGET($content){
-		$this->m_GET=$content;
-	}
-
-	public function setPOST($content){
-		$this->m_POST=$content;
-	}
-
-	public function setSESSION($content){
-		$this->m_SESSION=$content;
-	}
-
 	public function startForm($action,$method){
 		echo("<form method=\"$method\" action=\"$action\">");
 		echo("<table><tbody>");
 	}
 
 	public function endForm(){
-		echo("<tr><td></td><td><input type=\"submit\" name=\"submit\" value=\"Soumettre\"></td></tr>");
+		echo("<tr><td></td><td><div class=\"button\"><a class=\"buttonLink\" href=\"#\" onclick=\"document.forms[0].submit();\">Soumettre</a></td></tr>");
 		echo("</tbody></table></form>");
 	}
 
@@ -112,67 +128,44 @@ class Core{
 		echo("<input type=\"password\" name=\"$name\"></td></tr>");
 	}
 
-	public function getGETObject(){
-		return $this->m_GET;
-	}
-	public function getPOSTObject(){
-		return $this->m_POST;
-	}
-	public function getSESSIONObject(){
-		return $this->m_SESSION;
-	}
+	public function call(){
+	
 
-	public function call($getData,$postData,$sessionData){
+		$this->m_debug=false;
 
 		$this->checkDatabase();
-		$this->setGET($getData);
-		$this->setPOST($postData);
-		$this->setSESSION($sessionData);
 
-		$controllerName="Dashboard";
-		$actionName="view";
+		$this->m_controllerName="Dashboard";
+		$this->m_actionName="view";
 
-		if(!array_key_exists("controller",$getData)){
-			if(!array_key_exists("username",$sessionData)){
-				$controllerName="Authentification";
-				$actionName="login";
+		if(!array_key_exists("controller",$this->m_getData)){
+			if(!array_key_exists("username",$this->m_sessionData)){
+				$this->m_controllerName="Authentification";
+				$this->m_actionName="login";
 			}
 		}
 		
-		if(array_key_exists("controller",$getData)){
-			$controllerName=$getData["controller"];
+		if(array_key_exists("controller",$this->m_getData)){
+			$this->m_controllerName=$this->m_getData["controller"];
 		}
 
-		if(array_key_exists("action",$getData)){
-			$actionName=$getData["action"];
+		if(array_key_exists("action",$this->m_getData)){
+			$this->m_actionName=$this->m_getData["action"];
 		}
 
-		$controllerObject=$this->getControllerObject($controllerName);
-		$methodName="call_".$actionName;
-
-
-		$debug=false;
-
-		ob_start();
-
-		if($debug){
-			echo "controller= $controllerName action= $actionName";
-		}
-
-		if(method_exists($controllerObject,$methodName)){
-			$controllerObject->{$methodName}($this);
-		}
+		$this->callController($this->m_controllerName,$this->m_actionName);
 
 		$pageTitle=$this->getPageTitle();
-		$pageContent=ob_get_contents();
-		ob_end_clean();
+		$pageContent=$this->getPageContent();
 
 		$username=NULL;
 
-		if(array_key_exists("username",$this->m_SESSION)){
-			$username=$this->m_SESSION["username"];
+		if(array_key_exists("username",$_SESSION)){
+			$username=$_SESSION["username"];
 		}
 		
+		$core=$this;
+
 		include("app/views/Template/template.php");
 	}
 
@@ -180,13 +173,76 @@ class Core{
 		return $this->m_databaseConnection;
 	}
 
-	public function getKey($array,$key){
+	public function getKey(&$array,$key){
 		if(array_key_exists($key,$array)){
 			return $array[$key];
 		}
 		return NULL;
 	}
 
+	public function setControllerName($name){
+		$this->m_controllerName=$name;
+	}
+
+	public function setActionName($name){
+		$this->m_actionName=$name;
+	}
+
+	public function secureController($name){
+		$this->m_securedControllers[$name]=true;
+	}
+
+	public function callController($controllerName,$actionName){
+
+		if($this->m_debug){
+			echo "callController controller= $controllerName action= $actionName<br />";
+		}
+
+		$controllerObject=$this->getControllerObject($this->m_controllerName);
+		$methodName="call_".$this->m_actionName;
+
+		ob_start();
+
+		if($this->canAccess($controllerName,$actionName) && method_exists($controllerObject,$methodName)){
+			$controllerObject->{$methodName}($this);
+		}
+
+		$this->m_pageContent=ob_get_contents();
+		ob_end_clean();
+
+	}
+
+	public function debugMode(){
+		return $this->m_debug;
+	}
+
+	public function setSessionData(&$object){
+		$this->m_sessionData=$object;
+	}
+
+	public function setGetData(&$object){
+		$this->m_getData=$object;
+	}
+
+	public function setPostData(&$object){
+		$this->m_PostData=$object;
+	}
+
+	public function getGetData(){
+		return $this->m_getData;
+	}
+
+	public function getPostData(){
+		return $this->m_PostData;
+	}
+
+	public function getSessionData(){
+		return $this->m_SessionData;
+	}
+
+	public function makeButton($link,$text){
+		echo "<div class=\"button\"><a class=\"buttonLink\"  href=\"$link\">$text</a></div>";
+	}
 }
 
 ?>
