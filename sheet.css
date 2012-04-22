@@ -1,0 +1,60 @@
+body{
+color: black;
+font-family: Arial;
+/*color: #209048; */
+}
+
+.container1{
+position: absolute; left: +50%; top: +10px;
+}
+
+.container2{
+position: relative; left: -400px;
+/*background: pink;*/
+width: 800px;
+}
+
+.logo{
+position: relative;
+left: +0px;
+top: +0px;
+}
+
+.topPanel{
+background-color: #88bf3f;
+width: 596px;
+height: 20px;
+margin-top: -462px;
+margin-left: 204px;
+}
+
+.contentPanel{
+position: absolute;
+margin-left: 204px;
+margin-top: 20px;
+width: 596px;
+height: 500px;
+}
+
+.footer{
+
+margin-top: 500px;
+position: absolute;
+margin-left: 204px;
+width: 596px;
+height: 40px;
+text-align: center;
+}
+
+.bottomPanel{
+
+margin-top: 530px;
+/*position: absolute;*/
+background-color: #88bf3f;
+width: 596px;
+height: 20px;
+/*margin-top: 0px;*/
+margin-left: 204px;
+}
+
+

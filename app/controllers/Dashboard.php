@@ -3,18 +3,20 @@
 // Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
-class Dashboard{
+class Dashboard extends Controller{
 
-	public function checkDatabase($connection){
+	public function call_view($core){
 
-	}
+		$core->setPageTitle("Tableau de bord");
 
-	public function registerPlugin($core){
-		$core->registerController("Dashboard",$this);
-	}
+		$person=new Person();
+	
+		$session=$core->getSESSIONObject();
+		$user=$person->findWithUsername($core,$session["username"]);
 
-	public function call($action){
-		echo("Hello");
+		$isAdministrator=$user->isAdministrator();
+
+		include($this->getView(__CLASS__,__METHOD__));
 	}
 };
 
