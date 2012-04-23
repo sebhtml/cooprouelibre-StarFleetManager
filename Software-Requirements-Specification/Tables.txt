@@ -38,8 +38,8 @@ create table TablePrefix_Repair(
 	employeePersonIdentifier	integer not null,
 		index employeePersonIdentifier_index (employeePersonIdentifier),
 		foreign key (employeePersonIdentifier) references TablePrefix_Person(id),
-	repairIsCompleted	bool not null
-	completionTime	datetime not null,
+	repairIsCompleted	bool not null,
+	completionTime	datetime not null
 );
 
 create table TablePrefix_Loan(
