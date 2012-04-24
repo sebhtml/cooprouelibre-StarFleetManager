@@ -37,9 +37,6 @@ class ClientManagement extends Controller{
 
 		$finder->insertRow($core,"Client",$core->getPostData());
 	
-		$client=$finder->findWithIdentifier($core,"Client",1);
-		$columnNames=$client->getFieldNames();
-
 		include($this->getView(__CLASS__,__METHOD__));
 	}
 

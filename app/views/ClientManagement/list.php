@@ -5,7 +5,7 @@
 
 $core->makeButton("index.php?controller=ClientManagement&action=add","Ajouter un client");
 echo "<br />";
-
+echo "<br />";
 echo "Nombre de clients: ".count($list)."<br /><br />";
 
 foreach($list as $i){

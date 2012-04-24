@@ -3,7 +3,6 @@
 // Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
-
 ?>
 
-Le client a été ajouté.
+Le vélo a été ajouté.
