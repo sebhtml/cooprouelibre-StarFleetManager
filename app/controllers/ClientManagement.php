@@ -20,6 +20,40 @@ class ClientManagement extends Controller{
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}
+
+	public function call_add($core){
+
+		$core->setPageTitle("Ajouter un client");
+
+
+		include($this->getView(__CLASS__,__METHOD__));
+	}
+
+	public function call_add_save($core){
+
+		$core->setPageTitle("Sauvegarder un client");
+
+		$finder=new Client();
+
+		$finder->insertRow($core,"Client",$core->getPostData());
+	
+		$client=$finder->findWithIdentifier($core,"Client",1);
+		$columnNames=$client->getFieldNames();
+
+		include($this->getView(__CLASS__,__METHOD__));
+	}
+
+	public function call_view($core){
+		$getData=$core->getGetData();
+		$identifier=$getData["id"];
+
+		$client=Client::findWithIdentifier($core,"Client",$identifier);
+
+		$core->setPageTitle($client->getName());
+		$columnNames=$client->getFieldNames();
+		
+		include($this->getView(__CLASS__,__METHOD__));
+	}
 };
 
 ?>

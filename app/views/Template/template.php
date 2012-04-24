@@ -78,7 +78,10 @@ echo $pageContent ;
 	<div class="bottomPanel">
 
 <div class="text">
-© 2012 Coop Roue-Libre. Tous droits réservés.
+© 2012 <a href="http://cooprouelibre.org">Coop Roue-Libre</a>. Tous droits réservés.<br />
+<small>Le <a href="https://github.com/sebhtml/cooprouelibre-StarFleetManager">code source de ce logiciel</a> est distribué sous la 
+<a href="http://www.gnu.org/licenses/gpl-3.0.html">Licence publique générale GNU, version 3</a>.
+</small>
 </div>
 
 </div>

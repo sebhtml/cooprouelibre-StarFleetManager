@@ -108,26 +108,6 @@ class Core{
 		$this->m_pageContent=$content;
 	}
 
-	public function startForm($action,$method){
-		echo("<form method=\"$method\" action=\"$action\">");
-		echo("<table><tbody>");
-	}
-
-	public function endForm(){
-		echo("<tr><td></td><td><div class=\"button\"><a class=\"buttonLink\" href=\"#\" onclick=\"document.forms[0].submit();\">Soumettre</a></td></tr>");
-		echo("</tbody></table></form>");
-	}
-
-	public function addTextField($description,$name){
-		echo("<tr><td>$description</td><td>");
-		echo("<input type=\"text\" name=\"$name\"></td></tr>");
-	}
-
-	public function addPasswordField($description,$name){
-		echo("<tr><td>$description</td><td>");
-		echo("<input type=\"password\" name=\"$name\"></td></tr>");
-	}
-
 	public function call(){
 	
 

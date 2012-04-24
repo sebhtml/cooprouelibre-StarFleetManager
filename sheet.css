@@ -10,8 +10,13 @@ font-family: Arial;
 }
 
 a{
-
+text-decoration: none;
 color: #209048; 
+}
+
+a:hover{
+
+text-decoration: underline;
 }
 
 .container1{
@@ -64,15 +69,13 @@ position: absolute;
 margin-top: 20px;
 /*margin-left: 204px;*/
 width: 596px;
-height: 40px;
+height: 60px;
 /*text-align: center;*/
 
-background-color: #85bd3e;
-/*
-border-color: #209048; 
+background-color: white;
+border-color: #85bd3e;
 border-style: solid;
 border-width: 2px;
-*/
 
 }
 
@@ -127,6 +130,14 @@ border-width: 2px;
 
 .tableHeaderCell{
 border-color: #85bd3e;
+border-style: solid;
+border-width: 2px;
+
+}
+
+.tableContentCell:hover{
+background-color: #85bd3e;
+border-color: #209048;
 border-style: solid;
 border-width: 2px;
 

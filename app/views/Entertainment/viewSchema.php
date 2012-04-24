@@ -5,8 +5,7 @@
 
 foreach($list as $tableName){
 	
-
-	$attributes=$finder->getPersistentAttributes($core,$tableName);
+	$attributes=$finder->getPersistentAttributesForTable($core,$tableName);
 
 	echo $tableName."<br />";
 

@@ -6,12 +6,11 @@
 $core->makeButton("index.php?controller=ClientManagement&action=add","Ajouter un client");
 echo "<br />";
 
-echo "Nombre de clients: ".count($list);
+echo "Nombre de clients: ".count($list)."<br /><br />";
 
 foreach($list as $i){
 	$id=$i->getAttributeValue('id');
-	$name=$i->getAttributeValue('firstName');
-	$name=$i->getAttributeValue('lastName');
+	$name=$i->getName();
 
 	echo "<a href=\"index.php?controller=ClientManagement&action=view&id=$id\">$name</a><br />";
 }
