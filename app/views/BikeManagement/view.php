@@ -5,4 +5,9 @@
 
 $this->printRowAsTable($item->getAttributes(),$columnNames);
 
+$id=$item->getAttributeValue("id");
+
+
+
+
 ?>

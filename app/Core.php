@@ -7,7 +7,6 @@
 
 class Core{
 
-	private $m_sessionData;
 	private $m_getData;
 	private $m_postData;
 
@@ -39,7 +38,7 @@ class Core{
 		if(!array_key_exists($controllerName,$this->m_securedControllers)){
 			$answer=true;
 		}else{
-			$answer=array_key_exists("username",$this->m_sessionData);
+			$answer=array_key_exists("username",$_SESSION);
 		}
 
 		if(!$answer && $this->m_debug){
@@ -119,7 +118,7 @@ class Core{
 		$this->m_actionName="view";
 
 		if(!array_key_exists("controller",$this->m_getData)){
-			if(!array_key_exists("username",$this->m_sessionData)){
+			if(!array_key_exists("username",$_SESSION)){
 				$this->m_controllerName="Authentification";
 				$this->m_actionName="login";
 			}
@@ -197,7 +196,6 @@ class Core{
 	}
 
 	public function setSessionData(&$object){
-		$this->m_sessionData=$object;
 	}
 
 	public function setGetData(&$object){
@@ -205,7 +203,7 @@ class Core{
 	}
 
 	public function setPostData(&$object){
-		$this->m_PostData=$object;
+		$this->m_postData=$object;
 	}
 
 	public function getGetData(){
@@ -213,11 +211,7 @@ class Core{
 	}
 
 	public function getPostData(){
-		return $this->m_PostData;
-	}
-
-	public function getSessionData(){
-		return $this->m_SessionData;
+		return $this->m_postData;
 	}
 
 	public function makeButton($link,$text){
@@ -226,6 +220,10 @@ class Core{
 
 	public function getDatabaseName(){
 		return $this->m_databaseName;
+	}
+	
+	public function getCurrentTime(){
+		return date("Y-m-d H:i:s");
 	}
 }
 

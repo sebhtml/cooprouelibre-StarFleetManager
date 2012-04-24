@@ -14,12 +14,42 @@ class RepairManagement extends Controller{
 
 		$core->setPageTitle("Voir les réparations");
 
-		$finder=new Repair();
-
-		$list=$finder->getList($core);
+		$list=Repair::findAll($core,"Repair");
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}
+
+
+	public function call_add($core){
+
+		$core->setPageTitle("Ajouter une réparation");
+
+		include($this->getView(__CLASS__,__METHOD__));
+	}
+
+	public function call_add_save($core){
+
+		$core->setPageTitle("Sauvegarder une réparation");
+
+		$finder=new Repair();
+
+		$finder->insertRow($core,"Repair",$core->getPostData());
+	
+		include($this->getView(__CLASS__,__METHOD__));
+	}
+
+	public function call_view($core){
+		$getData=$core->getGetData();
+		$identifier=$getData["id"];
+
+		$item=Repair::findWithIdentifier($core,"Repair",$identifier);
+
+		$core->setPageTitle($item->getName());
+		$columnNames=$item->getFieldNames();
+		
+		include($this->getView(__CLASS__,__METHOD__));
+	}
+
 };
 
 ?>

@@ -14,9 +14,7 @@ class BikeManagement extends Controller{
 
 		$core->setPageTitle("Voir les vélos");
 
-		$finder=new Bike();
-
-		$list=$finder->getList($core);
+		$list=Bike::findAll($core,"Bike");
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}

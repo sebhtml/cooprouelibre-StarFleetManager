@@ -73,7 +73,7 @@ class Controller{
 
 	public function addPasswordField($description,$name){
 		echo("<tr><td  class=\"tableContentCell\" >$description</td><td>");
-		echo("<input type=\"password\" name=\"$name\"></td></tr>");
+		echo("<input  class=\"tableContentCell\" type=\"password\" name=\"$name\"></td></tr>");
 	}
 
 	public function renderFormForModel($core,$model){
@@ -107,10 +107,28 @@ class Controller{
 				$fieldName=$names[$field];
 			}
 
+			//echo "Field= $field";
+
 			if($finder->isSelectField($field)){
-				$list=$finder->getSelectOptions($field);
+				
+				$list=$finder->getSelectOptions($core,$field);
+
+/*
+				echo "Is select. =$field=";
+				echo get_class($finder);
+				print_r($list);
+*/
 				
 				$this->renderSelector($field,$fieldName,$list);
+
+			}elseif($finder->isFilledField($field)){
+				
+				$value=$finder->getFilledValue($core,$field);
+
+				echo "<tr><td class=\"tableContentCell\">$fieldName</td><td class=\"tableContentCellFilled\">{$value[1]}";
+				echo "<input type=\"hidden\" name=\"$field\" value=\"$value[0]\" />";
+				echo "</td></tr>";
+
 			}else{
 				$this->renderFormElement($field,$fieldName,$type);
 			}

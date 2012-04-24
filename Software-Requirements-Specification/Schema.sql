@@ -15,7 +15,9 @@ create table TablePrefix_User(
 	id	integer auto_increment,
 		primary key(id),
 	username	varchar(255) not null unique,
-	md5Password	char(32) not null
+	md5Password	char(32) not null,	
+	firstName	varchar(255) not null,
+	lastName	varchar(255) not null
 );
 
 create table TablePrefix_Bike(
@@ -36,9 +38,9 @@ create table TablePrefix_Repair(
 		index bikeIdentifier_index (bikeIdentifier),
 		foreign key (bikeIdentifier) references TablePrefix_Bike(id),
 	description	varchar(255) not null,
-	employeePersonIdentifier	integer not null,
-		index employeePersonIdentifier_index (employeePersonIdentifier),
-		foreign key (employeePersonIdentifier) references TablePrefix_Person(id),
+	userIdentifier	integer not null,
+		index userIdentifier_index (userIdentifier),
+		foreign key (userIdentifier) references TablePrefix_User(id),
 	repairIsCompleted	bool not null,
 	completionTime	datetime not null
 );
@@ -50,12 +52,15 @@ create table TablePrefix_Loan(
 	bikeIdentifier	integer not null,
 		index bikeIdentifier_index (bikeIdentifier),
 		foreign key (bikeIdentifier) references TablePrefix_Bike(id),
-	employeePersonIdentifier	integer not null,
-		index employeePersonIdentifier_index (employeePersonIdentifier),
-		foreign key (employeePersonIdentifier) references TablePrefix_Person(id),
-	clientPersonIdentifier integer not null,
-		index clientPersonIdentifier_index (clientPersonIdentifier),
-		foreign key (clientPersonIdentifier) references TablePrefix_Person(id),
+
+	userIdentifier	integer not null,
+		index userIdentifier_index (userIdentifier),
+		foreign key (userIdentifier) references TablePrefix_User(id),
+
+	clientIdentifier integer not null,
+		index clientIdentifier_index (clientIdentifier),
+		foreign key (clientIdentifier) references TablePrefix_Client(id),
+
 	startingDate	datetime not null,
 	expectedEndingDate	datetime not null,
 	actualEndingDate	datetime not null

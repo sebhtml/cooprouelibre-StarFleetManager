@@ -3,8 +3,6 @@
 // Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
-class Loan extends Model{
-
-}
+$this->printRowAsTable($item->getAttributes(),$columnNames);
 
 ?>

@@ -142,3 +142,14 @@ border-style: solid;
 border-width: 2px;
 
 }
+
+
+.tableContentCellFilled{
+border-color: #85bd3e;
+border-style: solid;
+border-width: 2px;
+
+background-color: #b4b6b1;
+}
+
+

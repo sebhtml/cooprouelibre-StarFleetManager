@@ -5,20 +5,6 @@
 
 class Client extends Model{
 
-
-	public function getList($core){
-		$list=$core->getConnection()->query("select * from {$core->getTablePrefix()}Client ")->getRows();
-
-		$a=array();
-		foreach($list as $i){
-			$object=new Client();
-			$object->setAttributes($i);
-			array_push($a,$object);
-		}
-
-		return $a;
-	}
-
 	public function getFieldNames(){
 		$names=array();
 		$names["memberIdentifier"]="Numéro de membre";
@@ -37,7 +23,10 @@ class Client extends Model{
 		return $field=="sex";
 	}
 
-	public function getSelectOptions($field){
+	public function getSelectOptions($core,$field){
+
+		//echo "Client.getSelectOptions $field";
+
 		if($field=="sex"){
 			return array('F' => 'Femme','M' => 'Homme');
 		}

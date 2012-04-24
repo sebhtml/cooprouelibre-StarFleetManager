@@ -14,9 +14,7 @@ class ClientManagement extends Controller{
 
 		$core->setPageTitle("Voir les clients");
 
-		$finder=new Client();
-
-		$list=$finder->getList($core);
+		$list=Client::findAll($core,"Client");
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}

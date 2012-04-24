@@ -36,6 +36,7 @@ class Authentification extends Controller{
 			$connected=true;
 
 			//echo "Setting username<br />";
+
 			$_SESSION["username"]=$username;
 
 			//$core->callController("Dashboard","view");

@@ -14,9 +14,7 @@ class LoanManagement extends Controller{
 
 		$core->setPageTitle("Voir les prêts");
 
-		$finder=new Loan();
-
-		$list=$finder->getList($core);
+		$list=Loan::findAll($core,"Loan");
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}

@@ -14,6 +14,25 @@ class Model{
 		return $this->m_attributes[$field];
 	}
 
+	public static function findAll($core,$model){
+		$table=$core->getTablePrefix().$model;
+
+		$list=$core->getConnection()->query("select * from $table ;")->getRows();
+		
+		$objects=array();
+
+		foreach($list as $i){
+			$item=new $model();
+
+			$item->setAttributes($i);
+			array_push($objects,$item);
+
+		}
+
+		return $objects;
+	}
+
+
 	public static function findWithIdentifier($core,$model,$identifier){
 		$table=$core->getTablePrefix().$model;
 
@@ -57,6 +76,8 @@ class Model{
 	}
 
 	public function getSelectOptions($field){
+
+		echo "Hi!";
 		return array();
 	}
 
@@ -113,6 +134,18 @@ class Model{
 		$query="insert into $table $attributeList values $valuesList ; ";
 
 		$core->getConnection()->query($query);
+	}
+
+	public function getName(){
+		return $this->getAttributeValue("id");
+	}
+
+	public function isFilledField($field){
+		return false;
+	}
+
+	public function getFilledValue($core,$field){
+		return "NULL";
 	}
 }
 
