@@ -1,6 +1,7 @@
 create table TablePrefix_Client(
 	id	integer auto_increment,
 		primary key(id),
+	memberIdentifier varchar(255) not null,
 	firstName	varchar(255) not null,
 	lastName	varchar(255) not null,
 	dateOfBirth	date not null,
@@ -20,10 +21,10 @@ create table TablePrefix_User(
 create table TablePrefix_Bike(
 	id	integer auto_increment,
 		primary key(id),
+	bikeIdentifier varchar(255) not null,
 	vendorName	varchar(255) not null,
 	modelName	varchar(255) not null,
 	serialNumber	varchar(255) not null,
-	commonName	varchar(255) not null,
 	acquisitionDate	date not null
 );
 

@@ -25,6 +25,8 @@ include("app/controllers/RepairManagement.php");
 include("app/controllers/ClientManagement.php");
 include("app/controllers/UserManagement.php");
 include("app/controllers/Authentification.php");
+include("app/controllers/Entertainment.php");
+
 
 session_start();
 
@@ -38,6 +40,7 @@ $core->registerController(new ClientManagement());
 $core->registerController(new UserManagement());
 $core->registerController(new RepairManagement());
 $core->registerController(new LoanManagement());
+$core->registerController(new Entertainment());
 
 $core->setSessionData($_SESSION);
 $core->setGetData($_GET);

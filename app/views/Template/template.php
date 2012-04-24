@@ -55,6 +55,7 @@ $core->makeButton("index.php?controller=BikeManagement&action=list","vélos");
 $core->makeButton("index.php?controller=RepairManagement&action=list","réparations");
 $core->makeButton("index.php?controller=LoanManagement&action=list","prêts");
 $core->makeButton("index.php?controller=UserManagement&action=list","comptes");
+$core->makeButton("index.php?controller=Entertainment&action=viewSchema","entrailles");
 
 }
 
@@ -66,6 +67,7 @@ $core->makeButton("index.php?controller=UserManagement&action=list","comptes");
 
 	<div class="contentPanel">
 
+
 <?php
 
 echo "<h2>".$pageTitle."</h2>";
@@ -73,16 +75,18 @@ echo "<h2>".$pageTitle."</h2>";
 echo $pageContent ;
 ?>
 
-	</div>
-
-
 	<div class="bottomPanel">
 
 <div class="text">
-	Coop Roue-Libre
+© 2012 Coop Roue-Libre. Tous droits réservés.
 </div>
 
 </div>
+
+
+
+	</div>
+
 
 </div>
 </div>

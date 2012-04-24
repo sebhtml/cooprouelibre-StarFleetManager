@@ -1,6 +1,6 @@
 /*
 dark green: 
-light green: #88bf3f;
+light green: #85bd3e;
 gray: #b4b6b1
 */
 
@@ -31,7 +31,7 @@ top: +0px;
 }
 
 .topPanel{
-/*border-color: #88bf3f;*/
+/*border-color: #85bd3e;*/
 /*
 border-color: #209048; 
 border-style: solid;
@@ -45,27 +45,29 @@ margin-left: 204px;
 position: absolute;
 
 
-background-color: #88bf3f;
+background-color: #85bd3e;
 }
 
 .contentPanel{
 position: absolute;
 margin-left: 204px;
-margin-top: -380px;
+margin-top: -380px;*
 width: 596px;
+padding-bottom: 100px;
 /*height: 500px;*/
 }
 
 .bottomPanel{
 
-/*margin-top: 100px;*/
 position: absolute;
-margin-left: 204px;
+/*bottom: 0px;*/
+margin-top: 20px;
+/*margin-left: 204px;*/
 width: 596px;
 height: 40px;
-text-align: center;
+/*text-align: center;*/
 
-background-color: #88bf3f;
+background-color: #85bd3e;
 /*
 border-color: #209048; 
 border-style: solid;
@@ -77,25 +79,6 @@ border-width: 2px;
 .text{
 margin: 10px;
 }
-
-/*
-.bottomPanel{
-
-border-color: #209048; 
-border-style: solid;
-border-width: 2px;
-
-margin-top: 530px;
-position: absolute;
-background-color: #88bf3f;
-
-width: 596px;
-height: 20px;
-margin-top: 0px;
-margin-left: 204px;
-}
-
-*/
 
 .buttonLink{
 color: white;
@@ -120,7 +103,7 @@ border-width: 2px;
 display: inline-block;
 margin: 2px;
 padding: 3px;
-background-color: #88bf3f;
+background-color: #85bd3e;
 border-color: #209048; 
 border-style: solid;
 border-width: 2px;
@@ -133,4 +116,18 @@ margin: 2px;
 padding: 5px;
 background-color: white;
 color: white;
+}
+
+.tableContentCell{
+border-color: #85bd3e;
+border-style: solid;
+border-width: 2px;
+
+}
+
+.tableHeaderCell{
+border-color: #85bd3e;
+border-style: solid;
+border-width: 2px;
+
 }

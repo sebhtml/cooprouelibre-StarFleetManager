@@ -243,6 +243,10 @@ class Core{
 	public function makeButton($link,$text){
 		echo "<div class=\"button\"><a class=\"buttonLink\"  href=\"$link\">$text</a></div>";
 	}
+
+	public function getDatabaseName(){
+		return $this->m_databaseName;
+	}
 }
 
 ?>
