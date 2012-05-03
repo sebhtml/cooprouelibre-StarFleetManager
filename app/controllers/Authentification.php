@@ -27,8 +27,7 @@ class Authentification extends Controller{
 		$username=$core->getKey($core->getPostData(),"username");
 		$password=$core->getKey($core->getPostData(),"password");
 
-		$person=new User();
-		$connectedPerson=$person->findPerson($core,$username,$password);
+		$connectedPerson=User::findPerson($core,$username,$password);
 
 		$connected=false;
 
@@ -38,6 +37,7 @@ class Authentification extends Controller{
 			//echo "Setting username<br />";
 
 			$_SESSION["username"]=$username;
+			$_SESSION["identifier"]=$connectedPerson->getAttributeValue("id");
 
 			//$core->callController("Dashboard","view");
 		//}else{

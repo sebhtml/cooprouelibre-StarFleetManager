@@ -16,9 +16,21 @@ class UserManagement extends Controller{
 
 		$finder=new User();
 
-		$list=$finder->getList($core);
+		$list=$finder->findAll($core,"User");
 
 		include($this->getView(__CLASS__,__METHOD__));
+	}
+
+	public function call_view($core){
+		$identifier=$_GET["id"];
+
+		$item=User::findWithIdentifier($core,"User",$identifier);
+
+		$core->setPageTitle($item->getName());
+		$columnNames=$item->getFieldNames();
+		
+		include($this->getView(__CLASS__,__METHOD__));
+
 	}
 };
 

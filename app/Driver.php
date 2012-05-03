@@ -73,6 +73,10 @@ class Driver{
 
 		return new Result($result);
 	}
+
+	public function getInsertedIdentifier(){
+		return mysql_insert_id($this->m_connection);
+	}
 }
 
 

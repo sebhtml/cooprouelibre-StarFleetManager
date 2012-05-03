@@ -61,6 +61,23 @@ class Controller{
 		echo("<table><tbody>");
 	}
 
+	public function renderYesNoSelector($name){
+
+		echo "<select name=\"$name\" class=\"tableContentCell\"><option class=\"tableContentCell\" value=\"1\">Oui</option><option class=\"tableContentCell\" value=\"0\">Non</option</select>";
+	}
+
+	public function renderTimeSelector($name,$first,$last){
+
+		echo "<select name=\"$name\" class=\"tableContentCell\">";
+
+		for($i=$first;$i<$last;$i++){
+			echo "<option value=\"$i:00\">$i:00</option>";
+			echo "<option value=\"$i:30\">$i:30</option>";
+		}
+
+		echo "</select>";
+	}
+
 	public function endForm(){
 		echo("<tr><td></td><td><div class=\"button\"><a class=\"buttonLink\" href=\"#\" onclick=\"document.forms[0].submit();\">Soumettre</a></td></tr>");
 		echo("</tbody></table></form>");

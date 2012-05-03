@@ -138,9 +138,11 @@ class Core{
 		$pageContent=$this->getPageContent();
 
 		$username=NULL;
+		$identifier=NULL;
 
 		if(array_key_exists("username",$_SESSION)){
 			$username=$_SESSION["username"];
+			$identifier=$_SESSION["identifier"];
 		}
 		
 		$core=$this;

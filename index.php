@@ -17,6 +17,8 @@ include("app/models/Repair.php");
 include("app/models/User.php");
 include("app/models/Bike.php");
 include("app/models/Place.php");
+include("app/models/Schedule.php");
+include("app/models/ScheduledDay.php");
 
 
 include("app/controllers/Dashboard.php");
@@ -28,6 +30,7 @@ include("app/controllers/PlaceManagement.php");
 include("app/controllers/UserManagement.php");
 include("app/controllers/Authentification.php");
 include("app/controllers/Entertainment.php");
+include("app/controllers/Scheduling.php");
 
 
 session_start();
@@ -42,6 +45,7 @@ $core->registerController(new MemberManagement());
 $core->registerController(new UserManagement());
 $core->registerController(new RepairManagement());
 $core->registerController(new LoanManagement());
+$core->registerController(new Scheduling());
 $core->registerController(new Entertainment());
 $core->registerController(new PlaceManagement());
 

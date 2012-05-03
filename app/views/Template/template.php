@@ -30,9 +30,8 @@ echo($pageTitle);
 <?php
 if($username!=NULL){
 
-	$core->makeButton("index.php?controller=UserManagement&action=view&username=$username",$username);
+	$core->makeButton("index.php?controller=UserManagement&action=view&id=$identifier",$username);
 	$core->makeButton("index.php?controller=Authentification&action=logout","se déconnecter");
-	$core->makeButton("index.php?controller=UserManagement&action=selfEdit","changer son profil");
 	echo "<br />";
 
 }

@@ -98,9 +98,11 @@ create table TablePrefix_ScheduledDay (
 		index scheduleIdentifier_index (scheduleIdentifier),
 		foreign key (scheduleIdentifier) references TablePrefix_Schedule(id),
 
+        dayOfWeek int not null,
+
 	opened bool not null,
 	openingTime time not null,
-	teturnTime time not null,
+	returnTime time not null,
 	eveningTime time not null,
 	closingTime time not null,
 	loanLength time not null

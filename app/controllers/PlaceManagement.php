@@ -47,6 +47,11 @@ class PlaceManagement extends Controller{
 		$core->setPageTitle($item->getName());
 		$columnNames=$item->getFieldNames();
 		
+		$placeIdentifier=$item->getAttributeValue("id");
+		$placeName=$item->getAttributeValue("name");
+
+		$schedules=$item->getSchedules($core);
+
 		include($this->getView(__CLASS__,__METHOD__));
 	}
 };

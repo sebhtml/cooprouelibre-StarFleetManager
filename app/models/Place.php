@@ -14,6 +14,28 @@ class Place extends Model{
 	public function getName(){
 		return $this->getAttributeValue("name");
 	}
+
+	public function getSchedules($core){
+
+		$table=$core->getTablePrefix()."Schedule";
+
+		$identifier=$this->getAttributeValue("id");
+
+		$list=$core->getConnection()->query("select * from $table where placeIdentifier=$identifier ;")->getRows();
+		
+		$objects=array();
+
+		foreach($list as $i){
+			$item=new Schedule();
+
+			$item->setAttributes($i);
+			array_push($objects,$item);
+
+		}
+
+		return $objects;
+	}
+
 }
 
 ?>
