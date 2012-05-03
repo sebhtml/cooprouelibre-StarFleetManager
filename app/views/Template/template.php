@@ -1,6 +1,6 @@
 <?php
 // Author: Sébastien Boisvert
-// Client: Coop Roue-Libre de l'Université Laval
+// Member: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
 ?>
@@ -50,7 +50,7 @@ if($username!=NULL){
 
 if($username!=NULL){
 
-$core->makeButton("index.php?controller=ClientManagement&action=list","clients");
+$core->makeButton("index.php?controller=MemberManagement&action=list","membres");
 $core->makeButton("index.php?controller=BikeManagement&action=list","vélos");
 $core->makeButton("index.php?controller=RepairManagement&action=list","réparations");
 $core->makeButton("index.php?controller=LoanManagement&action=list","prêts");

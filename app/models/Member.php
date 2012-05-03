@@ -1,9 +1,9 @@
 <?php
 // Author: Sébastien Boisvert
-// Client: Coop Roue-Libre de l'Université Laval
+// Member: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
-class Client extends Model{
+class Member extends Model{
 
 	public function getFieldNames(){
 		$names=array();
@@ -25,7 +25,7 @@ class Client extends Model{
 
 	public function getSelectOptions($core,$field){
 
-		//echo "Client.getSelectOptions $field";
+		//echo "Member.getSelectOptions $field";
 
 		if($field=="sex"){
 			return array('F' => 'Femme','M' => 'Homme');

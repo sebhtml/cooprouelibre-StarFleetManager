@@ -1,4 +1,4 @@
-create table TablePrefix_Client(
+create table TablePrefix_Member(
 	id	integer auto_increment,
 		primary key(id),
 	memberIdentifier varchar(255) not null,
@@ -57,9 +57,9 @@ create table TablePrefix_Loan(
 		index userIdentifier_index (userIdentifier),
 		foreign key (userIdentifier) references TablePrefix_User(id),
 
-	clientIdentifier integer not null,
-		index clientIdentifier_index (clientIdentifier),
-		foreign key (clientIdentifier) references TablePrefix_Client(id),
+	memberIdentifier integer not null,
+		index memberIdentifier_index (memberIdentifier),
+		foreign key (memberIdentifier) references TablePrefix_Member(id),
 
 	startingDate	datetime not null,
 	expectedEndingDate	datetime not null,

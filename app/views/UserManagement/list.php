@@ -1,6 +1,6 @@
 <?php
 // Author: Sébastien Boisvert
-// Client: Coop Roue-Libre de l'Université Laval
+// Member: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
 echo "<a href=\"index.php?controller=UserManagement&action=add\">Ajouter un compte</a><br />";

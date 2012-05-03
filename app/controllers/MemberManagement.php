@@ -3,26 +3,25 @@
 // Member: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
-class BikeManagement extends Controller{
+class MemberManagement extends Controller{
 
 	public function registerController($core){
-		$core->registerControllerName("BikeManagement",$this);
-		$core->secureController("BikeManagement");
+		$core->registerControllerName("MemberManagement",$this);
+		$core->secureController("MemberManagement");
 	}
 
 	public function call_list($core){
 
-		$core->setPageTitle("Voir les vélos");
+		$core->setPageTitle("Voir les membres");
 
-		$list=Bike::findAll($core,"Bike");
+		$list=Member::findAll($core,"Member");
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}
 
-
 	public function call_add($core){
 
-		$core->setPageTitle("Ajouter un vélo");
+		$core->setPageTitle("Ajouter un membre");
 
 
 		include($this->getView(__CLASS__,__METHOD__));
@@ -30,11 +29,11 @@ class BikeManagement extends Controller{
 
 	public function call_add_save($core){
 
-		$core->setPageTitle("Sauvegarder un vélo");
+		$core->setPageTitle("Sauvegarder un membre");
 
-		$finder=new Bike();
+		$finder=new Member();
 
-		$finder->insertRow($core,"Bike",$core->getPostData());
+		$finder->insertRow($core,"Member",$core->getPostData());
 	
 		include($this->getView(__CLASS__,__METHOD__));
 	}
@@ -43,14 +42,13 @@ class BikeManagement extends Controller{
 		$getData=$core->getGetData();
 		$identifier=$getData["id"];
 
-		$item=Bike::findWithIdentifier($core,"Bike",$identifier);
+		$member=Member::findWithIdentifier($core,"Member",$identifier);
 
-		$core->setPageTitle($item->getName());
-		$columnNames=$item->getFieldNames();
+		$core->setPageTitle($member->getName());
+		$columnNames=$member->getFieldNames();
 		
 		include($this->getView(__CLASS__,__METHOD__));
 	}
-
 };
 
 ?>

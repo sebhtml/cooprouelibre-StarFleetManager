@@ -3,10 +3,6 @@
 // Member: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
+$this->printRowAsTable($member->getAttributes(),$columnNames);
+
 ?>
-
-
-Vous pouvez vous <a href="index.php?controller=Authentification&action=login">connecter</a>.
-
-
-
