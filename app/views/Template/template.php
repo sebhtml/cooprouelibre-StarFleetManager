@@ -54,6 +54,7 @@ $core->makeButton("index.php?controller=MemberManagement&action=list","membres")
 $core->makeButton("index.php?controller=BikeManagement&action=list","vélos");
 $core->makeButton("index.php?controller=RepairManagement&action=list","réparations");
 $core->makeButton("index.php?controller=LoanManagement&action=list","prêts");
+$core->makeButton("index.php?controller=PlaceManagement&action=list","points de service");
 $core->makeButton("index.php?controller=UserManagement&action=list","opérateurs");
 //$core->makeButton("index.php?controller=Entertainment&action=viewSchema","entrailles");
 

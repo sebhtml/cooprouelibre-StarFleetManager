@@ -67,3 +67,52 @@ create table TablePrefix_Loan(
 
 );
 
+create table TablePrefix_Place(
+
+	id	integer auto_increment,
+		primary key(id),
+
+	name varchar(255) not null
+);
+
+create table TablePrefix_Schedule(
+
+	id	integer auto_increment,
+		primary key(id),
+
+	placeIdentifier integer not null,
+		index placeIdentifier_index (placeIdentifier),
+		foreign key (placeIdentifier) references TablePrefix_Place(id),
+
+	startingDate date not null,
+	endingDate date not null
+
+);
+
+create table TablePrefix_ScheduledDay (
+
+	id	integer auto_increment,
+		primary key(id),
+
+	scheduleIdentifier integer not null,
+		index scheduleIdentifier_index (scheduleIdentifier),
+		foreign key (scheduleIdentifier) references TablePrefix_Schedule(id),
+
+	opened bool not null,
+	openingTime time not null,
+	teturnTime time not null,
+	eveningTime time not null,
+	closingTime time not null,
+	loanLength time not null
+);
+
+create table TablePrefix_Holiday (
+
+	id	integer auto_increment,
+		primary key(id),
+
+	dayOfYear date not null,
+	name varchar(100)
+);
+
+
