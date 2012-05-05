@@ -35,6 +35,13 @@ $this->addTextFieldWithValue("Date de début (aaaa-mm-jj)","endingDate",$item->g
 
 <?php
 
+$map=array();
+
+foreach($days as $day){
+	$map[$day->getAttribute("dayOfWeek")]=$day;
+
+}
+
 for($i=0;$i<7;$i++){
 
 	$day="Lundi";
@@ -61,32 +68,32 @@ for($i=0;$i<7;$i++){
 	echo "</td>";
 	echo "<td class=\"tableContentCell\">";
 
-	$this->renderYesNoSelector("opened$i");
+	$this->renderYesNoSelectorWithValue("opened$i",$map[$i]->getAttribute("opened"));
 
 	echo "</td>";
 	echo "<td class=\"tableContentCell\">";
 
-	$this->renderTimeSelector("openingTime$i",0,24);
+	$this->renderTimeSelectorWithValue("openingTime$i",0,24,$map[$i]->getAttribute("openingTime"));
 
 	echo "</td>";
 	echo "<td class=\"tableContentCell\">";
 
-	$this->renderTimeSelector("returnTime$i",0,24);
+	$this->renderTimeSelectorWithValue("returnTime$i",0,24,$map[$i]->getAttribute("returnTime"));
 
 	echo "</td>";
 	echo "<td class=\"tableContentCell\">";
 
-	$this->renderTimeSelector("eveningTime$i",0,24);
+	$this->renderTimeSelectorWithValue("eveningTime$i",0,24,$map[$i]->getAttribute("eveningTime"));
 
 	echo "</td>";
 	echo "<td class=\"tableContentCell\">";
 
-	$this->renderTimeSelector("closingTime$i",0,24);
+	$this->renderTimeSelectorWithValue("closingTime$i",0,24,$map[$i]->getAttribute("closingTime"));
 
 	echo "</td>";
 	echo "<td class=\"tableContentCell\">";
 
-	$this->renderTimeSelector("loanLength$i",0,4);
+	$this->renderTimeSelectorWithValue("loanLength$i",0,4,$map[$i]->getAttribute("loanLength"));
 
 	echo "</td>";
 

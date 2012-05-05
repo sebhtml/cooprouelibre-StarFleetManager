@@ -62,17 +62,57 @@ class Controller{
 	}
 
 	public function renderYesNoSelector($name){
+		$this->renderYesNoSelectorWithValue($name,0);
+	}
 
-		echo "<select name=\"$name\" class=\"tableContentCell\"><option class=\"tableContentCell\" value=\"1\">Oui</option><option class=\"tableContentCell\" value=\"0\">Non</option</select>";
+	private function getSelected($value1,$value2){
+		$selected="";
+
+		if($value1==$value2){
+			$selected="selected=\"selected\"";
+		}
+
+		return $selected;
+	}
+
+	public function renderYesNoSelectorWithValue($name,$value){
+
+		echo "<select name=\"$name\" class=\"tableContentCell\">";
+
+		$selected=$this->getSelected(1,$value);
+		echo "<option class=\"tableContentCell\" value=\"1\" $selected >Oui</option>";
+
+		$selected=$this->getSelected(0,$value);
+		echo "<option class=\"tableContentCell\" value=\"0\" $selected >Non</option>";
+	
+		echo "</select>";
 	}
 
 	public function renderTimeSelector($name,$first,$last){
+		$this->renderTimeSelectorWithValue($name,$first,$last,"");
+	}
+
+	public function renderTimeSelectorWithValue($name,$first,$last,$value){
 
 		echo "<select name=\"$name\" class=\"tableContentCell\">";
 
 		for($i=$first;$i<$last;$i++){
-			echo "<option value=\"$i:00\">$i:00</option>";
-			echo "<option value=\"$i:30\">$i:30</option>";
+			for($j=0;$j<60;$j+=30){
+
+				$minutes=$j;
+				if($j==0){
+					$minutes="00";
+				}
+
+				$current="$i:$minutes:00";
+				if(strlen($current)!=8){
+					$current="0$current";
+				}
+
+				$selected=$this->getSelected($value,$current);
+				echo "<option value=\"$i:$minutes\" $selected >$i:$minutes</option>";
+			}
+
 		}
 
 		echo "</select>";
