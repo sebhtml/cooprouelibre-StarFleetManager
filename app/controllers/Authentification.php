@@ -17,7 +17,7 @@ class Authentification extends Controller{
 
 	public function call_logout($core){
 
-		unset($_SESSION["username"]);
+		unset($_SESSION["id"]);
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}
@@ -36,8 +36,7 @@ class Authentification extends Controller{
 
 			//echo "Setting username<br />";
 
-			$_SESSION["username"]=$username;
-			$_SESSION["identifier"]=$connectedPerson->getAttributeValue("id");
+			$_SESSION["id"]=$connectedPerson->getAttributeValue("id");
 
 			//$core->callController("Dashboard","view");
 		//}else{

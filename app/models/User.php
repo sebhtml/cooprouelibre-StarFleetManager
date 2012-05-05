@@ -35,7 +35,7 @@ class User extends Model{
 	}
 
 	public function getName(){
-		return "(".$this->getAttributeValue("username").") ".$this->getAttributeValue("firstName")." ".$this->getAttributeValue("lastName");
+		return $this->getAttributeValue("firstName")." ".$this->getAttributeValue("lastName")." (".$this->getAttributeValue("username").")";
 	}
 
 }

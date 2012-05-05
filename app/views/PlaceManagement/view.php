@@ -40,7 +40,7 @@ foreach($schedules as $item){
 <?php
 
 
-$core->makeButton("index.php?controller=Scheduling&action=add&placeIdentifier=$placeIdentifier","ajouter une période d'horaire");
+$core->makeButton("?controller=Scheduling&action=add&placeIdentifier=$placeIdentifier","ajouter une période d'horaire");
 ?>
 
 

@@ -3,16 +3,20 @@
 // Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
-echo "<a href=\"index.php?controller=UserManagement&action=add\">Ajouter un compte</a><br />";
+if($isAdministrator){
+	$core->makeButton("?controller=UserManagement&action=add","Ajouter un opérateur");
+
+}
 
 ?>
 
 
 <br />
+<br />
 
 <?php
 
-echo "Nombre de comptes: ".count($list);
+echo "Nombre d'opérateurs: ".count($list);
 
 ?>
 
@@ -23,10 +27,10 @@ echo "Nombre de comptes: ".count($list);
 <?php
 
 foreach($list as $i){
-	$id=$i->getAttributeValue('id');
-	$name=$i->getAttributeValue('username');
+	$id=$i->getId();
+	$name=$i->getName();
 
-	echo "<a href=\"index.php?controller=UserManagement&action=view&id=$id\">$name</a><br />";
+	echo "<a href=\"?controller=UserManagement&action=view&id=$id\">$name</a><br />";
 }
 
 ?>

@@ -9,7 +9,7 @@ if($connected){
 
 Vous êtes connecté.
 
-<a href="index.php?controller=Dashboard&action=view">Vous pouvez procéder.</a>
+<a href="?controller=Dashboard&action=view">Vous pouvez procéder.</a>
 
 <?php
 }else{
@@ -21,7 +21,7 @@ Vous pouvez
 
 <?php
 
-$core->makeButton("index.php?controller=Authentification&action=login","ré-essayer");
+$core->makeButton("?controller=Authentification&action=login","ré-essayer");
 
 ?>
 

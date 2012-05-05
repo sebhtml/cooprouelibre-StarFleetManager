@@ -38,7 +38,7 @@ class Core{
 		if(!array_key_exists($controllerName,$this->m_securedControllers)){
 			$answer=true;
 		}else{
-			$answer=array_key_exists("username",$_SESSION);
+			$answer=array_key_exists("id",$_SESSION);
 		}
 
 		if(!$answer && $this->m_debug){
@@ -118,7 +118,7 @@ class Core{
 		$this->m_actionName="view";
 
 		if(!array_key_exists("controller",$this->m_getData)){
-			if(!array_key_exists("username",$_SESSION)){
+			if(!array_key_exists("id",$_SESSION)){
 				$this->m_controllerName="Authentification";
 				$this->m_actionName="login";
 			}
@@ -140,9 +140,11 @@ class Core{
 		$username=NULL;
 		$identifier=NULL;
 
-		if(array_key_exists("username",$_SESSION)){
-			$username=$_SESSION["username"];
-			$identifier=$_SESSION["identifier"];
+		if(array_key_exists("id",$_SESSION)){
+			$user=User::findWithIdentifier($this,"User",$_SESSION['id']);
+
+			$username=$user->getAttribute("username");
+			$identifier=$_SESSION['id'];
 		}
 		
 		$core=$this;

@@ -4,7 +4,7 @@
 // License: GPLv3
 
 
-$this->startForm("index.php?controller=Scheduling&action=add_save");
+$this->startForm("?controller=Scheduling&action=add_save");
 
 ?>
 

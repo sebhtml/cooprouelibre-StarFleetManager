@@ -6,7 +6,7 @@
 ?>
 
 
-Vous pouvez vous <a href="index.php?controller=Authentification&action=login">connecter</a>.
+Vous pouvez vous <a href="?controller=Authentification&action=login">connecter</a>.
 
 
 

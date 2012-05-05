@@ -12,11 +12,13 @@ class UserManagement extends Controller{
 
 	public function call_list($core){
 
-		$core->setPageTitle("Voir les comptes");
+		$core->setPageTitle("Voir les opérateurs");
 
-		$finder=new User();
+		$list=User::findAll($core,"User");
 
-		$list=$finder->findAll($core,"User");
+		$user=User::findWithIdentifier($core,"User",$_SESSION["id"]);
+
+		$isAdministrator=$user->getAttribute("isAdministrator");
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}

@@ -55,7 +55,7 @@ $core->makeButton("?controller=RepairManagement&action=list","réparations");
 $core->makeButton("?controller=LoanManagement&action=list","prêts");
 $core->makeButton("?controller=PlaceManagement&action=list","points de service");
 $core->makeButton("?controller=UserManagement&action=list","opérateurs");
-//$core->makeButton("index.php?controller=Entertainment&action=viewSchema","entrailles");
+//$core->makeButton("?controller=Entertainment&action=viewSchema","entrailles");
 
 }
 
