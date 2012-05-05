@@ -10,6 +10,16 @@
 
 <?php
 
+if(count($items)==0){
+
+?>
+
+Il n'y a aucun point de service.
+
+<?php
+
+}else{
+
 $this->startForm("?controller=LoanManagement&action=add_selectBike");
 
 
@@ -33,4 +43,7 @@ echo "</select>";
 echo "</td></tr>";
 
 $this->endForm();
+
+}
+
 ?>

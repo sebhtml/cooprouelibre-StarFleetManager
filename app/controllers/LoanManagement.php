@@ -70,6 +70,9 @@ class LoanManagement extends Controller{
 		$startingDate=$core->getCurrentTime();
 
 		$today=$core->getCurrentDate();
+
+		$schedule=$place->getSchedule($today);
+
 		$endingDate=$this->getEndingDate($place,$today,$startingDate);
 
 		$minutes=(strtotime($endingDate)-strtotime($startingDate))/60;
@@ -126,6 +129,7 @@ class LoanManagement extends Controller{
 		$attributes["expectedEndingDate"]=$_POST['expectedEndingDate'];
 		$attributes["actualEndingDate"]=$_POST['actualEndingDate'];
 		$attributes["returnUserIdentifier"]=$_SESSION['id'];
+		$attributes["placeIdentifier"]=$_POST['placeIdentifier'];
 
 		$item=Loan::insertRow($core,"Loan",$attributes);
 

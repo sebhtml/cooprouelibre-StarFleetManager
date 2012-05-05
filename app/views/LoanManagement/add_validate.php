@@ -9,6 +9,16 @@
 
 <?php
 
+if($schedule==NULL){
+
+?>
+
+Il n'y a pas d'horaire de programmé pour cette date.<br /><br />
+
+<?php
+
+}
+
 $this->startForm("?controller=LoanManagement&action=add_save");
 
 $this->renderHiddenFieldWithValue("memberIdentifier","Membre",$member->getName(),$member->getId());
