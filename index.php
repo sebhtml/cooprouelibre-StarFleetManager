@@ -36,7 +36,8 @@ include("app/controllers/Scheduling.php");
 session_start();
 
 $core= new Core($CONFIG_DATABASE_SOFTWARE,$CONFIG_DATABASE_HOSTNAME,
-	$CONFIG_DATABASE_NAME,$CONFIG_DATABASE_USERNAME,$CONFIG_DATABASE_PASSWORD,$CONFIG_DATABASE_TABLE_PREFIX);
+	$CONFIG_DATABASE_NAME,$CONFIG_DATABASE_USERNAME,$CONFIG_DATABASE_PASSWORD,$CONFIG_DATABASE_TABLE_PREFIX,
+$CONFIG_logo,$CONFIG_style);
 
 $core->registerController(new DashBoard());
 $core->registerController(new Authentification());

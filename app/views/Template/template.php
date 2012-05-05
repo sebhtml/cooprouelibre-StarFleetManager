@@ -12,7 +12,7 @@
 echo($pageTitle);
 ?>
 </title>
-<link rel="stylesheet" type="text/css" href="sheet.css" media="all" />
+<link rel="stylesheet" type="text/css" href="<?php echo $CONFIG_style;?>" media="all" />
 	</head>
 <?php
 ?>
@@ -21,7 +21,7 @@ echo($pageTitle);
 <div class="container1">
 <div class="container2">
 	<div class="logo">
-		<img src="logo.jpg" />
+		<img src="<?php echo $CONFIG_logo; ?>" />
 	</div>
 
 	<div class="topPanel">

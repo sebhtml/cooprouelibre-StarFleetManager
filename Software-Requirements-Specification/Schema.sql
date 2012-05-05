@@ -80,6 +80,11 @@ create table TablePrefix_Loan(
 		index memberIdentifier_index (memberIdentifier),
 		foreign key (memberIdentifier) references TablePrefix_Member(id),
 
+	placeIdentifier integer not null,
+		index placeIdentifier_index (placeIdentifier),
+		foreign key (placeIdentifier) references TablePrefix_Place(id),
+
+
 	startingDate	datetime not null,
 	expectedEndingDate	datetime not null,
 	actualEndingDate	datetime not null,

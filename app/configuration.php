@@ -9,5 +9,7 @@ $CONFIG_DATABASE_NAME="Coop_DataStore";
 $CONFIG_DATABASE_USERNAME="Coop_DataStore";
 $CONFIG_DATABASE_PASSWORD="Coop_DataStore";
 $CONFIG_DATABASE_TABLE_PREFIX="TablePrefix_";
+$CONFIG_logo="logo.jpg";
+$CONFIG_style="sheet.css";
 
 ?>

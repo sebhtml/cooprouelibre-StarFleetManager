@@ -81,13 +81,15 @@ class Core{
 		return $this->m_tablePrefix;
 	}
 
-	public function __construct($engine,$host,$database,$username,$password,$prefix){
+	public function __construct($engine,$host,$database,$username,$password,$prefix,$logo,$sheet){
 		$this->m_registeredControllers==array();
 		$this->m_tablePrefix=$prefix;
 		$this->m_databaseUsername=$username;
 		$this->m_databasePassword=$password;
 		$this->m_databaseHost=$host;
 		$this->m_databaseName=$database;
+		$this->m_logo=$logo;
+		$this->m_sheet=$sheet;
 	}
 
 	public function registerController($object){
@@ -148,6 +150,9 @@ class Core{
 		}
 		
 		$core=$this;
+
+		$CONFIG_logo=$this->m_logo;
+		$CONFIG_style=$this->m_sheet;
 
 		include("app/views/Template/template.php");
 	}
