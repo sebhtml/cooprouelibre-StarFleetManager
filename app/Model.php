@@ -258,6 +258,14 @@ class Model{
 		return $model::findWithIdentifier($core,$model,$id);
 	}
 
+	public static function findAllWithQuery($core,$query,$model){
+		$list=$core->getConnection()->query($query)->getRows();
+
+		$objects=$model::makeObjectsFromRows($core,$list,$model);
+
+		return $objects;
+	}
+
 	public  static function findOneWithQuery($core,$query,$model){
 		$list=$core->getConnection()->query($query)->getRows();
 
@@ -265,7 +273,7 @@ class Model{
 			return NULL;
 		}
 
-		$objects=Bike::makeObjectsFromRows($core,$list,$model);
+		$objects=$model::makeObjectsFromRows($core,$list,$model);
 
 		return $objects[0];
 	}

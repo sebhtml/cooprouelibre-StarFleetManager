@@ -58,7 +58,7 @@ and not exists ( select * from $tableRepair  where bikeIdentifier= $tableBike.id
 
 /* compute the return date and time
  */
-	public function getEndingTime($date,$startingDate){
+	public function getSchedule($date){
 		$core=$this->m_core;
 
 		
@@ -70,18 +70,7 @@ and not exists ( select * from $tableRepair  where bikeIdentifier= $tableBike.id
 
 		$schedule=Schedule::findOneWithQuery($core,$query,"Schedule");
 
-		if($schedule==NULL || true){
-			$now=strtotime($startingDate);
-			$length=3*60*60;
-			$final=$now+$length;
-
-			//echo "now= $now final= $final";
-
-			$finalDate=date("Y-m-d H:i:s",$final);
-
-			return $finalDate;
-		}
-
+		return $schedule;
 	}
 }
 

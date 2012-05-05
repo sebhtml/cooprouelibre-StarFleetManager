@@ -16,6 +16,20 @@ class Schedule extends Model{
 
 		return ScheduledDay::getObjectsInRelation($this->m_core,"ScheduledDay","scheduleIdentifier",$this->getId());
 	}
+
+	public function getScheduledDay($day){
+		$core=$this->m_core;
+		
+		$table=$core->getTablePrefix()."ScheduledDay";
+
+		$id=$this->getId();
+
+		$query=" select * from $table where scheduleIdentifier=$id and dayOfWeek=$day limit 1 ; ";
+
+		$item=ScheduledDay::findOneWithQuery($core,$query,"ScheduledDay");
+
+		return $item;
+	}
 }
 
 ?>

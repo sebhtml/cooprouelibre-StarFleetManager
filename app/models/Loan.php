@@ -18,6 +18,49 @@ class Loan extends Model{
 
 		return $values;
 	}
+
+	public static function findAllReturnedLateLoans($core){
+
+		$table=$core->getTablePrefix()."Loan";
+
+		$query= "select * from $table where actualEndingDate > expectedEndingDate and actualEndingDate != startingDate";
+		
+		return Loan::findAllWithQuery($core,$query,"Loan");
+	}
+
+	public static function findAllReturnedNotLateLoans($core){
+
+		$table=$core->getTablePrefix()."Loan";
+
+		$query= "select * from $table where actualEndingDate <= expectedEndingDate  and actualEndingDate != startingDate";
+		
+		return Loan::findAllWithQuery($core,$query,"Loan");
+	}
+
+	public static function findAllActiveNotLateLoans($core){
+
+		$table=$core->getTablePrefix()."Loan";
+
+		$now=$core->getCurrentTime();
+
+		$query= "select * from $table where '$now' <= expectedEndingDate  and actualEndingDate = startingDate";
+		
+		return Loan::findAllWithQuery($core,$query,"Loan");
+	}
+
+	public static function findAllActiveLateLoans($core){
+
+		$table=$core->getTablePrefix()."Loan";
+
+		$now=$core->getCurrentTime();
+
+		$query= "select * from $table where '$now' > expectedEndingDate   and actualEndingDate = startingDate";
+		
+		return Loan::findAllWithQuery($core,$query,"Loan");
+	}
+
+
+
 }
 
 ?>

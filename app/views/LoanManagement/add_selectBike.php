@@ -10,6 +10,17 @@
 
 <?php
 
+if(count($items)==0){
+
+?>
+
+Aucun vélo n'est présentement disponible.
+
+<?php
+
+}
+else{
+
 $this->startForm("?controller=LoanManagement&action=add_validate");
 
 
@@ -35,4 +46,6 @@ echo "</select>";
 echo "</td></tr>";
 
 $this->endForm();
+
+}
 ?>

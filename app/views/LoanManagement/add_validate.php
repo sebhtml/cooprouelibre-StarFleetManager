@@ -6,7 +6,6 @@
 
 ?>
 
-Le vélo est disponible pour un prêt de <?php echo $minutes; ?> minutes.<br /><br />
 
 <?php
 

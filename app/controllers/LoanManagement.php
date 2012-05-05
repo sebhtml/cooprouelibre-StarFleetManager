@@ -14,7 +14,10 @@ class LoanManagement extends Controller{
 
 		$core->setPageTitle("Voir les prêts");
 
-		$list=Loan::findAll($core,"Loan");
+		$listReturnedLate=Loan::findAllReturnedLateLoans($core);
+		$listReturnedNotLate=Loan::findAllReturnedNotLateLoans($core);
+		$listActiveLate=Loan::findAllActiveLateLoans($core);
+		$listActiveNotLate=Loan::findAllActiveNotLateLoans($core);
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}
@@ -67,15 +70,36 @@ class LoanManagement extends Controller{
 		$startingDate=$core->getCurrentTime();
 
 		$today=$core->getCurrentDate();
-
-		$endingDate=$place->getEndingTime($today,$startingDate);
-
+		$endingDate=$this->getEndingDate($place,$today,$startingDate);
 
 		$minutes=(strtotime($endingDate)-strtotime($startingDate))/60;
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}
 
+	private function getEndingDate($place,$today,$startingDate){
+
+		$now=strtotime($startingDate);
+		$length=3*60*60;
+		$final=$now+$length;
+		$endingDate=date("Y-m-d H:i:s",$final);
+
+		$schedule=$place->getSchedule($today);
+
+		if($schedule!=NULL){
+			$dayOfWeek=date("N")-1;
+
+			$scheduledDay=$schedule->getScheduledDay($dayOfWeek);
+
+			$length=$scheduledDay->getAttribute("loanLength")*60*60;
+
+			$final=$now+$length;
+			$endingDate=date("Y-m-d H:i:s",$final);
+		}
+
+		return $endingDate;
+
+	}
 
 	public function call_add_save($core){
 
@@ -91,7 +115,7 @@ class LoanManagement extends Controller{
 
 		$today=$core->getCurrentDate();
 
-		$endingDate=$place->getEndingTime($today,$startingDate);
+		$endingDate=$this->getEndingDate($place,$today,$startingDate);
 
 		$attributes=array();
 

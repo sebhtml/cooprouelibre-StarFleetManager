@@ -10,6 +10,16 @@
 
 <?php
 
+if(count($items)==0){
+
+?>
+
+Aucun membre ne peut louer de vélo présentement.
+
+<?php
+
+}else{
+
 $this->startForm("?controller=LoanManagement&action=add_selectPlace");
 
 echo "<tr><td  class=\"tableContentCell\">Membre</td><td class=\"tableContentCell\">";
@@ -29,4 +39,6 @@ echo "</select>";
 
 echo "</td></tr>";
 $this->endForm();
+
+}
 ?>
