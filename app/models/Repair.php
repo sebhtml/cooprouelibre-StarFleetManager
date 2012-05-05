@@ -79,6 +79,9 @@ class Repair extends Model{
 		return $names;
 	}
 
+	public function getName(){
+		return $this->getAttribute("description");
+	}
 }
 
 ?>

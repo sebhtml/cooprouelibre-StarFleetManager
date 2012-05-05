@@ -50,6 +50,23 @@ class Member extends Model{
 			return array($user->getId(),$user->getName());
 		}
 	}
+
+/*
+- account not locked
+- no actual loan
+*/
+
+	public static function getMembersThatCanLoanABike($core){
+		$tableMember=$core->getTablePrefix()."Member";
+		$tableLoan=$core->getTablePrefix()."Loan";
+
+		$query="select * from $tableMember where not exists (select * from $tableLoan where memberIdentifier=$tableMember.id and startingDate = actualEndingDate ) ; ";
+
+		$list=$core->getConnection()->query($query)->getRows();
+		
+		return Member::makeObjectsFromRows($core,$list,"Member");
+
+	}
 }
 
 ?>

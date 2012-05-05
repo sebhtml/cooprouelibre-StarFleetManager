@@ -229,6 +229,12 @@ class Core{
 	public function getCurrentTime(){
 		return date("Y-m-d H:i:s");
 	}
+
+	public function getCurrentDate(){
+		return date("Y-m-d");
+	}
+
+
 }
 
 ?>

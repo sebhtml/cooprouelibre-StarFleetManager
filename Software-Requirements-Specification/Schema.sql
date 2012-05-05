@@ -60,7 +60,6 @@ create table TablePrefix_Repair(
 		index userIdentifier_index (userIdentifier),
 		foreign key (userIdentifier) references TablePrefix_User(id),
 
-	repairIsCompleted	bool not null,
 	completionTime	datetime not null
 ) ENGINE = InnoDB  ;
 

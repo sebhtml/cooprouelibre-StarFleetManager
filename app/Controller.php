@@ -239,6 +239,7 @@ class Controller{
 
 		echo "</tbody></table>";
 	}
+
 }
 
 ?>

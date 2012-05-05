@@ -32,12 +32,8 @@ class Model{
 		return $this->m_attributes[$field];
 	}
 
+	public static function makeObjectsFromRows($core,$list,$model){
 
-	public static function findAll($core,$model){
-		$table=$core->getTablePrefix().$model;
-
-		$list=$core->getConnection()->query("select * from $table ;")->getRows();
-		
 		$objects=array();
 
 		foreach($list as $i){
@@ -46,9 +42,20 @@ class Model{
 			$item->setAttributes($i);
 			array_push($objects,$item);
 
+			$item->setCore($core);
+			$item->setModel($model);
 		}
 
 		return $objects;
+
+	}
+
+	public static function findAll($core,$model){
+		$table=$core->getTablePrefix().$model;
+
+		$list=$core->getConnection()->query("select * from $table ;")->getRows();
+		
+		return Model::makeObjectsFromRows($core,$list,$model);
 	}
 
 
@@ -249,6 +256,18 @@ class Model{
 		$core->getConnection()->query($query);
 
 		return $model::findWithIdentifier($core,$model,$id);
+	}
+
+	public  static function findOneWithQuery($core,$query,$model){
+		$list=$core->getConnection()->query($query)->getRows();
+
+		if(count($list)==0){
+			return NULL;
+		}
+
+		$objects=Bike::makeObjectsFromRows($core,$list,$model);
+
+		return $objects[0];
 	}
 }
 

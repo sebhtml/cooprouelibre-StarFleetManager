@@ -32,6 +32,57 @@ class Place extends Model{
 			return array($user->getId(),$user->getName());
 		}
 	}
+
+/*
+- are located at the place
+- have no repairs to do
+- are not loaned
+*/
+	public function getAvailableBikes(){
+
+		$core=$this->m_core;
+
+		$tableMember=$core->getTablePrefix()."Member";
+		$tableLoan=$core->getTablePrefix()."Loan";
+		$tableBike=$core->getTablePrefix()."Bike";
+		$tableRepair=$core->getTablePrefix()."Repair";
+
+		$query= "select * from $tableBike where  not exists (select * from $tableLoan where bikeIdentifier=$tableBike.id and startingDate = actualEndingDate ) 
+and not exists ( select * from $tableRepair  where bikeIdentifier= $tableBike.id and creationTime = completionTime ) ; ";
+		
+		$list=$core->getConnection()->query($query)->getRows();
+
+		return Bike::makeObjectsFromRows($core,$list,"Bike");
+
+	}
+
+/* compute the return date and time
+ */
+	public function getEndingTime($date,$startingDate){
+		$core=$this->m_core;
+
+		
+		$tableSchedule=$core->getTablePrefix()."Schedule";
+
+		$placeIdentifier=$this->getId();
+
+		$query=" select * from $tableSchedule where placeIdentifier=$placeIdentifier and startingDate <= '$date' and '$date' <= endingDate limit 1 ; ";
+
+		$schedule=Schedule::findOneWithQuery($core,$query,"Schedule");
+
+		if($schedule==NULL || true){
+			$now=strtotime($startingDate);
+			$length=3*60*60;
+			$final=$now+$length;
+
+			//echo "now= $now final= $final";
+
+			$finalDate=date("Y-m-d H:i:s",$final);
+
+			return $finalDate;
+		}
+
+	}
 }
 
 ?>

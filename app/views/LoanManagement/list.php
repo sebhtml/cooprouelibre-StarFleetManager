@@ -3,13 +3,26 @@
 // Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
-echo "<a href=\"?controller=LoanManagement&action=add\">Ajouter un prêt</a><br />";
+$core->makeButton("?controller=LoanManagement&action=add_selectMember","Ajouter un prêt");
+
+?>
+
+<br /><br />
+
+<?php
 
 echo "Nombre de prêts: ".count($list);
 
+?>
+
+
+<br /><br />
+
+<?php
+
 foreach($list as $i){
-	$id=$i->getAttributeValue('uniqueIdentifier');
-	$name=$i->getAttributeValue('startingDate');
+	$id=$i->getId();
+	$name=$i->getName();
 
 	echo "<a href=\"?controller=LoanManagement&action=view&id=$id\">$name</a><br />";
 }
