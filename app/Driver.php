@@ -64,18 +64,27 @@ class Driver{
 
 		$result=mysql_query($query,$this->m_connection);
 
-/*
 		if(!$result){
-			//echo mysql_error();
-			//echo "Is already false.<br />";
+			echo "<div class=\"error\">";
+			echo "<b>MySQL error</b><br /><br />";
+			echo mysql_error();
+		
+			echo "<br /><br />";
+			echo "<b>SQL query</b><br /><br />";
+
+			echo $query;
+			echo "</div>";
 		}
-*/
 
 		return new Result($result);
 	}
 
 	public function getInsertedIdentifier(){
 		return mysql_insert_id($this->m_connection);
+	}
+
+	public function espaceString($string){
+		return mysql_real_escape_string($string);
 	}
 }
 

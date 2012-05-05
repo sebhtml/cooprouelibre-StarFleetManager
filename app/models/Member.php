@@ -15,6 +15,7 @@ class Member extends Model{
 		$names["physicalAddress"]="Adresse";
 		$names["phoneNumber"]="Téléphone";
 		$names["email"]="Courriel";
+		$names["userIdentifier"]="Créateur";
 		
 		return $names;
 	}
@@ -35,7 +36,19 @@ class Member extends Model{
 	}
 
 	public function getName(){
-		return "(".$this->getAttributeValue("memberIdentifier").") ".$this->getAttributeValue("firstName")." ".$this->getAttributeValue("lastName");
+		return $this->getAttributeValue("firstName")." ".$this->getAttributeValue("lastName")." (".$this->getAttributeValue("memberIdentifier").")";
+	}
+
+	public function isFilledField($field){
+		return $field=="userIdentifier";
+	}
+
+	public function getFilledValue($core,$field){
+
+		if($field=="userIdentifier"){
+			$user=User::findWithIdentifier($core,"User",$_SESSION['id']);
+			return array($user->getId(),$user->getName());
+		}
 	}
 }
 

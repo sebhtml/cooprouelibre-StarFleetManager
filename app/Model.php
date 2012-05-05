@@ -128,7 +128,13 @@ class Model{
 	
 			$type=$attributes[$i]['Type'];
 
+			if(!array_key_exists($field,$attributeValues)){
+				echo "<div class=\"error\">Field $field is not set</div>";
+			}
+
 			$value=$attributeValues[$field];
+
+			$value=$core->getConnection()->espaceString($value);
 
 			//echo "Field: $field, Value: $value";
 
@@ -217,6 +223,7 @@ class Model{
 
 			$value=$attributeValues[$field];
 
+			$value=$core->getConnection()->espaceString($value);
 
 			if($type=="varchar(255)" || $type=="date" || $type="char(1)"){
 				

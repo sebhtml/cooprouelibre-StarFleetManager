@@ -186,15 +186,19 @@ class Controller{
 				
 				$value=$finder->getFilledValue($core,$field);
 
-				echo "<tr><td class=\"tableContentCell\">$fieldName</td><td class=\"tableContentCellFilled\">{$value[1]}";
-				echo "<input type=\"hidden\" name=\"$field\" value=\"$value[0]\" />";
-				echo "</td></tr>";
-
+				$this->renderHiddenFieldWithValue($field,$fieldName,$value[1],$value[0]);
 			}else{
 				$this->renderFormElement($field,$fieldName,$type);
 			}
 		}
 
+
+	}
+
+	public function renderHiddenFieldWithValue($field,$fieldName,$visibleValue,$hiddenValue){
+		echo "<tr><td class=\"tableContentCell\">$fieldName</td><td class=\"tableContentCellFilled\">$visibleValue";
+		echo "<input type=\"hidden\" name=\"$field\" value=\"$hiddenValue\" />";
+		echo "</td></tr>";
 
 	}
 

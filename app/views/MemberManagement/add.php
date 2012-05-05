@@ -5,6 +5,7 @@
 
 $this->startForm("?controller=MemberManagement&action=add_save");
 $this->renderFormForModel($core,"Member");
+
 $this->endForm();
 
 ?>

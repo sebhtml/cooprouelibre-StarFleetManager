@@ -23,6 +23,7 @@ echo "</td></tr>";
 
 $this->addTextField("Date de début (aaaa-mm-jj)","startingDate");
 $this->addTextField("Date de début (aaaa-mm-jj)","endingDate");
+$this->renderHiddenFieldWithValue("userIdentifier","Créateur",$currentUser->getName(),$currentUser->getId());
 
 ?>
 

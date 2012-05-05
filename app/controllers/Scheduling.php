@@ -21,6 +21,8 @@ class Scheduling extends Controller{
 
 		$placeName=$item->getName();
 
+		$currentUser=User::findWithIdentifier($core,"User",$_SESSION['id']);
+
 		include($this->getView(__CLASS__,__METHOD__));
 	}
 
@@ -33,6 +35,7 @@ class Scheduling extends Controller{
 		$scheduleAttributes["placeIdentifier"]=$_POST['placeIdentifier'];
 		$scheduleAttributes['startingDate']=$_POST['startingDate'];
 		$scheduleAttributes['endingDate']=$_POST['endingDate'];
+		$scheduleAttributes["userIdentifier"]=$_POST["userIdentifier"];
 
 		$item=Schedule::insertRow($core,"Schedule",$scheduleAttributes);
 
@@ -88,6 +91,7 @@ class Scheduling extends Controller{
 
 		$placeName=$place->getName();
 
+		$currentUser=User::findWithIdentifier($core,"User",$_SESSION['id']);
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}
@@ -103,6 +107,7 @@ class Scheduling extends Controller{
 		$scheduleAttributes["placeIdentifier"]=$_POST['placeIdentifier'];
 		$scheduleAttributes['startingDate']=$_POST['startingDate'];
 		$scheduleAttributes['endingDate']=$_POST['endingDate'];
+		$scheduleAttributes["userIdentifier"]=$_POST["userIdentifier"];
 
 		$item=Schedule::updateRow($core,"Schedule",$scheduleAttributes,$identifier);
 
