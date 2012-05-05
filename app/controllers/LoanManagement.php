@@ -150,6 +150,35 @@ class LoanManagement extends Controller{
 		include($this->getView(__CLASS__,__METHOD__));
 	}
 
+	public function call_return_validate($core){
+
+		$core->setPageTitle("Voulez-vous terminer le prêt ?");
+
+		$item=Loan::findWithIdentifier($core,"Loan",$_GET['id']);
+
+		$columnNames=Loan::getFieldNames();
+
+		$currentTime=$core->getCurrentTime();
+		
+		include($this->getView(__CLASS__,__METHOD__));
+	}
+
+	public function call_return_save($core){
+
+		$core->setPageTitle("Le prêt est terminé.");
+
+		$item=Loan::findWithIdentifier($core,"Loan",$_GET['id']);
+
+		$item->returnBike($_POST["actualEndingDate"]);
+		
+		$item=Loan::findWithIdentifier($core,"Loan",$_GET['id']);
+
+		$columnNames=Loan::getFieldNames();
+
+		include($this->getView(__CLASS__,__METHOD__));
+	}
+
+
 
 };
 

@@ -59,8 +59,20 @@ class Loan extends Model{
 		return Loan::findAllWithQuery($core,$query,"Loan");
 	}
 
+	public function isActive(){
 
+		return $this->getAttribute("actualEndingDate")==$this->getAttribute("startingDate");
+	}
 
+	public function returnBike($date){
+		$core=$this->m_core;
+		$table=$core->getTablePrefix()."Loan";
+		$id=$this->getId();
+
+		$query=" update $table set actualEndingDate = '$date' where id = $id ; ";
+
+		$core->getConnection()->query($query);
+	}
 }
 
 ?>
