@@ -23,6 +23,23 @@ echo count($schedules);
 
 <?php
 
+foreach($schedules as $item){
+
+	$id=$item->getAttributeValue("id");
+	$name=$item->getName();
+
+	echo "<a href=\"?controller=Scheduling&action=view&id=$id\">$name</a><br />";
+}
+
+?>
+
+
+<br />
+<br />
+
+<?php
+
+
 $core->makeButton("index.php?controller=Scheduling&action=add&placeIdentifier=$placeIdentifier","ajouter une période d'horaire");
 ?>
 

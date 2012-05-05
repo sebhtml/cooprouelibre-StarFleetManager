@@ -1,6 +1,6 @@
 <?php
 // Author: Sébastien Boisvert
-// Place: Coop Roue-Libre de l'Université Laval
+// Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
 class PlaceManagement extends Controller{
@@ -31,9 +31,7 @@ class PlaceManagement extends Controller{
 
 		$core->setPageTitle("Sauvegarder un point de service");
 
-		$finder=new Place();
-
-		$finder->insertRow($core,"Place",$core->getPostData());
+		Place::insertRow($core,"Place",$core->getPostData());
 	
 		include($this->getView(__CLASS__,__METHOD__));
 	}

@@ -3,8 +3,8 @@
 // Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
-
-$this->startForm("index.php?controller=Scheduling&action=add_save");
+$id=$item->getId();
+$this->startForm("?controller=Scheduling&action=edit_save&id=$id");
 
 ?>
 
@@ -21,8 +21,8 @@ echo "<input type=\"hidden\" name=\"placeIdentifier\" value=\"".$placeIdentifier
 echo "</td></tr>";
 
 
-$this->addTextField("Date de début (aaaa-mm-jj)","startingDate");
-$this->addTextField("Date de début (aaaa-mm-jj)","endingDate");
+$this->addTextFieldWithValue("Date de début (aaaa-mm-jj)","startingDate",$item->getAttribute("startingDate"));
+$this->addTextFieldWithValue("Date de début (aaaa-mm-jj)","endingDate",$item->getAttribute("endingDate"));
 
 ?>
 

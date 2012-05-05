@@ -1,7 +1,7 @@
 <?php
 
 // Author: Sébastien Boisvert
-// Member: Coop Roue-Libre de l'Université Laval
+// Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
 if(array_key_exists("identifier",$_SESSION) && $_SESSION["identifier"]==$item->getAttributeValue("id")){

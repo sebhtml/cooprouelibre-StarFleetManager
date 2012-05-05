@@ -5,19 +5,17 @@
 
 class Schedule extends Model{
 
-	public static function add($core,$placeIdentifier,$start,$end){
+	public function getName(){
+	
+		$place=Place::findWithIdentifier($this->m_core,"Place",$this->getAttributeValue("placeIdentifier"));
 
-		$table=$core->getTablePrefix()."Schedule";
-
-		$core->getConnection()->query("insert into $table (placeIdentifier,startingDate,endingDate) values ($placeIdentifier,'$start','$end');");
-
-		$identifier=$core->getConnection()->getInsertedIdentifier();
-
-		$item=Schedule::findWithIdentifier($core,"Schedule",$identifier);
-
-		return $item;
+		return $place->getAttribute("name")." ".$this->getAttribute("startingDate")." à ".$this->getAttribute("endingDate");
 	}
 
+	public function getScheduledDays(){
+
+		return ScheduledDay::getObjectsInRelation($this->m_core,"ScheduledDay","scheduleIdentifier",$this->getId());
+	}
 }
 
 ?>

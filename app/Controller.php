@@ -1,6 +1,6 @@
 <?php
 // Author: Sébastien Boisvert
-// Member: Coop Roue-Libre de l'Université Laval
+// Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
 class Controller{
@@ -84,8 +84,12 @@ class Controller{
 	}
 
 	public function addTextField($description,$name){
+		$this->addTextFieldWithValue($description,$name,"");
+	}
+
+	public function addTextFieldWithValue($description,$name,$value){
 		echo("<tr><td   class=\"tableContentCell\">$description</td><td>");
-		echo("<input  class=\"tableContentCell\" type=\"text\" name=\"$name\"></td></tr>");
+		echo("<input  class=\"tableContentCell\" type=\"text\" name=\"$name\" value=\"$value\"></td></tr>");
 	}
 
 	public function addPasswordField($description,$name){

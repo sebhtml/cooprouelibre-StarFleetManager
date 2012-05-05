@@ -1,6 +1,6 @@
 <?php
 // Author: Sébastien Boisvert
-// Member: Coop Roue-Libre de l'Université Laval
+// Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
 class MemberManagement extends Controller{
@@ -31,9 +31,7 @@ class MemberManagement extends Controller{
 
 		$core->setPageTitle("Sauvegarder un membre");
 
-		$finder=new Member();
-
-		$finder->insertRow($core,"Member",$core->getPostData());
+		Member::insertRow($core,"Member",$core->getPostData());
 	
 		include($this->getView(__CLASS__,__METHOD__));
 	}

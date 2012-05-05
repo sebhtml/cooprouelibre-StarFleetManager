@@ -1,6 +1,6 @@
 <?php
 // Author: Sébastien Boisvert
-// Member: Coop Roue-Libre de l'Université Laval
+// Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
 class RepairManagement extends Controller{
@@ -31,9 +31,7 @@ class RepairManagement extends Controller{
 
 		$core->setPageTitle("Sauvegarder une réparation");
 
-		$finder=new Repair();
-
-		$finder->insertRow($core,"Repair",$core->getPostData());
+		Repair::insertRow($core,"Repair",$core->getPostData());
 	
 		include($this->getView(__CLASS__,__METHOD__));
 	}

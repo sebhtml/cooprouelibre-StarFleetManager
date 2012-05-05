@@ -1,6 +1,6 @@
 <?php
 // Author: Sébastien Boisvert
-// Member: Coop Roue-Libre de l'Université Laval
+// Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
 ?>
@@ -30,8 +30,8 @@ echo($pageTitle);
 <?php
 if($username!=NULL){
 
-	$core->makeButton("index.php?controller=UserManagement&action=view&id=$identifier",$username);
-	$core->makeButton("index.php?controller=Authentification&action=logout","se déconnecter");
+	$core->makeButton("?controller=UserManagement&action=view&id=$identifier",$username);
+	$core->makeButton("?controller=Authentification&action=logout","se déconnecter");
 	echo "<br />";
 
 }
@@ -49,12 +49,12 @@ if($username!=NULL){
 
 if($username!=NULL){
 
-$core->makeButton("index.php?controller=MemberManagement&action=list","membres");
-$core->makeButton("index.php?controller=BikeManagement&action=list","vélos");
-$core->makeButton("index.php?controller=RepairManagement&action=list","réparations");
-$core->makeButton("index.php?controller=LoanManagement&action=list","prêts");
-$core->makeButton("index.php?controller=PlaceManagement&action=list","points de service");
-$core->makeButton("index.php?controller=UserManagement&action=list","opérateurs");
+$core->makeButton("?controller=MemberManagement&action=list","membres");
+$core->makeButton("?controller=BikeManagement&action=list","vélos");
+$core->makeButton("?controller=RepairManagement&action=list","réparations");
+$core->makeButton("?controller=LoanManagement&action=list","prêts");
+$core->makeButton("?controller=PlaceManagement&action=list","points de service");
+$core->makeButton("?controller=UserManagement&action=list","opérateurs");
 //$core->makeButton("index.php?controller=Entertainment&action=viewSchema","entrailles");
 
 }

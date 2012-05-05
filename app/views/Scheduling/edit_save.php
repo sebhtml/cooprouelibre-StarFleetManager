@@ -3,6 +3,11 @@
 // Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
-$this->printRowAsTable($member->getAttributes(),$columnNames);
+
+//print_r($_POST);
 
 ?>
+
+
+
+La période <?php echo $item->getName() ?> a été éditée avec succès.

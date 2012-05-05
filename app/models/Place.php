@@ -1,6 +1,6 @@
 <?php
 // Author: Sébastien Boisvert
-// Member: Coop Roue-Libre de l'Université Laval
+// Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
 class Place extends Model{
@@ -15,25 +15,9 @@ class Place extends Model{
 		return $this->getAttributeValue("name");
 	}
 
-	public function getSchedules($core){
+	public function getSchedules(){
 
-		$table=$core->getTablePrefix()."Schedule";
-
-		$identifier=$this->getAttributeValue("id");
-
-		$list=$core->getConnection()->query("select * from $table where placeIdentifier=$identifier ;")->getRows();
-		
-		$objects=array();
-
-		foreach($list as $i){
-			$item=new Schedule();
-
-			$item->setAttributes($i);
-			array_push($objects,$item);
-
-		}
-
-		return $objects;
+		return Schedule::getObjectsInRelation($this->m_core,"Schedule","placeIdentifier",$this->getId());
 	}
 
 }

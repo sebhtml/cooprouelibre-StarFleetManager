@@ -6,6 +6,7 @@
 class ScheduledDay extends Model{
 
 
+
 }
 
 ?>

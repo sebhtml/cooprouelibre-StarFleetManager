@@ -1,6 +1,6 @@
 <?php
 // Author: Sébastien Boisvert
-// Member: Coop Roue-Libre de l'Université Laval
+// Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
 class BikeManagement extends Controller{
@@ -32,9 +32,7 @@ class BikeManagement extends Controller{
 
 		$core->setPageTitle("Sauvegarder un vélo");
 
-		$finder=new Bike();
-
-		$finder->insertRow($core,"Bike",$core->getPostData());
+		Bike::insertRow($core,"Bike",$core->getPostData());
 	
 		include($this->getView(__CLASS__,__METHOD__));
 	}
