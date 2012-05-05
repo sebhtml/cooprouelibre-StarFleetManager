@@ -13,7 +13,9 @@ create table TablePrefix_User(
 create table TablePrefix_Member(
 	id	integer auto_increment,
 		primary key(id),
-	memberIdentifier varchar(64) not null,
+
+	memberIdentifier varchar(64) not null unique,
+
 	firstName	varchar(100) not null,
 	lastName	varchar(100) not null,
 	dateOfBirth	date not null,
@@ -33,7 +35,9 @@ create table TablePrefix_Member(
 create table TablePrefix_Bike(
 	id	integer auto_increment,
 		primary key(id),
-	bikeIdentifier varchar(70) not null,
+
+	bikeIdentifier varchar(70) not null unique,
+
 	vendorName	varchar(70) not null,
 	modelName	varchar(70) not null,
 	serialNumber	varchar(80) not null,
@@ -62,6 +66,45 @@ create table TablePrefix_Repair(
 
 	completionTime	datetime not null
 ) ENGINE = InnoDB  ;
+
+
+create table TablePrefix_Place(
+
+	id	integer auto_increment,
+		primary key(id),
+
+	name varchar(100) not null unique,
+
+	userIdentifier	integer not null,
+		index userIdentifier_index (userIdentifier),
+		foreign key (userIdentifier) references TablePrefix_User(id)
+
+) ENGINE = InnoDB  ;
+
+create table TablePrefix_BikePlace(
+
+	id	integer auto_increment,
+		primary key(id),
+
+	startingDate	datetime not null,
+
+
+
+	placeIdentifier integer not null,
+		index placeIdentifier_index (placeIdentifier),
+		foreign key (placeIdentifier) references TablePrefix_Place(id),
+
+
+	bikeIdentifier	integer not null,
+		index bikeIdentifier_index (bikeIdentifier),
+		foreign key (bikeIdentifier) references TablePrefix_Bike(id),
+
+	userIdentifier	integer not null,
+		index userIdentifier_index (userIdentifier),
+		foreign key (userIdentifier) references TablePrefix_User(id)
+
+) ENGINE = InnoDB  ;
+
 
 create table TablePrefix_Loan(
 
@@ -96,42 +139,6 @@ create table TablePrefix_Loan(
 
 ) ENGINE = InnoDB  ;
 
-create table TablePrefix_Place(
-
-	id	integer auto_increment,
-		primary key(id),
-
-	name varchar(100) not null,
-
-	userIdentifier	integer not null,
-		index userIdentifier_index (userIdentifier),
-		foreign key (userIdentifier) references TablePrefix_User(id)
-
-) ENGINE = InnoDB  ;
-
-create table TablePrefix_BikePlace(
-
-	id	integer auto_increment,
-		primary key(id),
-
-	startingDate	datetime not null,
-
-
-
-	placeIdentifier integer not null,
-		index placeIdentifier_index (placeIdentifier),
-		foreign key (placeIdentifier) references TablePrefix_Place(id),
-
-
-	bikeIdentifier	integer not null,
-		index bikeIdentifier_index (bikeIdentifier),
-		foreign key (bikeIdentifier) references TablePrefix_Bike(id),
-
-	userIdentifier	integer not null,
-		index userIdentifier_index (userIdentifier),
-		foreign key (userIdentifier) references TablePrefix_User(id)
-
-) ENGINE = InnoDB  ;
 
 create table TablePrefix_Schedule(
 
