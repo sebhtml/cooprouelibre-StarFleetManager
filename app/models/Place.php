@@ -12,6 +12,7 @@ class Place extends Model{
 	
 		return $names;
 	}
+
 	public function getName(){
 		return $this->getAttributeValue("name");
 	}
@@ -48,7 +49,7 @@ class Place extends Model{
 		$tableRepair=$core->getTablePrefix()."Repair";
 
 		$query= "select * from $tableBike where  not exists (select * from $tableLoan where bikeIdentifier=$tableBike.id and startingDate = actualEndingDate ) 
-and not exists ( select * from $tableRepair  where bikeIdentifier= $tableBike.id and creationTime = completionTime ) ; ";
+and not exists ( select * from $tableRepair  where bikeIdentifier= $tableBike.id and creationDate = completionDate ) ; ";
 		
 		$list=$core->getConnection()->query($query)->getRows();
 

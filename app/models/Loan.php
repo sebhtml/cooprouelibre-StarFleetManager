@@ -12,12 +12,6 @@ class Loan extends Model{
 		return $member->getAttribute("firstName")." ".$member->getAttribute("lastName")." ".$this->getAttribute("startingDate")." ".$this->getAttribute("expectedEndingDate");
 	}
 
-	public function getFieldNames(){
-	
-		$values=array();
-
-		return $values;
-	}
 
 	public static function findAllReturnedLateLoans($core){
 
@@ -69,10 +63,26 @@ class Loan extends Model{
 		$table=$core->getTablePrefix()."Loan";
 		$id=$this->getId();
 
-		$query=" update $table set actualEndingDate = '$date' where id = $id ; ";
+		$query=" update $table set actualEndingDate = '$date' where id = $id and actualEndingDate = startingDate ;";
 
 		$core->getConnection()->query($query);
 	}
+
+	public function getFieldNames(){
+		$names=array();
+		$names["bikeIdentifier"]="Vélo";
+		$names["userIdentifier"]="Opérateur pour le début du prêt";
+		$names["memberIdentifier"]="Membre";
+		$names["placeIdentifier"]="Point de service";
+		$names["startingDate"]="Début du prêt";
+		$names["expectedEndingDate"]="Fin prévu du prêt";
+		$names["actualEndingDate"]="Fin du prêt";
+		$names["returnUserIdentifier"]="Opérateur pour la fin";
+	
+		return $names;
+	}
+
+
 }
 
 ?>

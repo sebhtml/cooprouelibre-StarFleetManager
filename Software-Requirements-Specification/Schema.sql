@@ -52,7 +52,7 @@ create table TablePrefix_Bike(
 create table TablePrefix_Repair(
 	id	integer auto_increment,
 		primary key(id),
-	creationTime	datetime not null,
+	creationDate	datetime not null,
 
 	bikeIdentifier	integer not null,
 		index bikeIdentifier_index (bikeIdentifier),
@@ -64,7 +64,7 @@ create table TablePrefix_Repair(
 		index userIdentifier_index (userIdentifier),
 		foreign key (userIdentifier) references TablePrefix_User(id),
 
-	completionTime	datetime not null
+	completionDate	datetime not null
 ) ENGINE = InnoDB  ;
 
 

@@ -5,4 +5,17 @@
 
 $this->printRowAsTable($item->getAttributes(),$columnNames);
 
+$id=$item->getId();
+
+?>
+
+<br /><br />
+
+<?php
+
+if($item->isActive()){
+
+	$core->makeButton("?controller=RepairManagement&action=complete_validate&id=$id","Compléter la réparation");
+}
+
 ?>

@@ -36,7 +36,7 @@ class Repair extends Model{
 
 	public function isFilledField($field){
 
-		if($field=="creationTime" || $field == "userIdentifier" || $field=="repairIsCompleted" || $field=="completionTime"){
+		if($field=="creationDate" || $field == "userIdentifier"  || $field=="completionDate"){
 			return true;
 		}
 
@@ -44,9 +44,8 @@ class Repair extends Model{
 	}
 
 	public function getFilledValue($core,$field){
-		if($field=="creationTime"){
+		if($field=="creationDate"){
 			$time=$core->getCurrentTime();
-
 			return array($time,$time);
 
 		}elseif($field=="userIdentifier"){
@@ -57,10 +56,9 @@ class Repair extends Model{
 			$user=User::findWithUsername($core,$username);
 	
 			return array($user->getAttributeValue("id"),$user->getName());
-		}else if($field=="repairIsCompleted"){
-			return array(0,"non");
-		}else if($field=="completionTime"){
-			return array(0,"à venir");
+
+		}else if($field=="completionDate"){
+			return array(0,"-");
 
 		}
 		return "NULL";
@@ -69,11 +67,11 @@ class Repair extends Model{
 	public function getFieldNames(){
 		$names=array();
 		$names["bikeIdentifier"]="Vélo";
-		$names["creationTime"]="Date et heure";
+		$names["creationDate"]="Date et heure de création";
 		$names["description"]="Description";
 		$names["userIdentifier"]="Auteur";
 		$names["repairIsCompleted"]="Complétée";
-		$names["completionTime"]="Date et heure de complétion";
+		$names["completionDate"]="Date et heure de complétion";
 		
 		
 		return $names;
@@ -82,6 +80,41 @@ class Repair extends Model{
 	public function getName(){
 		return $this->getAttribute("description");
 	}
+
+
+	public static function findAllRepairsToDo($core){
+
+		$table=$core->getTablePrefix()."Repair";
+
+		$query= "select * from $table where creationDate = completionDate;";
+		
+		return Repair::findAllWithQuery($core,$query,"Repair");
+	}
+
+	public static function findAllRepairsDone($core){
+
+		$table=$core->getTablePrefix()."Repair";
+
+		$query= "select * from $table where creationDate != completionDate ;";
+		
+		return Repair::findAllWithQuery($core,$query,"Repair");
+	}
+
+	public function isActive(){
+	
+		return $this->getAttribute("creationDate") == $this->getAttribute("completionDate");
+	}
+
+	public function complete($date){
+		$core=$this->m_core;
+		$table=$core->getTablePrefix()."Repair";
+		$id=$this->getId();
+
+		$query=" update $table set completionDate = '$date' where id = $id and  completionDate = creationDate ; ";
+
+		$core->getConnection()->query($query);
+	}
+
 }
 
 ?>
