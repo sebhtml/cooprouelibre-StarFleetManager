@@ -175,6 +175,20 @@ class Place extends Model{
 
 	}
 
+	public function isLinkedAttribute($name){
+		if($name=="userIdentifier"){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function getAttributeLink($name){
+		$id=$this->getAttribute($name);
+		$object=User::findOne($this->m_core,"User",$id);
+
+		return $object->getLink();
+	}
 
 
 }

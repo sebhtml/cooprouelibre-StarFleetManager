@@ -4,7 +4,10 @@
 // Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
-if(array_key_exists("identifier",$_SESSION) && $_SESSION["identifier"]==$item->getAttributeValue("id")){
+
+$this->printRowAsTable($item);
+
+if(array_key_exists("id",$_SESSION) && $_SESSION["id"]==$item->getAttributeValue("id")){
 
 	$core->makeButton("?controller=UserManagement&action=selfEdit","changer son profil");
 }

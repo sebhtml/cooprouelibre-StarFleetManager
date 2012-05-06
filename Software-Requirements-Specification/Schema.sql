@@ -7,7 +7,7 @@ create table TablePrefix_User(
 	lastName	varchar(100) not null,
 
 	isAdministrator bool not null
-) ENGINE = InnoDB  ;
+) ENGINE = InnoDB  CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 
 create table TablePrefix_Member(
@@ -28,7 +28,7 @@ create table TablePrefix_Member(
 		index userIdentifier_index (userIdentifier),
 		foreign key (userIdentifier) references TablePrefix_User(id)
 
-) ENGINE = InnoDB  ;
+) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 
 
@@ -47,7 +47,7 @@ create table TablePrefix_Bike(
 		index userIdentifier_index (userIdentifier),
 		foreign key (userIdentifier) references TablePrefix_User(id)
 
-) ENGINE = InnoDB  ;
+) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 create table TablePrefix_Repair(
 	id	integer auto_increment,
@@ -65,7 +65,7 @@ create table TablePrefix_Repair(
 		foreign key (userIdentifier) references TablePrefix_User(id),
 
 	completionDate	datetime not null
-) ENGINE = InnoDB  ;
+) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 
 create table TablePrefix_Place(
@@ -79,7 +79,7 @@ create table TablePrefix_Place(
 		index userIdentifier_index (userIdentifier),
 		foreign key (userIdentifier) references TablePrefix_User(id)
 
-) ENGINE = InnoDB  ;
+) ENGINE = InnoDB  CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 create table TablePrefix_BikePlace(
 
@@ -103,7 +103,7 @@ create table TablePrefix_BikePlace(
 		index userIdentifier_index (userIdentifier),
 		foreign key (userIdentifier) references TablePrefix_User(id)
 
-) ENGINE = InnoDB  ;
+) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 
 create table TablePrefix_Loan(
@@ -137,7 +137,7 @@ create table TablePrefix_Loan(
 		foreign key (returnUserIdentifier) references TablePrefix_User(id)
 
 
-) ENGINE = InnoDB  ;
+) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 
 create table TablePrefix_Schedule(
@@ -156,7 +156,7 @@ create table TablePrefix_Schedule(
 		index userIdentifier_index (userIdentifier),
 		foreign key (userIdentifier) references TablePrefix_User(id)
 
-) ENGINE = InnoDB  ;
+) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 create table TablePrefix_ScheduledDay (
 
@@ -175,7 +175,8 @@ create table TablePrefix_ScheduledDay (
 	eveningTime time not null,
 	closingTime time not null,
 	loanLength time not null
-) ENGINE = InnoDB  ;
+
+) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 create table TablePrefix_MemberLock (
 
@@ -196,7 +197,7 @@ create table TablePrefix_MemberLock (
 		index userIdentifier_index (userIdentifier),
 		foreign key (userIdentifier) references TablePrefix_User(id)
 
-) ENGINE = InnoDB  ;
+) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 create table TablePrefix_ClosedDay (
 
@@ -214,6 +215,6 @@ create table TablePrefix_ClosedDay (
 	userIdentifier	integer not null,
 		index userIdentifier_index (userIdentifier),
 		foreign key (userIdentifier) references TablePrefix_User(id)
-) ENGINE = InnoDB  ;
+) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 

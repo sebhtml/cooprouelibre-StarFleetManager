@@ -225,17 +225,19 @@ class Controller{
 		echo "</select></td></tr>";
 	}
 
-	public function printRowAsTable($row,$columnNames){
+	public function printRowAsTable($object){
+
+		$row=$object->getAttributes();
+		$columnNames=$object->getFieldNames();
 
 		$keys=array_keys($row);
 
 		echo "<table><caption></caption><tbody>";
 	
 		foreach($keys as $key){
-			echo "<tr>";
 			$value=$row[$key];
 
-			if($key=="id"){
+			if($object->mustSkipAttribute($key)){
 				continue;
 			}
 
@@ -244,8 +246,19 @@ class Controller{
 				$name=$columnNames[$key];
 			}
 		
+			echo "<tr>";
 			echo "<td class=\"tableContentCell\">$name</td>";
-			echo "<td class=\"tableContentCell\">$value</td>";
+
+			echo  "<td class=\"tableContentCell\">";
+
+			if($object->isLinkedAttribute($key)){
+				echo $object->getAttributeLink($key);
+			}else{
+				echo $value;
+			}
+
+			echo "</td>";
+
 			echo "</tr>";
 		}
 

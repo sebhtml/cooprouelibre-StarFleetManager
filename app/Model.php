@@ -288,6 +288,28 @@ class Model{
 
 		return $objects[0];
 	}
+
+	public function mustSkipAttribute($name){
+		if($name=="id"){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function isLinkedAttribute($name){
+		return false;
+	}
+
+	public function getAttributeLink($name){
+		return getLink();
+	}
+
+
+	public function getLink(){
+		return "<a href=\"?controller={$this->m_model}Management&action=view&id={$this->getId()}\">{$this->getName()}</a>";
+	}
+
 }
 
 ?>

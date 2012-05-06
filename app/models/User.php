@@ -38,6 +38,24 @@ class User extends Model{
 		return $this->getAttributeValue("firstName")." ".$this->getAttributeValue("lastName")." (".$this->getAttributeValue("username").")";
 	}
 
+	public function getFieldNames(){
+		return array(
+			"username" => "Nom d'utilisateur",
+			"md5Password" => "Mot de passe",
+			"firstName" => "Prénom",
+			"lastName" => "Nom de famille",
+			"isAdministrator" => "Est un administrateur du système ?"
+		);
+	}
+
+	public function mustSkipAttribute($name){
+		if($name=="id" || $name=="md5Password"){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 }
 
 ?>

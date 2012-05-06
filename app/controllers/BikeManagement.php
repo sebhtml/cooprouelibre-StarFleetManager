@@ -54,7 +54,6 @@ class BikeManagement extends Controller{
 		$item=Bike::findWithIdentifier($core,"Bike",$identifier);
 
 		$core->setPageTitle($item->getName());
-		$columnNames=$item->getFieldNames();
 		
 		$places=$item->getBikePlaces();
 

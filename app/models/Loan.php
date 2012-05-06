@@ -84,6 +84,45 @@ class Loan extends Model{
 		return $names;
 	}
 
+	public function isLinkedAttribute($name){
+		if($name=="userIdentifier" || $name=="bikeIdentifier" || $name=="memberIdentifier" || $name=="placeIdentifier" || $name=="returnUserIdentifier"){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+
+	public function getAttributeLink($name){
+		if($name=="userIdentifier" || $name=="returnUserIdentifier"){
+			$id=$this->getAttribute($name);
+			$object=User::findOne($this->m_core,"User",$id);
+
+			return $object->getLink();
+
+		}elseif($name=="bikeIdentifier"){
+			$id=$this->getAttribute($name);
+			$object=Bike::findOne($this->m_core,"Bike",$id);
+		
+			return $object->getLink();
+
+		}elseif($name=="placeIdentifier"){
+			$id=$this->getAttribute($name);
+			$object=Place::findOne($this->m_core,"Place",$id);
+
+			return $object->getLink();
+
+		}elseif($name=="memberIdentifier"){
+			$id=$this->getAttribute($name);
+			$object=Member::findOne($this->m_core,"Member",$id);
+
+			return $object->getLink();
+		}
+
+	}
+
+
+
 
 }
 

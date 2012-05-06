@@ -110,6 +110,23 @@ class Member extends Model{
 	}
 
 
+	public function isLinkedAttribute($name){
+		if($name=="userIdentifier"){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+
+	public function getAttributeLink($name){
+		$id=$this->getAttribute($name);
+		$object=User::findOne($this->m_core,"User",$id);
+
+		return "<a href=\"?controller=UserManagement&action=view&id=$id\">{$object->getName()}</a>";
+	}
+
+
 
 }
 

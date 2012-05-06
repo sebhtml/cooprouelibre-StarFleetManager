@@ -116,6 +116,30 @@ class Repair extends Model{
 		$core->getConnection()->query($query);
 	}
 
+	public function isLinkedAttribute($name){
+		if($name=="userIdentifier" || $name=="bikeIdentifier"){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function getAttributeLink($name){
+		if($name=="userIdentifier"){
+			$id=$this->getAttribute($name);
+			$object=User::findOne($this->m_core,"User",$id);
+
+			return "<a href=\"?controller=UserManagement&action=view&id=$id\">{$object->getName()}</a>";
+		}elseif($name=="bikeIdentifier"){
+			$id=$this->getAttribute($name);
+			$object=Bike::findOne($this->m_core,"Bike",$id);
+
+			return "<a href=\"?controller=BikeManagement&action=view&id=$id\">{$object->getName()}</a>";
+		}
+	}
+
+
+
 }
 
 ?>
