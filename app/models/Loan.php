@@ -60,12 +60,13 @@ class Loan extends Model{
 		return $this->getAttribute("actualEndingDate")==$this->getAttribute("startingDate");
 	}
 
-	public function returnBike($date){
+	public function returnBike($date,$user){
 		$core=$this->m_core;
 		$table=$core->getTablePrefix()."Loan";
 		$id=$this->getId();
 
-		$query=" update $table set actualEndingDate = '$date' where id = $id and actualEndingDate = startingDate ;";
+		$query=" update $table set actualEndingDate = '$date', returnUserIdentifier = {$user->getId()}
+			 where id = $id and actualEndingDate = startingDate ;";
 
 		$core->getConnection()->query($query);
 	}

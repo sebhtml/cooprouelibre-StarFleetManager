@@ -247,7 +247,9 @@ class LoanManagement extends Controller{
 
 		$item=Loan::findWithIdentifier($core,"Loan",$_GET['id']);
 
-		$item->returnBike($_POST["actualEndingDate"]);
+		$user=User::findOne($core,"User",$_SESSION['id']);
+
+		$item->returnBike($_POST["actualEndingDate"],$user);
 		
 		$item=Loan::findWithIdentifier($core,"Loan",$_GET['id']);
 
