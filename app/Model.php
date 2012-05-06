@@ -63,7 +63,7 @@ class Model{
 
 		$list=$core->getConnection()->query("select * from $table where id = $identifier limit 1 ;")->getRows();
 		
-		$list=$model::makeObjectsFromRows($core,$list,$model);
+		$list=Model::makeObjectsFromRows($core,$list,$model);
 
 		if(count($list)==1){
 			return $list[0];
@@ -74,7 +74,7 @@ class Model{
 
 
 	public static function findWithIdentifier($core,$model,$identifier){
-		return $model::findOne($core,$model,$identifier);
+		return Model::findOne($core,$model,$identifier);
 
 	}
 
@@ -117,7 +117,7 @@ class Model{
 	public static function insertRow($core,$model,$attributeValues){
 		$table=$core->getTablePrefix().$model;
 
-		$attributes=$model::getPersistentAttributesForTable($core,$table);
+		$attributes=Model::getPersistentAttributesForTable($core,$table);
 
 		$attributeList="";
 		$valuesList="";
@@ -176,7 +176,7 @@ class Model{
 
 		$id=$core->getConnection()->getInsertedIdentifier();
 
-		return $model::findWithIdentifier($core,$model,$id);
+		return Model::findWithIdentifier($core,$model,$id);
 	}
 
 	public static function removeRow($core,$model,$identifier){
@@ -236,7 +236,7 @@ class Model{
 	public static function updateRow($core,$model,$attributeValues,$id){
 		$table=$core->getTablePrefix().$model;
 
-		$attributes=$model::getPersistentAttributesForTable($core,$table);
+		$attributes=Model::getPersistentAttributesForTable($core,$table);
 
 		$list="";
 
@@ -279,13 +279,13 @@ class Model{
 
 		$core->getConnection()->query($query);
 
-		return $model::findWithIdentifier($core,$model,$id);
+		return Model::findWithIdentifier($core,$model,$id);
 	}
 
 	public static function findAllWithQuery($core,$query,$model){
 		$list=$core->getConnection()->query($query)->getRows();
 
-		$objects=$model::makeObjectsFromRows($core,$list,$model);
+		$objects=Model::makeObjectsFromRows($core,$list,$model);
 
 		return $objects;
 	}
@@ -297,7 +297,7 @@ class Model{
 			return NULL;
 		}
 
-		$objects=$model::makeObjectsFromRows($core,$list,$model);
+		$objects=Model::makeObjectsFromRows($core,$list,$model);
 
 		return $objects[0];
 	}
