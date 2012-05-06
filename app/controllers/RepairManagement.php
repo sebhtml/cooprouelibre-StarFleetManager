@@ -47,6 +47,7 @@ class RepairManagement extends Controller{
 		$core->setPageTitle("Sauvegarder une réparation");
 
 		$_POST['completionDate']=$_POST['creationDate'];
+		$_POST['completionUserIdentifier']=$_POST['userIdentifier'];
 
 		Repair::insertRow($core,"Repair",$_POST);
 	
@@ -86,7 +87,10 @@ class RepairManagement extends Controller{
 
 		$item=Repair::findWithIdentifier($core,"Repair",$identifier);
 		$date=$_POST['completionDate'];
-		$item->complete($date);
+
+		$user=User::findOne($core,"User",$_SESSION['id']);
+
+		$item->complete($date,$user);
 		$item=Repair::findWithIdentifier($core,"Repair",$identifier);
 
 		$core->setPageTitle("Réparation complétée.");

@@ -36,7 +36,7 @@ class Repair extends Model{
 
 	public function isFilledField($field){
 
-		if($field=="creationDate" || $field == "userIdentifier"  || $field=="completionDate"){
+		if($field=="creationDate" || $field == "userIdentifier"  || $field=="completionDate"|| $field=="completionUserIdentifier"){
 			return true;
 		}
 
@@ -55,7 +55,7 @@ class Repair extends Model{
 	
 			return array($user->getAttributeValue("id"),$user->getName());
 
-		}else if($field=="completionDate"){
+		}else if($field=="completionDate" || $field=="completionUserIdentifier"){
 			return array(0,"-");
 
 		}
@@ -67,9 +67,10 @@ class Repair extends Model{
 		$names["bikeIdentifier"]="Vélo";
 		$names["creationDate"]="Date et heure de création";
 		$names["description"]="Description";
-		$names["userIdentifier"]="Auteur";
+		$names["userIdentifier"]="Créateur";
 		$names["repairIsCompleted"]="Complétée";
 		$names["completionDate"]="Date et heure de complétion";
+		$names["completionUserIdentifier"]="Opérateur pour la complétion";
 		
 		
 		return $names;
@@ -106,18 +107,19 @@ class Repair extends Model{
 		return $this->getAttribute("creationDate") == $this->getAttribute("completionDate");
 	}
 
-	public function complete($date){
+	public function complete($date,$user){
 		$core=$this->m_core;
 		$table=$core->getTablePrefix()."Repair";
 		$id=$this->getId();
 
-		$query=" update $table set completionDate = '$date' where id = $id and  completionDate = creationDate ; ";
+		$query=" update $table set completionDate = '$date', completionUserIdentifier = {$user->getId()}
+			 where id = $id and  completionDate = creationDate ; ";
 
 		$core->getConnection()->query($query);
 	}
 
 	public function isLinkedAttribute($name){
-		if($name=="userIdentifier" || $name=="bikeIdentifier"){
+		if($name=="userIdentifier" || $name=="bikeIdentifier"|| $name=="completionUserIdentifier"){
 			return true;
 		}else{
 			return false;
@@ -129,12 +131,20 @@ class Repair extends Model{
 			$id=$this->getAttribute($name);
 			$object=User::findOne($this->m_core,"User",$id);
 
-			return "<a href=\"?controller=UserManagement&action=view&id=$id\">{$object->getName()}</a>";
+			return $object->getLink();
+
+		}else if($name=="completionUserIdentifier"){
+			$id=$this->getAttribute($name);
+			$object=User::findOne($this->m_core,"User",$id);
+
+			return $object->getLink();
+
+
 		}elseif($name=="bikeIdentifier"){
 			$id=$this->getAttribute($name);
 			$object=Bike::findOne($this->m_core,"Bike",$id);
 
-			return "<a href=\"?controller=BikeManagement&action=view&id=$id\">{$object->getName()}</a>";
+			return $object->getLink();
 		}
 	}
 

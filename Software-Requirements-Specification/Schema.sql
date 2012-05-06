@@ -52,7 +52,13 @@ create table TablePrefix_Bike(
 create table TablePrefix_Repair(
 	id	integer auto_increment,
 		primary key(id),
+
 	creationDate	datetime not null,
+
+
+	userIdentifier	integer not null,
+		index userIdentifier_index (userIdentifier),
+		foreign key (userIdentifier) references TablePrefix_User(id),
 
 	bikeIdentifier	integer not null,
 		index bikeIdentifier_index (bikeIdentifier),
@@ -60,11 +66,11 @@ create table TablePrefix_Repair(
 
 	description	varchar(255) not null,
 
-	userIdentifier	integer not null,
-		index userIdentifier_index (userIdentifier),
-		foreign key (userIdentifier) references TablePrefix_User(id),
+	completionDate	datetime not null,
 
-	completionDate	datetime not null
+	completionUserIdentifier	integer not null,
+		index completionUserIdentifier_index (completionUserIdentifier)
+
 ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 
