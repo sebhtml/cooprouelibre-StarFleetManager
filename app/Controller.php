@@ -61,6 +61,14 @@ class Controller{
 		echo("<table><tbody>");
 	}
 
+	public function addYesNoSelector($description,$name){
+		echo("<tr><td   class=\"tableContentCell\">$description</td><td>");
+
+		$this->renderYesNoSelector($name);
+
+		echo("</td></tr>");
+	}
+
 	public function renderYesNoSelector($name){
 		$this->renderYesNoSelectorWithValue($name,0);
 	}
@@ -226,6 +234,10 @@ class Controller{
 		foreach($keys as $key){
 			echo "<tr>";
 			$value=$row[$key];
+
+			if($key=="id"){
+				continue;
+			}
 
 			$name=$key;
 			if(array_key_exists($key,$columnNames)){

@@ -9,7 +9,7 @@ class Loan extends Model{
 
 		$member=Member::findWithIdentifier($this->m_core,"Member",$this->getAttribute("memberIdentifier"));
 
-		return $member->getAttribute("firstName")." ".$member->getAttribute("lastName")." ".$this->getAttribute("startingDate")." ".$this->getAttribute("expectedEndingDate");
+		return $this->getAttribute("startingDate")." ".$member->getAttribute("firstName")." ".$member->getAttribute("lastName");
 	}
 
 
@@ -77,7 +77,7 @@ class Loan extends Model{
 		$names["startingDate"]="Début du prêt";
 		$names["expectedEndingDate"]="Fin prévu du prêt";
 		$names["actualEndingDate"]="Fin du prêt";
-		$names["returnUserIdentifier"]="Opérateur pour la fin";
+		$names["returnUserIdentifier"]="Opérateur pour le retour";
 	
 		return $names;
 	}

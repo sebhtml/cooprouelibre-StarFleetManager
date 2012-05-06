@@ -51,9 +51,7 @@ class Repair extends Model{
 		}elseif($field=="userIdentifier"){
 			
 
-			$username=$_SESSION["username"];
-
-			$user=User::findWithUsername($core,$username);
+			$user=User::findOne($core,"User",$_SESSION['id']);
 	
 			return array($user->getAttributeValue("id"),$user->getName());
 
@@ -78,7 +76,7 @@ class Repair extends Model{
 	}
 
 	public function getName(){
-		return $this->getAttribute("description");
+		return $this->getAttribute("creationDate")." ".$this->getAttribute("description");
 	}
 
 
