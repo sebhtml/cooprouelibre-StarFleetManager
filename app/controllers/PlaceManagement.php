@@ -50,8 +50,11 @@ class PlaceManagement extends Controller{
 
 		$schedules=$item->getSchedules($core);
 
+		$closedDays=$item->getClosedDays($core);
+
 		include($this->getView(__CLASS__,__METHOD__));
 	}
+
 };
 
 ?>

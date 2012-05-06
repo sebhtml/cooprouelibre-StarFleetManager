@@ -8,9 +8,9 @@ $this->printRowAsTable($item->getAttributes(),$columnNames);
 ?>
 
 
-<h2>Période d'horaires</h2>
+<h2>Horaires</h2>
 
-Périodes programmées: 
+Horaires:
 
 <?php
 
@@ -40,7 +40,47 @@ foreach($schedules as $item){
 <?php
 
 
-$core->makeButton("?controller=Scheduling&action=add&placeIdentifier=$placeIdentifier","ajouter une période d'horaire");
+$core->makeButton("?controller=Scheduling&action=add&placeIdentifier=$placeIdentifier","ajouter un horaire");
+
+
+?>
+
+<br />
+<br />
+
+<h2>Jours fermés</h2>
+
+Jours fermés:
+
+<?php
+
+echo count($closedDays);
+
+?>
+
+<br />
+<br />
+
+<?php
+
+foreach($closedDays as $item){
+
+	$id=$item->getId();
+	$name=$item->getName();
+
+	echo "<a href=\"?controller=ClosedDays&action=view&id=$id\">$name</a><br />";
+}
+
+?>
+
+<br />
+<br />
+
+<?php
+
+
+$core->makeButton("?controller=ClosedDays&action=add&placeIdentifier=$placeIdentifier","ajouter un jour fermé");
+
 ?>
 
 

@@ -146,8 +146,6 @@ class Scheduling extends Controller{
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}
-
-
 };
 
 ?>

@@ -22,6 +22,13 @@ class Place extends Model{
 		return Schedule::getObjectsInRelation($this->m_core,"Schedule","placeIdentifier",$this->getId());
 	}
 
+	public function getClosedDays(){
+
+		return ClosedDay::getObjectsInRelation($this->m_core,"ClosedDay","placeIdentifier",$this->getId());
+	}
+
+
+
 	public function isFilledField($field){
 		return $field=="userIdentifier";
 	}
@@ -61,7 +68,6 @@ and not exists ( select * from $tableRepair  where bikeIdentifier= $tableBike.id
  */
 	public function getSchedule($date){
 		$core=$this->m_core;
-
 		
 		$tableSchedule=$core->getTablePrefix()."Schedule";
 
@@ -72,6 +78,17 @@ and not exists ( select * from $tableRepair  where bikeIdentifier= $tableBike.id
 		$schedule=Schedule::findOneWithQuery($core,$query,"Schedule");
 
 		return $schedule;
+	}
+
+	public function isClosedDay($date){
+		$core=$this->m_core;
+		$table=$core->getTablePrefix()."ClosedDay";
+		$placeIdentifier=$this->getId();
+		$query=" select * from $table where placeIdentifier=$placeIdentifier  and dayOfYear='$date' limit 1 ; ";
+
+		$item=ClosedDay::findOneWithQuery($core,$query,"ClosedDay");
+
+		return $item!=NULL;
 	}
 }
 

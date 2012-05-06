@@ -123,6 +123,14 @@ class LoanManagement extends Controller{
 
 			$isOpened=$scheduledDay->getAttribute("opened");
 
+			if($isOpened){
+				// check for closed days too
+				
+				if($place->isClosedDay($day)){
+					$isOpened=false;
+				}
+			}
+
 			if(!$isOpened){
 				$tomorrow=date("Y-m-d",strtotime($day)+24*60*60);
 				return $this->getNextEndingDate($place,$tomorrow);
