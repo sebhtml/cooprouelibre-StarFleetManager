@@ -96,12 +96,44 @@ class LoanManagement extends Controller{
 
 			$length=$scheduledDay->getAttribute("loanLength")*60*60;
 
+			
 			$final=$now+$length;
 			$endingDate=date("Y-m-d H:i:s",$final);
+
+			
+			$eveningTime=date("Y-m-d ")." ".$scheduledDay->getAttribute("eveningTime");
+
+			// if this is after the eveningTime, return the bike the next day before returnTime
+			if(strtotime($endingDate) >= strtotime($eveningTime)){
+				$tomorrow=date("Y-m-d",time()+24*60*60);
+				$endingDate=$this->getNextEndingDate($place,$tomorrow);
+			}
 		}
 
 		return $endingDate;
 
+	}
+
+	private function getNextEndingDate($place,$day){
+		$schedule=$place->getSchedule($day);
+
+		if($schedule!=NULL){
+			// get the day of the week
+			$dayOfWeek=date("N",strtotime($day))-1;
+
+			$scheduledDay=$schedule->getScheduledDay($dayOfWeek);
+
+			$isOpened=$scheduledDay->getAttribute("opened");
+
+			if(!$isOpened){
+				$tomorrow=date("Y-m-d",strtotime($day)+24*60*60);
+				return $this->getNextEndingDate($place,$tomorrow);
+			}
+
+			return $day." ".$scheduledDay->getAttribute("returnTime");
+		}
+
+		return "NULL";
 	}
 
 	public function call_add_save($core){
