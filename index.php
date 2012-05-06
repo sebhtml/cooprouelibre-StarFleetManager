@@ -34,7 +34,7 @@ include("app/controllers/UserManagement.php");
 include("app/controllers/Authentification.php");
 include("app/controllers/Entertainment.php");
 include("app/controllers/Scheduling.php");
-include("app/controllers/ClosedDays.php");
+include("app/controllers/ClosedDayManagement.php");
 include("app/controllers/BikePlaceManagement.php");
 
 
@@ -54,7 +54,7 @@ $core->registerController(new LoanManagement());
 $core->registerController(new Scheduling());
 $core->registerController(new Entertainment());
 $core->registerController(new PlaceManagement());
-$core->registerController(new ClosedDays());
+$core->registerController(new ClosedDayManagement());
 $core->registerController(new BikePlaceManagement());
 
 $core->setSessionData($_SESSION);

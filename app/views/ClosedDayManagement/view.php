@@ -6,6 +6,18 @@
 $this->printRowAsTable($item);
 
 
+
+
+?>
+
+<br />
+<br />
+
+<?php
+
+
+$core->makeButton("?controller=ClosedDayManagement&action=remove&id={$item->getId()}","supprimer");
+
 ?>
 
 

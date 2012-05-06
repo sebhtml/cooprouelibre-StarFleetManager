@@ -19,6 +19,32 @@ class ClosedDay extends Model{
 		return $this->getAttribute("dayOfYear")." ".$this->getAttribute("name");
 	}
 
+	public function isLinkedAttribute($name){
+		if($name=="placeIdentifier" || $name=="userIdentifier"){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function getAttributeLink($name){
+		if($name=="userIdentifier"){
+			$id=$this->getAttribute($name);
+			$object=User::findOne($this->m_core,"User",$id);
+
+			return $object->getLink();
+
+		}elseif($name=="placeIdentifier"){
+			$id=$this->getAttribute($name);
+			$object=Place::findOne($this->m_core,"Place",$id);
+
+			return $object->getLink();
+		}
+
+
+	}
+
+
 }
 
 ?>

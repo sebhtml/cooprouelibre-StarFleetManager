@@ -3,7 +3,7 @@
 // Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
-$this->printRowAsTable($item->getAttributes(),$columnNames);
+$this->printRowAsTable($item);
 
 $id=$item->getAttributeValue("id");
 ?>

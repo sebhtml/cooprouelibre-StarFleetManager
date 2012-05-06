@@ -3,11 +3,11 @@
 // Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
-class ClosedDays extends Controller{
+class ClosedDayManagement extends Controller{
 
 	public function registerController($core){
-		$core->registerControllerName("ClosedDays",$this);
-		$core->secureController("ClosedDays");
+		$core->registerControllerName("ClosedDayManagement",$this);
+		$core->secureController("ClosedDayManagement");
 	}
 
 	public function call_view($core){
@@ -45,7 +45,14 @@ class ClosedDays extends Controller{
 		include($this->getView(__CLASS__,__METHOD__));
 	}
 
+	public function call_remove($core){
 
+		$core->setPageTitle("Enlever un jour fermé");
+
+		ClosedDay::removeRow($core,"ClosedDay",$_GET['id']);
+
+		include($this->getView(__CLASS__,__METHOD__));
+	}
 
 };
 

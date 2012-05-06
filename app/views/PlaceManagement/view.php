@@ -76,7 +76,9 @@ foreach($closedDays as $item){
 	$id=$item->getId();
 	$name=$item->getName();
 
-	echo "<a href=\"?controller=ClosedDays&action=view&id=$id\">$name</a><br />";
+	echo "<a href=\"?controller=ClosedDayManagement&action=view&id=$id\">$name</a>";
+
+	echo "<br />";
 }
 
 ?>
@@ -87,7 +89,7 @@ foreach($closedDays as $item){
 <?php
 
 
-$core->makeButton("?controller=ClosedDays&action=add&placeIdentifier=$placeIdentifier","ajouter un jour fermé");
+$core->makeButton("?controller=ClosedDayManagement&action=add&placeIdentifier=$placeIdentifier","ajouter un jour fermé");
 
 ?>
 

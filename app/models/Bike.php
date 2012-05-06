@@ -23,7 +23,7 @@ class Bike extends Model{
 	}
 
 	public function isFilledField($field){
-		return $field=="userIdentifier";
+		return $field=="userIdentifier"|| $field=="acquisitionDate";
 	}
 
 	public function getFilledValue($core,$field){
@@ -31,6 +31,9 @@ class Bike extends Model{
 		if($field=="userIdentifier"){
 			$user=User::findWithIdentifier($core,"User",$_SESSION['id']);
 			return array($user->getId(),$user->getName());
+		}elseif($field=="acquisitionDate"){
+			$item=$core->getCurrentDate();
+			return array($item,$item);
 		}
 	}
 

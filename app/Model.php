@@ -175,6 +175,15 @@ class Model{
 		return $model::findWithIdentifier($core,$model,$id);
 	}
 
+	public static function removeRow($core,$model,$identifier){
+		$id=(int)$identifier;
+		$table=$core->getTablePrefix().$model;
+
+		$query="delete from $table where id = $identifier ; ";
+
+		$core->getConnection()->query($query);
+	}
+
 	public function getName(){
 		return $this->getAttributeValue("id");
 	}
