@@ -15,6 +15,10 @@ $id=$item->getAttributeValue("id");
 
 $core->makeButton("?controller=LoanManagement&action=list&bikeIdentifier=$id","Voir les prêts");
 
+echo "<br />";
+
+$core->makeButton("?controller=RepairManagement&action=list&bikeIdentifier=$id","Voir les réparations");
+
 ?>
 
 <br />

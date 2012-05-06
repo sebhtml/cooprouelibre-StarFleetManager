@@ -114,6 +114,26 @@ class Bike extends Model{
 		return Loan::findAllWithQuery($core,$query,"Loan");
 	}
 
+
+	public function findAllRepairsToDo($core){
+
+		$table=$core->getTablePrefix()."Repair";
+
+		$query= "select * from $table where creationDate = completionDate and bikeIdentifier = {$this->getId()} ;";
+		
+		return Repair::findAllWithQuery($core,$query,"Repair");
+	}
+
+	public function findAllRepairsDone($core){
+
+		$table=$core->getTablePrefix()."Repair";
+
+		$query= "select * from $table where creationDate != completionDate  and bikeIdentifier = {$this->getId()} ;";
+		
+		return Repair::findAllWithQuery($core,$query,"Repair");
+	}
+
+
 }
 
 ?>

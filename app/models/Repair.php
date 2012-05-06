@@ -76,7 +76,10 @@ class Repair extends Model{
 	}
 
 	public function getName(){
-		return $this->getAttribute("creationDate")." ".$this->getAttribute("description");
+
+		$bike=Bike::findWithIdentifier($this->m_core,"Bike",$this->getAttribute("bikeIdentifier"));
+
+		return $this->getAttribute("creationDate")." ".$bike->getName()." ".$this->getAttribute("description");
 	}
 
 

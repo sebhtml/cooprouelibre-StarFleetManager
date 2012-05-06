@@ -12,12 +12,24 @@ class RepairManagement extends Controller{
 
 	public function call_list($core){
 
-		$core->setPageTitle("Voir les réparations");
 
 		$bikes=Bike::findAll($core,"Bike");
 
-		$listToDo=Repair::findAllRepairsToDo($core);
-		$listDone=Repair::findAllRepairsDone($core);
+		if(array_key_exists("bikeIdentifier",$_GET)){
+
+			$item=Bike::findWithIdentifier($core,"Bike",$_GET["bikeIdentifier"]);
+
+			$core->setPageTitle("Voir les réparations pour le vélo ".$item->getName());
+
+			$listToDo=$item->findAllRepairsToDo($core);
+			$listDone=$item->findAllRepairsDone($core);
+		}else{
+
+			$core->setPageTitle("Voir toutes les réparations");
+
+			$listToDo=Repair::findAllRepairsToDo($core);
+			$listDone=Repair::findAllRepairsDone($core);
+		}
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}
