@@ -9,15 +9,16 @@
 
 <?php
 
-if($schedule==NULL){
+if($schedule==NULL || $endingDate==NULL){
 
 ?>
 
-Il n'y a pas d'horaire de programmé pour cette date.<br /><br />
+Il n'y a pas d'horaire de programmé pour  <?php echo $startingDate ; ?> au 
+point de service <?php echo $place->getName(); ?>.
 
 <?php
 
-}
+}else{
 
 $this->startForm("?controller=LoanManagement&action=add_save");
 
@@ -33,4 +34,6 @@ $this->addTextFieldWithValue("Retour du prêt","expectedEndingDate",$endingDate)
 $this->renderHiddenFieldWithValue("actualEndingDate","","",$startingDate);
 
 $this->endForm();
+
+}
 ?>

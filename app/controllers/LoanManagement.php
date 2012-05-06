@@ -83,9 +83,7 @@ class LoanManagement extends Controller{
 	private function getEndingDate($place,$today,$startingDate){
 
 		$now=strtotime($startingDate);
-		$length=3*60*60;
-		$final=$now+$length;
-		$endingDate=date("Y-m-d H:i:s",$final);
+		$endingDate=NULL;
 
 		$schedule=$place->getSchedule($today);
 
@@ -133,7 +131,7 @@ class LoanManagement extends Controller{
 			return $day." ".$scheduledDay->getAttribute("returnTime");
 		}
 
-		return "NULL";
+		return NULL;
 	}
 
 	public function call_add_save($core){
