@@ -12,6 +12,7 @@ $this->printRowAsTable($item->getAttributes(),$columnNames);
 <?php
 
 $core->makeButton("?controller=LoanManagement&action=list&placeIdentifier=$placeIdentifier","Voir les prêts");
+$core->makeButton("?controller=BikeManagement&action=list&placeIdentifier=$placeIdentifier","Voir les vélos");
 
 ?>
 

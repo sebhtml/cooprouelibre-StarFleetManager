@@ -12,9 +12,19 @@ class BikeManagement extends Controller{
 
 	public function call_list($core){
 
-		$core->setPageTitle("Voir les vélos");
+		if(array_key_exists("placeIdentifier",$_GET)){
+			
+			$item=Place::findWithIdentifier($core,"Place",$_GET["placeIdentifier"]);
 
-		$list=Bike::findAll($core,"Bike");
+			$core->setPageTitle("Voir les vélos au point de service ".$item->getName());
+
+			$list=$item->getBikes();
+		}else{
+
+			$core->setPageTitle("Voir tous les vélos");
+			$list=Bike::findAll($core,"Bike");
+
+		}
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}

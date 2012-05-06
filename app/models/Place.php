@@ -151,6 +151,30 @@ class Place extends Model{
 	}
 
 
+	public function getBikes(){
+
+		$core=$this->m_core;
+
+		$tableMember=$core->getTablePrefix()."Member";
+		$tableLoan=$core->getTablePrefix()."Loan";
+		$tableBike=$core->getTablePrefix()."Bike";
+		$tableRepair=$core->getTablePrefix()."Repair";
+		$tableBikePlace=$core->getTablePrefix()."BikePlace";
+
+		$placeIdentifier=$this->getId();
+
+		$query= "select * from $tableBike where 
+
+			 $placeIdentifier in 
+				(select placeIdentifier from $tableBikePlace where bikeIdentifier = $tableBike.id 
+					and startingDate = (select max(startingDate) from $tableBikePlace where bikeIdentifier = $tableBike.id ) ) ; ";
+		
+		$list=$core->getConnection()->query($query)->getRows();
+
+		return Bike::makeObjectsFromRows($core,$list,"Bike");
+
+	}
+
 
 
 }
