@@ -8,8 +8,10 @@ class Loan extends Model{
 	public function getName(){
 
 		$member=Member::findWithIdentifier($this->m_core,"Member",$this->getAttribute("memberIdentifier"));
+		$place=Place::findWithIdentifier($this->m_core,"Place",$this->getAttribute("placeIdentifier"));
+		$bike=Bike::findWithIdentifier($this->m_core,"Bike",$this->getAttribute("bikeIdentifier"));
 
-		return $this->getAttribute("startingDate")." ".$member->getAttribute("firstName")." ".$member->getAttribute("lastName");
+		return $this->getAttribute("startingDate")." ".$bike->getName()." par ".$member->getAttribute("firstName")." ".$member->getAttribute("lastName")." (".$place->getName().")";
 	}
 
 

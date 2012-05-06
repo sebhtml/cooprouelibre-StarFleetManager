@@ -12,12 +12,52 @@ class LoanManagement extends Controller{
 
 	public function call_list($core){
 
-		$core->setPageTitle("Voir les prêts");
+		if(array_key_exists("placeIdentifier",$_GET)){
 
-		$listReturnedLate=Loan::findAllReturnedLateLoans($core);
-		$listReturnedNotLate=Loan::findAllReturnedNotLateLoans($core);
-		$listActiveLate=Loan::findAllActiveLateLoans($core);
-		$listActiveNotLate=Loan::findAllActiveNotLateLoans($core);
+			$item=Place::findOne($core,"Place",$_GET['placeIdentifier']);
+
+			$core->setPageTitle("Voir les prêts pour le point de service ".$item->getName());
+
+			$listReturnedLate=$item->findAllReturnedLateLoans($core);
+			$listReturnedNotLate=$item->findAllReturnedNotLateLoans($core);
+			$listActiveLate=$item->findAllActiveLateLoans($core);
+			$listActiveNotLate=$item->findAllActiveNotLateLoans($core);
+
+		}elseif(array_key_exists("memberIdentifier",$_GET)){
+
+			$item=Member::findOne($core,"Member",$_GET['memberIdentifier']);
+
+			$core->setPageTitle("Voir les prêts pour le membre ".$item->getName());
+			$listReturnedLate=$item->findAllReturnedLateLoans($core);
+			$listReturnedNotLate=$item->findAllReturnedNotLateLoans($core);
+			$listActiveLate=$item->findAllActiveLateLoans($core);
+			$listActiveNotLate=$item->findAllActiveNotLateLoans($core);
+
+
+		}elseif(array_key_exists("bikeIdentifier",$_GET)){
+
+			$item=Bike::findOne($core,"Bike",$_GET['bikeIdentifier']);
+
+			$core->setPageTitle("Voir les prêts pour le vélo ".$item->getName());
+
+
+			$listReturnedLate=$item->findAllReturnedLateLoans($core);
+			$listReturnedNotLate=$item->findAllReturnedNotLateLoans($core);
+			$listActiveLate=$item->findAllActiveLateLoans($core);
+			$listActiveNotLate=$item->findAllActiveNotLateLoans($core);
+
+
+
+		}else{
+
+			$core->setPageTitle("Voir tous les prêts");
+
+			$listReturnedLate=Loan::findAllReturnedLateLoans($core);
+			$listReturnedNotLate=Loan::findAllReturnedNotLateLoans($core);
+			$listActiveLate=Loan::findAllActiveLateLoans($core);
+			$listActiveNotLate=Loan::findAllActiveNotLateLoans($core);
+
+		}
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}

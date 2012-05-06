@@ -109,6 +109,50 @@ class Place extends Model{
 		return Place::findAllWithQuery($core,$query,"Place");
 	}
 
+
+	public function findAllReturnedLateLoans($core){
+
+		$table=$core->getTablePrefix()."Loan";
+
+		$query= "select * from $table where actualEndingDate > expectedEndingDate and actualEndingDate != startingDate  and placeIdentifier = {$this->getId()} ";
+		
+		return Loan::findAllWithQuery($core,$query,"Loan");
+	}
+
+	public function findAllReturnedNotLateLoans($core){
+
+		$table=$core->getTablePrefix()."Loan";
+
+		$query= "select * from $table where actualEndingDate <= expectedEndingDate  and actualEndingDate != startingDate  and placeIdentifier = {$this->getId()} ";
+		
+		return Loan::findAllWithQuery($core,$query,"Loan");
+	}
+
+	public function findAllActiveNotLateLoans($core){
+
+		$table=$core->getTablePrefix()."Loan";
+
+		$now=$core->getCurrentTime();
+
+		$query= "select * from $table where '$now' <= expectedEndingDate  and actualEndingDate = startingDate  and placeIdentifier = {$this->getId()} ";
+		
+		return Loan::findAllWithQuery($core,$query,"Loan");
+	}
+
+	public function findAllActiveLateLoans($core){
+
+		$table=$core->getTablePrefix()."Loan";
+
+		$now=$core->getCurrentTime();
+
+		$query= "select * from $table where '$now' > expectedEndingDate   and actualEndingDate = startingDate  and placeIdentifier = {$this->getId()} ";
+		
+		return Loan::findAllWithQuery($core,$query,"Loan");
+	}
+
+
+
+
 }
 
 ?>

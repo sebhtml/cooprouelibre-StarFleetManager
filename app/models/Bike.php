@@ -19,7 +19,7 @@ class Bike extends Model{
 	}
 
 	public function getName(){
-		return "(".$this->getAttributeValue("bikeIdentifier").") ".$this->getAttributeValue("vendorName")." ".$this->getAttributeValue("modelName");
+		return $this->getAttributeValue("vendorName")." ".$this->getAttributeValue("modelName")." (#".$this->getAttribute("bikeIdentifier").")";
 	}
 
 	public function isFilledField($field){
@@ -73,6 +73,46 @@ class Bike extends Model{
 		return $item==NULL;
 	}
 
+
+	public function findAllReturnedLateLoans($core){
+
+		$table=$core->getTablePrefix()."Loan";
+
+		$query= "select * from $table where actualEndingDate > expectedEndingDate and actualEndingDate != startingDate  and bikeIdentifier = {$this->getId()} ";
+		
+		return Loan::findAllWithQuery($core,$query,"Loan");
+	}
+
+	public function findAllReturnedNotLateLoans($core){
+
+		$table=$core->getTablePrefix()."Loan";
+
+		$query= "select * from $table where actualEndingDate <= expectedEndingDate  and actualEndingDate != startingDate  and bikeIdentifier = {$this->getId()} ";
+		
+		return Loan::findAllWithQuery($core,$query,"Loan");
+	}
+
+	public function findAllActiveNotLateLoans($core){
+
+		$table=$core->getTablePrefix()."Loan";
+
+		$now=$core->getCurrentTime();
+
+		$query= "select * from $table where '$now' <= expectedEndingDate  and actualEndingDate = startingDate  and bikeIdentifier = {$this->getId()} ";
+		
+		return Loan::findAllWithQuery($core,$query,"Loan");
+	}
+
+	public function findAllActiveLateLoans($core){
+
+		$table=$core->getTablePrefix()."Loan";
+
+		$now=$core->getCurrentTime();
+
+		$query= "select * from $table where '$now' > expectedEndingDate   and actualEndingDate = startingDate  and bikeIdentifier = {$this->getId()} ";
+		
+		return Loan::findAllWithQuery($core,$query,"Loan");
+	}
 
 }
 

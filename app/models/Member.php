@@ -36,7 +36,7 @@ class Member extends Model{
 	}
 
 	public function getName(){
-		return $this->getAttributeValue("firstName")." ".$this->getAttributeValue("lastName")." (".$this->getAttributeValue("memberIdentifier").")";
+		return $this->getAttributeValue("firstName")." ".$this->getAttributeValue("lastName")." (#".$this->getAttributeValue("memberIdentifier").")";
 	}
 
 	public function isFilledField($field){
@@ -67,6 +67,50 @@ class Member extends Model{
 		return Member::makeObjectsFromRows($core,$list,"Member");
 
 	}
+
+
+	public function findAllReturnedLateLoans($core){
+
+		$table=$core->getTablePrefix()."Loan";
+
+		$query= "select * from $table where actualEndingDate > expectedEndingDate and actualEndingDate != startingDate  and memberIdentifier = {$this->getId()} ";
+		
+		return Loan::findAllWithQuery($core,$query,"Loan");
+	}
+
+	public function findAllReturnedNotLateLoans($core){
+
+		$table=$core->getTablePrefix()."Loan";
+
+		$query= "select * from $table where actualEndingDate <= expectedEndingDate  and actualEndingDate != startingDate  and memberIdentifier = {$this->getId()} ";
+		
+		return Loan::findAllWithQuery($core,$query,"Loan");
+	}
+
+	public function findAllActiveNotLateLoans($core){
+
+		$table=$core->getTablePrefix()."Loan";
+
+		$now=$core->getCurrentTime();
+
+		$query= "select * from $table where '$now' <= expectedEndingDate  and actualEndingDate = startingDate  and memberIdentifier = {$this->getId()} ";
+		
+		return Loan::findAllWithQuery($core,$query,"Loan");
+	}
+
+	public function findAllActiveLateLoans($core){
+
+		$table=$core->getTablePrefix()."Loan";
+
+		$now=$core->getCurrentTime();
+
+		$query= "select * from $table where '$now' > expectedEndingDate   and actualEndingDate = startingDate  and memberIdentifier = {$this->getId()} ";
+		
+		return Loan::findAllWithQuery($core,$query,"Loan");
+	}
+
+
+
 }
 
 ?>

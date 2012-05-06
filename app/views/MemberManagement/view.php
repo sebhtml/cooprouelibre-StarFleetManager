@@ -5,4 +5,17 @@
 
 $this->printRowAsTable($member->getAttributes(),$columnNames);
 
+$memberIdentifier=$member->getId();
+
 ?>
+
+<br />
+
+<?php
+
+$core->makeButton("?controller=LoanManagement&action=list&memberIdentifier=$memberIdentifier","Voir les prêts");
+
+?>
+
+
+

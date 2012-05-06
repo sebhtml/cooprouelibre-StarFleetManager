@@ -11,6 +11,14 @@ $id=$item->getAttributeValue("id");
 
 <br />
 
+<?php
+
+$core->makeButton("?controller=LoanManagement&action=list&bikeIdentifier=$id","Voir les prêts");
+
+?>
+
+<br />
+
 <h2>Historique de l'endroit du vélo</h2>
 
 <?php

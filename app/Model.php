@@ -70,18 +70,8 @@ class Model{
 
 
 	public static function findWithIdentifier($core,$model,$identifier){
-		$table=$core->getTablePrefix().$model;
+		return $model::findOne($core,$model,$identifier);
 
-		$list=$core->getConnection()->query("select * from $table where id=$identifier ;")->getRows();
-		
-		$item=new $model();
-
-		$item->setAttributes($list[0]);
-
-		$item->setCore($core);
-		$item->setModel($model);
-
-		return $item;
 	}
 
 	public function setAttributes(&$values){

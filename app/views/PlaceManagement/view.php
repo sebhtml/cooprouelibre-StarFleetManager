@@ -7,6 +7,13 @@ $this->printRowAsTable($item->getAttributes(),$columnNames);
 
 ?>
 
+<br />
+
+<?php
+
+$core->makeButton("?controller=LoanManagement&action=list&placeIdentifier=$placeIdentifier","Voir les prêts");
+
+?>
 
 <h2>Horaires</h2>
 
