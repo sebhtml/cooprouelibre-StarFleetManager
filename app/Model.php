@@ -58,6 +58,16 @@ class Model{
 		return Model::makeObjectsFromRows($core,$list,$model);
 	}
 
+	public static function findOne($core,$model,$identifier){
+		$table=$core->getTablePrefix().$model;
+
+		$list=$core->getConnection()->query("select * from $table where id = $identifier ;")->getRows();
+		
+		$list=$model::makeObjectsFromRows($core,$list,$model);
+
+		return $list[0];
+	}
+
 
 	public static function findWithIdentifier($core,$model,$identifier){
 		$table=$core->getTablePrefix().$model;
@@ -206,6 +216,17 @@ class Model{
 		}
 
 		return $objects;
+	}
+
+	public function getObjectInRelation($core,$model,$field){
+
+		$identifier=$this->getId();
+
+		$table=$core->getTablePrefix().$model;
+
+		$query="select * from $table where $field=$identifier ;";
+
+		return $this->findOneWithQuery($core,$query,$model);
 	}
 
 

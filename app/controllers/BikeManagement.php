@@ -46,6 +46,8 @@ class BikeManagement extends Controller{
 		$core->setPageTitle($item->getName());
 		$columnNames=$item->getFieldNames();
 		
+		$places=$item->getBikePlaces();
+
 		include($this->getView(__CLASS__,__METHOD__));
 	}
 

@@ -34,6 +34,46 @@ class Bike extends Model{
 		}
 	}
 
+	public function getCurrentPlace(){
+		$core=$this->m_core;
+		$table=$core->getTablePrefix()."Place";
+		$tableBikePlace=$core->getTablePrefix()."BikePlace";
+
+		$id=$this->getId();
+
+		$query=" select * from $table where id = 
+			(select placeIdentifier from $tableBikePlace where bikeIdentifier = $id 
+				and startingDate = 
+					(select max(startingDate) from $tableBikePlace where bikeIdentifier = $id)
+			); ";
+
+		$item=Place::findOneWithQuery($core,$query,"Place");
+
+		return $item;
+	}
+
+
+	public function getBikePlaces(){
+
+		return Schedule::getObjectsInRelation($this->m_core,"BikePlace","bikeIdentifier",$this->getId());
+	}
+
+	public function canBeMoved(){
+		$core=$this->m_core;
+		$table=$core->getTablePrefix()."Loan";
+
+		$id=$this->getId();
+
+		// get active loans
+
+		$query=" select * from $table where bikeIdentifier = $id and actualEndingDate = startingDate ;";
+
+		$item=Loan::findOneWithQuery($core,$query,"Loan");
+
+		return $item==NULL;
+	}
+
+
 }
 
 ?>

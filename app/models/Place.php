@@ -54,9 +54,18 @@ class Place extends Model{
 		$tableLoan=$core->getTablePrefix()."Loan";
 		$tableBike=$core->getTablePrefix()."Bike";
 		$tableRepair=$core->getTablePrefix()."Repair";
+		$tableBikePlace=$core->getTablePrefix()."BikePlace";
 
-		$query= "select * from $tableBike where  not exists (select * from $tableLoan where bikeIdentifier=$tableBike.id and startingDate = actualEndingDate ) 
-and not exists ( select * from $tableRepair  where bikeIdentifier= $tableBike.id and creationDate = completionDate ) ; ";
+		$placeIdentifier=$this->getId();
+
+		$query= "select * from $tableBike where 
+			 not exists (select * from $tableLoan where bikeIdentifier=$tableBike.id and startingDate = actualEndingDate ) 
+
+			and not exists ( select * from $tableRepair  where bikeIdentifier= $tableBike.id and creationDate = completionDate )
+
+			 and  $placeIdentifier in 
+				(select placeIdentifier from $tableBikePlace where bikeIdentifier = $tableBike.id 
+					and startingDate = (select max(startingDate) from $tableBikePlace where bikeIdentifier = $tableBike.id ) ) ; ";
 		
 		$list=$core->getConnection()->query($query)->getRows();
 
@@ -90,6 +99,16 @@ and not exists ( select * from $tableRepair  where bikeIdentifier= $tableBike.id
 
 		return $item!=NULL;
 	}
+
+	public function getOtherPlaces(){
+		$core=$this->m_core;
+		$table=$core->getTablePrefix()."Place";
+		$placeIdentifier=$this->getId();
+		$query=" select * from $table where id != $placeIdentifier ;";
+
+		return Place::findAllWithQuery($core,$query,"Place");
+	}
+
 }
 
 ?>

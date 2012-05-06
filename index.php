@@ -20,6 +20,8 @@ include("app/models/Place.php");
 include("app/models/Schedule.php");
 include("app/models/ScheduledDay.php");
 include("app/models/ClosedDay.php");
+include("app/models/MemberLock.php");
+include("app/models/BikePlace.php");
 
 
 include("app/controllers/Dashboard.php");
@@ -33,6 +35,7 @@ include("app/controllers/Authentification.php");
 include("app/controllers/Entertainment.php");
 include("app/controllers/Scheduling.php");
 include("app/controllers/ClosedDays.php");
+include("app/controllers/BikePlaceManagement.php");
 
 
 session_start();
@@ -52,6 +55,7 @@ $core->registerController(new Scheduling());
 $core->registerController(new Entertainment());
 $core->registerController(new PlaceManagement());
 $core->registerController(new ClosedDays());
+$core->registerController(new BikePlaceManagement());
 
 $core->setSessionData($_SESSION);
 $core->setGetData($_GET);

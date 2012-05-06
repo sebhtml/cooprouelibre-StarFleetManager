@@ -203,7 +203,7 @@ class Controller{
 	}
 
 	public function renderSelector($field,$fieldName,$list){
-		echo "<tr><td class=\"tableContentCell\">$fieldName</td><td>";
+		echo "<tr><td class=\"tableContentCell\" >$fieldName</td><td   class=\"tableContentCell\">";
 
 		echo "<select name=\"$field\"   class=\"tableContentCell\">";
 
