@@ -3,6 +3,26 @@
 // Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
+if($item->isActive()){
+
+?>
+
+Le prêt est en cours.
+
+<?php
+}else{
+
+
+?>
+
+Le prêt est terminé.
+
+<?php
+}
+
+echo "<br />";
+echo "<br />";
+
 $this->printRowAsTable($item);
 
 $id=$item->getAttributeValue("id");

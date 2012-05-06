@@ -3,6 +3,27 @@
 // Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
+if($item->isActive()){
+
+?>
+
+La réparation doit être faite.
+<br />
+<br />
+<?php
+
+}else{
+
+?>
+
+La réparation a été faite.
+<br />
+<br />
+
+<?php
+
+}
+
 $this->printRowAsTable($item);
 
 $id=$item->getId();

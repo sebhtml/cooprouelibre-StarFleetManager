@@ -139,7 +139,6 @@ class Repair extends Model{
 
 			return $object->getLink();
 
-
 		}elseif($name=="bikeIdentifier"){
 			$id=$this->getAttribute($name);
 			$object=Bike::findOne($this->m_core,"Bike",$id);
@@ -147,7 +146,6 @@ class Repair extends Model{
 			return $object->getLink();
 		}
 	}
-
 
 
 }

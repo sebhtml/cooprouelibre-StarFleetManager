@@ -61,11 +61,15 @@ class Model{
 	public static function findOne($core,$model,$identifier){
 		$table=$core->getTablePrefix().$model;
 
-		$list=$core->getConnection()->query("select * from $table where id = $identifier ;")->getRows();
+		$list=$core->getConnection()->query("select * from $table where id = $identifier limit 1 ;")->getRows();
 		
 		$list=$model::makeObjectsFromRows($core,$list,$model);
 
-		return $list[0];
+		if(count($list)==1){
+			return $list[0];
+		}else{
+			return NULL;
+		}
 	}
 
 
