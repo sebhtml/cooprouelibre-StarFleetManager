@@ -87,7 +87,7 @@ for($i=0;$i<7;$i++){
 	echo "</td>";
 	echo "<td class=\"tableContentCell\">";
 
-	$this->renderTimeSelector("loanLength$i",0,4);
+	$this->renderTimeSelector("loanLength$i",0,24);
 
 	echo "</td>";
 

@@ -94,7 +94,7 @@ for($i=0;$i<7;$i++){
 	echo "</td>";
 	echo "<td class=\"tableContentCell\">";
 
-	$this->renderTimeSelectorWithValue("loanLength$i",0,4,$map[$i]->getAttribute("loanLength"));
+	$this->renderTimeSelectorWithValue("loanLength$i",0,24,$map[$i]->getAttribute("loanLength"));
 
 	echo "</td>";
 
