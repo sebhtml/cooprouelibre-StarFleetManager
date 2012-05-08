@@ -16,7 +16,9 @@
 
 	$id=$item->getId();
 
+if($isManager){
 	$core->makeButton("?controller=Scheduling&action=edit&id=$id","Éditer");
+}
 ?>
 
 <br /><br />

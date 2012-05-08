@@ -3,7 +3,10 @@
 // Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
-echo "Nombre de points de service: ".count($list)."<br /><br />";
+
+if($user->isAdministrator()){
+	echo "Nombre de points de service: ".count($list)."<br /><br />";
+}
 
 foreach($list as $i){
 	$id=$i->getAttributeValue('id');
@@ -15,7 +18,9 @@ foreach($list as $i){
 echo "<br />";
 echo "<br />";
 
-$core->makeButton("?controller=PlaceManagement&action=add","Ajouter un point de service");
+if($user->isAdministrator()){
+	$core->makeButton("?controller=PlaceManagement&action=add","Ajouter un point de service");
+}
 
 
 ?>

@@ -14,7 +14,9 @@ class PlaceManagement extends Controller{
 
 		$core->setPageTitle("Voir les points de service");
 
-		$list=Place::findAll($core,"Place");
+		$user=User::findOne($core,"User",$_SESSION['id']);
+
+		$list=$user->getPlaces();
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}
@@ -51,6 +53,10 @@ class PlaceManagement extends Controller{
 		$schedules=$item->getSchedules($core);
 
 		$closedDays=$item->getClosedDays($core);
+
+		$user=User::findOne($core,"User",$_SESSION['id']);
+		$place=$item;
+		$isManager=$place->isManager($user);
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}

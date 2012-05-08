@@ -147,6 +147,7 @@ class Core{
 
 			$username=$user->getAttribute("username");
 			$identifier=$_SESSION['id'];
+			$isAdministrator=$user->isAdministrator();
 		}
 		
 		$core=$this;

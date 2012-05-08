@@ -3,7 +3,9 @@
 // Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
+if($isAdministrator){
 $core->makeButton("?controller=BikeManagement&action=add","Ajouter un vélo");
+}
 
 echo "<br />";
 echo "<br />";

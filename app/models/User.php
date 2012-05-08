@@ -21,6 +21,11 @@ class User extends Model{
 		return NULL;
 	}
 
+	public function isAdministrator(){
+		return $this->getAttribute("isAdministrator");
+	}
+
+
 	public static function findWithUsername($core,$username){
 		$query="select * from {$core->getTablePrefix()}User where username='$username' limit 1";
 		$rows=$core->getConnection()->query($query)->getRows();
@@ -55,6 +60,25 @@ class User extends Model{
 			return false;
 		}
 	}
+
+	public function getRights(){
+
+		return Right::getObjectsInRelation($this->m_core,"Right","userIdentifier",$this->getId());
+	}
+
+	public function getPlaces(){
+
+		$tablePlace=$this->m_core->getTablePrefix()."Place";
+		$tableRight=$this->m_core->getTablePrefix()."Right";
+
+		$query= "select * from $tablePlace where exists (
+				select * from $tableRight where userIdentifier = {$this->getId()} and placeIdentifier = $tablePlace.id ) ;";
+
+		//echo $query;
+		
+		return Place::findAllWithQuery($this->m_core,$query,"Place");
+	}
+
 
 }
 

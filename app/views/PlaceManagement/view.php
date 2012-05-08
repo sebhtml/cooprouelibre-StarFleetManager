@@ -18,11 +18,18 @@ $core->makeButton("?controller=BikeManagement&action=list&placeIdentifier=$place
 
 <h2>Horaires</h2>
 
+<?php
+
+if($isManager){
+
+?>
+
 Horaires:
 
 <?php
 
 echo count($schedules);
+}
 
 ?>
 
@@ -47,8 +54,10 @@ foreach($schedules as $item){
 
 <?php
 
+if($isManager){
 
-$core->makeButton("?controller=Scheduling&action=add&placeIdentifier=$placeIdentifier","ajouter un horaire");
+	$core->makeButton("?controller=Scheduling&action=add&placeIdentifier=$placeIdentifier","ajouter un horaire");
+}
 
 
 ?>
@@ -58,11 +67,18 @@ $core->makeButton("?controller=Scheduling&action=add&placeIdentifier=$placeIdent
 
 <h2>Jours fermés</h2>
 
+<?php
+
+if($isManager){
+
+?>
+
 Jours fermés:
 
 <?php
 
 echo count($closedDays);
+}
 
 ?>
 
@@ -89,7 +105,9 @@ foreach($closedDays as $item){
 <?php
 
 
-$core->makeButton("?controller=ClosedDayManagement&action=add&placeIdentifier=$placeIdentifier","ajouter un jour fermé");
+if($isManager){
+	$core->makeButton("?controller=ClosedDayManagement&action=add&placeIdentifier=$placeIdentifier","ajouter un jour fermé");
+}
 
 ?>
 

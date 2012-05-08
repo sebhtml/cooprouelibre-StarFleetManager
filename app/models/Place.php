@@ -190,7 +190,35 @@ class Place extends Model{
 		return $object->getLink();
 	}
 
+	public function isManager($user){
+		return $this->hasRight($user,RIGHT_MANAGER);
+	}
 
+	public function isMechanic($user){
+		return $this->hasRight($user,RIGHT_MECHANIC);
+	}
+
+	public function isViewer($user){
+		return $this->hasRight($user,RIGHT_VIEWER);
+	}
+
+	public function isLoaner($user){
+		return $this->hasRight($user,RIGHT_LOAN_OPERATOR);
+	}
+
+
+	private function hasRight($user,$right){
+
+		$table=$this->m_core->getTablePrefix()."Right";
+		$query= "select * from $table where userIdentifier = {$user->getId()} and placeIdentifier= {$this->getId()} and rightNumber= $right ; ";
+
+		//echo $query;
+		
+		$list=Right::findAllWithQuery($this->m_core,$query,"Right");
+
+		return count($list)!=0;
+
+	}
 }
 
 ?>

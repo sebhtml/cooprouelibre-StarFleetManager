@@ -30,6 +30,10 @@ class Schedule extends Model{
 
 		return $item;
 	}
+
+	public function getPlace(){
+		return Place::findOne($this->m_core,"Place",$this->getAttribute("placeIdentifier"));
+	}
 }
 
 ?>

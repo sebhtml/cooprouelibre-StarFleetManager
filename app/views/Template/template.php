@@ -51,10 +51,16 @@ if($username!=NULL){
 
 $core->makeButton("?controller=PlaceManagement&action=list","points de service");
 $core->makeButton("?controller=MemberManagement&action=list","membres");
+
+if($isAdministrator){
 $core->makeButton("?controller=BikeManagement&action=list","vélos");
+}
+
+if($isAdministrator){
 $core->makeButton("?controller=RepairManagement&action=list","réparations");
 $core->makeButton("?controller=LoanManagement&action=list","prêts");
 $core->makeButton("?controller=UserManagement&action=list","opérateurs");
+}
 //$core->makeButton("?controller=Entertainment&action=viewSchema","entrailles");
 
 }

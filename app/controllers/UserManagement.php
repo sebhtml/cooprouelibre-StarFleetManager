@@ -33,6 +33,12 @@ class UserManagement extends Controller{
 		$core->setPageTitle($item->getName());
 		$columnNames=$item->getFieldNames();
 		
+		$currentUser=User::findWithIdentifier($core,"User",$_SESSION['id']);
+
+		$rights=$item->getRights();
+
+		$isAdministrator=$currentUser->isAdministrator();
+		
 		include($this->getView(__CLASS__,__METHOD__));
 
 	}

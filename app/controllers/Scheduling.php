@@ -65,7 +65,11 @@ class Scheduling extends Controller{
 		$getData=$core->getGetData();
 		$identifier=$getData["id"];
 
+		$user=User::findOne($core,"User",$_SESSION['id']);
+
 		$item=Schedule::findWithIdentifier($core,"Schedule",$identifier);
+
+		$isManager=$item->getPlace()->isManager($user);
 
 		$core->setPageTitle($item->getName());
 		$columnNames=$item->getFieldNames();
