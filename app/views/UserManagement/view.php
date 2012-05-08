@@ -5,7 +5,7 @@
 // License: GPLv3
 
 
-$this->printRowAsTable($item);
+// $this->printRowAsTable($item);
 
 if(array_key_exists("id",$_SESSION) && $_SESSION["id"]==$item->getAttributeValue("id")){
 

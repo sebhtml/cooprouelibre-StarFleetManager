@@ -14,12 +14,14 @@ class Bike extends Model{
 		$names["acquisitionDate"]="Date d'acquisition (aaaa-mm-jj)";
 		
 		$names["userIdentifier"]="Créateur";
+		$names["bikeSize"]="Grandeur";
 		
 		return $names;
 	}
 
 	public function getName(){
-		return $this->getAttributeValue("vendorName")." ".$this->getAttributeValue("modelName")." (#".$this->getAttribute("bikeIdentifier").")";
+		return "vélo #".$this->getAttribute("bikeIdentifier").", taille ".$this->getAttribute("bikeSize");
+		//return $this->getAttributeValue("vendorName")." ".$this->getAttributeValue("modelName").;
 	}
 
 	public function isFilledField($field){

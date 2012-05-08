@@ -43,10 +43,14 @@ foreach($places as $item2){
 $id=$item->getAttributeValue("id");
 
 if($item->canBeMoved()){
-	$core->makeButton("?controller=BikePlaceManagement&action=add&bikeIdentifier=$id","déplacer un vélo");
+	if($isAdministrator){
+		$core->makeButton("?controller=BikePlaceManagement&action=add&bikeIdentifier=$id","déplacer un vélo");
+	}
 }else{
 
 ?>
+
+
 
 Le vélo est présentement emprunté.
 

@@ -77,7 +77,9 @@ class LoanManagement extends Controller{
 
 		$core->setPageTitle("À quel point de service êtes-vous ?");
 
-		$items=Place::findAll($core,"Place");
+		$user=User::findOne($core,"User",$_SESSION['id']);
+
+		$items=$user->getPlaces();
 
 		$member=Member::findWithIdentifier($core,"Member",$_POST['memberIdentifier']);
 
@@ -142,7 +144,7 @@ class LoanManagement extends Controller{
 			$eveningTime=date("Y-m-d ")." ".$scheduledDay->getAttribute("eveningTime");
 
 			// if this is after the eveningTime, return the bike the next day before returnTime
-			if(strtotime($endingDate) >= strtotime($eveningTime)){
+			if(strtotime($startingDate) >= strtotime($eveningTime)){
 				$tomorrow=date("Y-m-d",time()+24*60*60);
 				$endingDate=$this->getNextEndingDate($place,$tomorrow);
 			}
