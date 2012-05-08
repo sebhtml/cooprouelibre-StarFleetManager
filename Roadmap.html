@@ -69,35 +69,149 @@ pour chaque jour de la semaine: (lundi au dimanche)<br />
 
 <h1>2012-05-07 10h00</h1>
 
-Meeting with client<br />
-
-<h1>2012-05-08 edit pages</h1> 
-
-éditer membre<br />
-éditer vélo<br />
-éditer son profil<br />
-<s>edit closed day<br /></s>
-
-<h1>2012-05-09 retards</h1>
-
-penality: 1 day per hour<br />
-Il a droit à 3 retards. Après, barré du système par les employés.<br />
+<s>-Meeting with client<br /></s>
+-planning<br />
 
 
-<h1>2012-05-10 réparations</h1>
+<h1>2012-05-08 Schema changes</h1> 
 
-durée prêt jusqu'à 24 heures<br />
-coût d'une réparation<br />
-temps pour réparation (minutes)<br />
+- modify Schema to incorporate <b>all schema changes in all milestones</b><br />
+- a member belongs to a list of place <br />
+-Les prêts de soir commence après l'heure de prêt de soir et non pas lorsque l'heure  du retour est après le prêt de soir <br />
+-éditer membre<br />
+-éditer vélo<br />
+-éditer son profil<br />
+-durée prêt jusqu'à 24 heures<br />
+-temps pour réparation (minutes)<br />
+- liste de pièce de remplacement (nom, coût unitaire)<br />
+-Est-ce possible d'ajouter un option recherche par nom, prénom et par # de membre pour les prêts.  Si on a 1000 personne et qu'on veut trouver le membre 528 c'est vraiment compliquer avec un menu déroulant.
+- ajouter la grandeur d'un vélo <br />
+-Lors de faire le prêt, les options concernant le vélo devraient être seulement son numéro et ça grandeur <br />
 
-<h2>2012-05-xx statistiques</h2>
+- Enlever l'option de mettre un numéro de membre et l'attribuer automatique (le memberIdentifier devient caché et non-unique)<br />
+<s>(Question pour toi, si l'employé du PEPS entre un nouveau membre en même temps que
+le responsable entre un nouveau membre que ce passe-t-il ?)</s>
 
 
-Je ne sais pas si c'était possible d'avoir un option "Statistique"  pour la saison et par mois et par point de service sur des données comme : Nombre de prêt, duré moyen des prêts, nombre de retard, nombre de réparation, Coût moyen des réparation, coût total des réparation, temps pour faire les réparations et temps moyen par réparation.
+<s>-edit closed day<br /></s>
+
+<h2>2012-05-09 interface mini</h2>
+
+- enlever les liens dans les tableaux générés<br /
+<s>Pour le point précise du PEPS :<br /></s>
+<s>- Mettre un mot de passe pour tous leurs utilisateurs</s><br />
+- les prêts ne peuvent pas être vus sans point de service (sauf par l'admin)<br />
+- les vélos ne peuvent pas être vus sans point de service (sauf par l'admin)<br />
+- Les travailleurs du PEPS voient seulement leur point de service<br />
+- Ils peuvent seulement voir leurs horaires (celui du PEPS)<br />
+- Ajouter des membres<br />
+- Faire des prêts<br />
+- Faire des retours (fin de prêt)<br />
+- Réparation = Mettre le numéro du Vélo et Un text box ouvert pour mettre une mini
+description.  Cela entraîne que le vélo ne puisse plus être louer en attendant la
+réparation<b>Type "à inspecter"</b><br /> 
+- Réparation du PEPS entraîne l'envois d'un email au Mécano et au Coordonnateur<br />
+- Le PEPS ne peut pas annuler un retard<br />
 
 
-<h2>Ajout d'un prêt</h2>
+-Les employés de la coop, ne devraient pas pouvoir faire des locations de vélo se
+trouvant au PEPS (Le nom d'utilisateur et son mot de passe devraient être relier à
+un point de service)<br />
 
-Est-ce possible d'ajouter un option recherche par nom, prénom et par # de membre pour les prêts.  Si on a 1000 personne et qu'on veut trouver le membre 528 c'est vraiment compliquer avec un menu déroulant.
+
+<h1>2012-05-10 retards</h1>
+
+- Lors de l'inscription des membres avoir un alerte si la date n'est pas 0000-00-00
+et qu'il n'y a pas de @ dans l'adresse email<br />
+- aussi chercher si des membres avec le même nom existe<br />
+- Il y aurait donc 4 type "d'utilisateur du logiciel"<br />
+       - Les administrateurs<br />
+       - Les travailleurs de la Coop<br />
+       - Les employés du PEPS<br />
+
+- add right table (0= MANAGER, 1= LOAN_OPERATOR, 2= MECHANIC, 3= VIEWER) for a user and a place<br />
+
+<h2>2012-05-11 </h2>
+
+- Si on choisi de regarder un vélo, on voit un des 3 "états" possible : Prêt en
+cours, disponible ou Présentement en réparation<br />
+- lorsque l'on va dans les prêts, il est peut-être pas utile de voir les prêts qui
+sont terminés (juste mettre le nombre total de prêt terminé et le nombre total de prêts)<br />
+- s'assurer que l'heure soit bonne<br />
+- penality: 1 day per hour<br />
+- Il a droit à 3 retards. Après, barré du système automatiquement (disons pour 1 année)<br />
+- débarrer un membre par un administrateur<br />
+
+
+
+<h2>2012-05-11 formation PEPS</h2>
+
+
+<h2>2012-05-12 samedi </h2>
+
+Interface de réparation<br />
+- Mettre un menu déroulant permettant de sélectionner la réparation à faire
+(crevaison, alignement de roue etc... )<br />
+- Les options dans ce menu, pourrait être ajouter par un administrateur.<br />
+       - les admin pourraient avoir l'option d'ajouter des types de réparation,<br />
+- comme ça on aurait pas besoin de passer par toi pour ajouter des options<br />
+- Mettre l'option "Autre" dans le menu déroulant, et si réparation = autre , mettre
+un boite de texte pour que l'on puisse donner une précision <br />
+- mettre un option de temps de réparation , le mécano de dire combien de temps, il a
+pris (disons en minute) pour faire la réparation<br />
+- Au lieu de mettre le coût de la réparation, l'an passé il avait une liste des
+pièces standards qu'ils changeaient.  Exemple, un pneu brise, il le changeait
+toujours pour le même type de pneu donc toujours le même prix<br />
+       - Il faudrait pouvoir choisir les pièces que l'on a changé dans une liste,
+les pièces seraient déjà reliées à un prix.  Exemple la personne change un
+pneu 700X32 + 1 chambre à air + 1 paire de patin de freins.  Le coût
+s'affiche automatiquement selon les pièces sélectionnées.<br />
+       - Encore une fois, un admin devrait avoir accès à une option pour pouvoir
+ajouter de nouvelle pièce avec le prix lui étant relié et aussi bloqué des
+pièces back order <br />
+     
+- On peut ajouter une réparation à un vélo qui est en cours de prêt, ce qui ne
+devrait pas pouvoir arriver puisqu'on a pas le vélo<br />
+
+- Une fois les vélos hors d'usage (genre les vieux vélos de l'année prochaine ou si
+un vélo est vélo) permettre de le mettre hors service et de dire la raison.  Ceci
+serait seulement pour but de statistique et ça presse vraiment pas d'avoir cette
+option.<br />
+
+
+<h2>2012-05-13 dimanche</h2>
+
+déployer le tout sur http://cooprouelibre.org/gestion<br />
+
+
+<h2>2012-05-20 statistiques</h2>
+
+
+Je ne sais pas si c'était possible d'avoir un option "Statistique"  pour la saison et par mois et par point de service sur des données comme : Nombre de prêt, duré moyen des prêts, nombre de retard, nombre de réparation, Coût moyen des réparation, coût total des réparation, temps pour faire les réparations et temps moyen par réparation.<br /><br />
+
+
+Onglet statistique <br />
+- Avoir la possibilité de choisir entre deux dates, genre je voudrais savoir entre
+le 4 juin et le 19 juillet combien nous avons eu de location ou autre statistique
+demandée.  Les dates par défaut étant le 14 mai 2012 et la journée de la recherche. <br />
+- Si nous sommes le 8 juillet et bien par défaut la recherche se fait du 14 mai au 8
+juillet.<br />
+- Savoir le nombre de location, le nombre de retard, le nombre de réparation, le
+coût moyen des réparations, le coût total des réparations durant la période
+sélectionnée, la durée moyenne que le mécano a pris pour faire les réparations, le
+temps total que le mécano a pris pendant la période sélectionné etc... <br />
+<s>- plus on aura de stats mieux c'est.</s><br />
+
+- Les gars de l'université qui faudrait les statistiques <br />
+
+
+
+<h2>2012-06-12 FUTURE</h2>
+
+-L'adresse Email du mécano et au coordonnateur peuvent être changer par un Administrateur<br />
+
+
 
 </body></html>
+
+
