@@ -7,7 +7,8 @@ class Member extends Model{
 
 	public function getFieldNames(){
 		$names=array();
-		$names["memberIdentifier"]="Numéro de membre";
+		$names["id"]="Numéro de membre pour le prêt";
+		$names["memberIdentifier"]="Numéro de membre à la coopérative (facultatif)";
 		$names["firstName"]="Prénom";
 		$names["lastName"]="Nom de famille";
 		$names["dateOfBirth"]="Date de naissance (aaaa-mm-jj)";
@@ -36,7 +37,7 @@ class Member extends Model{
 	}
 
 	public function getName(){
-		return $this->getAttributeValue("firstName")." ".$this->getAttributeValue("lastName")." (#".$this->getAttributeValue("memberIdentifier").")";
+		return $this->getAttributeValue("firstName")." ".$this->getAttributeValue("lastName")." (#".$this->getId().")";
 	}
 
 	public function isFilledField($field){
@@ -124,6 +125,11 @@ class Member extends Model{
 		$object=User::findOne($this->m_core,"User",$id);
 
 		return "<a href=\"?controller=UserManagement&action=view&id=$id\">{$object->getName()}</a>";
+	}
+
+	public function mustSkipAttribute($name){
+
+		return false;
 	}
 
 

@@ -45,8 +45,38 @@ class MemberManagement extends Controller{
 		$core->setPageTitle($member->getName());
 		$columnNames=$member->getFieldNames();
 		
+		$user=User::findOne($core,"User",$_SESSION['id']);
+		$isAdministrator=$user->isAdministrator();
+
 		include($this->getView(__CLASS__,__METHOD__));
 	}
+
+
+	public function call_edit($core){
+
+		$core->setPageTitle("Éditer un membre");
+
+		$member=Member::findOne($core,"Member",$_GET['id']);
+
+		include($this->getView(__CLASS__,__METHOD__));
+	}
+
+	public function call_editSave($core){
+
+		$user=User::findOne($core,"User",$_SESSION['id']);
+		$isAdministrator=$user->isAdministrator();
+
+		if(!$isAdministrator){
+			return;
+		}
+
+		$core->setPageTitle("Sauvegarder un membre");
+
+		Member::updateRow($core,"Member",$_POST,$_POST['id']);
+	
+		include($this->getView(__CLASS__,__METHOD__));
+	}
+
 };
 
 ?>

@@ -13,6 +13,10 @@ $memberIdentifier=$member->getId();
 
 <?php
 
+if($isAdministrator){
+	$core->makeButton("?controller=MemberManagement&action=edit&id=$memberIdentifier","Éditer");
+}
+
 $core->makeButton("?controller=LoanManagement&action=list&memberIdentifier=$memberIdentifier","Voir les prêts");
 
 ?>

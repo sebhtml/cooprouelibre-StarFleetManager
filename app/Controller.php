@@ -11,9 +11,9 @@ class Controller{
 	}
 
 	public function renderFormElement($field,$fieldName,$type){
-		if($type=="varchar(255)" || $type=="date" || $type="char(1)"){
-			$this->addTextField($fieldName,$field);
-		}
+		//if($type=="varchar(255)" || $type=="date" || $type="char(1)"){
+		$this->addTextField($fieldName,$field);
+		//}
 	}
 
 	public function printArrayAsTable($rows,$columnNames){
@@ -144,6 +144,65 @@ class Controller{
 		echo("<tr><td  class=\"tableContentCell\" >$description</td><td>");
 		echo("<input  class=\"tableContentCell\" type=\"password\" name=\"$name\"></td></tr>");
 	}
+	public function renderFormForModelWithObject($core,$model,$object){
+
+		$tableName=($core->getTablePrefix()).$model;
+
+		$finder=new $model();
+		$names=$finder->getFieldNames();
+
+		$attributes=$finder->getPersistentAttributesForTable($core,$tableName);
+
+		$values=$object->getAttributes();
+
+		if(count($attributes)==0){
+			return;
+		}
+
+		$keys=array_keys($attributes[0]);
+
+
+		foreach($attributes as $row){
+	
+			$field=$row['Field'];
+			$type=$row['Type'];
+
+			if($field=='id'){
+				continue;
+			}
+
+			$fieldName=$field;
+			if(array_key_exists($field,$names)){
+				$fieldName=$names[$field];
+			}
+
+			//echo "Field= $field";
+
+			if($finder->isSelectField($field)){
+				
+				$list=$finder->getSelectOptions($core,$field);
+
+/*
+				echo "Is select. =$field=";
+				echo get_class($finder);
+				print_r($list);
+*/
+				
+				$this->renderSelectorWithDefault($field,$fieldName,$list,$values[$field]);
+
+			}elseif($finder->isFilledField($field)){
+				
+				$value=$finder->getFilledValue($core,$field);
+
+				$this->renderHiddenFieldWithValue($field,$fieldName,$value[1],$value[0]);
+			}else{
+				$this->addTextFieldWithValue($fieldName,$field,$values[$field]);
+			}
+		}
+
+
+	}
+
 
 	public function renderFormForModel($core,$model){
 		$tableName=($core->getTablePrefix()).$model;
@@ -159,7 +218,6 @@ class Controller{
 		}
 
 		$keys=array_keys($attributes[0]);
-
 
 
 		foreach($attributes as $row){
@@ -196,7 +254,7 @@ class Controller{
 
 				$this->renderHiddenFieldWithValue($field,$fieldName,$value[1],$value[0]);
 			}else{
-				$this->renderFormElement($field,$fieldName,$type);
+				$this->renderFormElement($field,$fieldName,$type,$attributes);
 			}
 		}
 
@@ -209,6 +267,25 @@ class Controller{
 		echo "</td></tr>";
 
 	}
+
+	public function renderSelectorWithDefault($field,$fieldName,$list,$default){
+		echo "<tr><td class=\"tableContentCell\" >$fieldName</td><td   class=\"tableContentCell\">";
+
+		echo "<select name=\"$field\"   class=\"tableContentCell\">";
+
+		$keys=array_keys($list);
+		foreach($keys as $key){
+			$description=$list[$key];
+
+			$selected=$this->getSelected($default,$key);
+
+			echo "<option  class=\"tableContentCell\"  value=\"$key\" $selected  >$description</option>";
+		}
+
+		echo "</select></td></tr>";
+	}
+
+
 
 	public function renderSelector($field,$fieldName,$list){
 		echo "<tr><td class=\"tableContentCell\" >$fieldName</td><td   class=\"tableContentCell\">";

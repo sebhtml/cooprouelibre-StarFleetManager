@@ -14,7 +14,7 @@ create table TablePrefix_Member(
 	id	integer auto_increment,
 		primary key(id),
 
-	memberIdentifier varchar(64) not null unique,
+	memberIdentifier varchar(64) not null,
 
 	firstName	varchar(100) not null,
 	lastName	varchar(100) not null,

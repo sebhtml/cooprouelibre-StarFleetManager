@@ -3,7 +3,7 @@
 // Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
-$core->makeButton("?controller=LoanManagement&action=add_selectMember","Ajouter un prêt");
+//$core->makeButton("?controller=LoanManagement&action=add_selectMember","Ajouter un prêt");
 
 ?>
 
