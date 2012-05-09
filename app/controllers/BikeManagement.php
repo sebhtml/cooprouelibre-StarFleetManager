@@ -28,6 +28,7 @@ class BikeManagement extends Controller{
 
 		$user=User::findOne($core,"User",$_SESSION['id']);
 		$isAdministrator=$user->isAdministrator();
+		$isManager=$user->isManager();
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}
@@ -62,6 +63,7 @@ class BikeManagement extends Controller{
 
 		$user=User::findOne($core,"User",$_SESSION['id']);
 		$isAdministrator=$user->isAdministrator();
+		$isManager=$user->isManager();
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}

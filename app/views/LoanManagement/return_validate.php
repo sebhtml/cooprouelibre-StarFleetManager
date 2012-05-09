@@ -3,7 +3,8 @@
 // Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
-$this->printRowAsTable($item);
+$toSkip=array("actualEndingDate"=>"","returnUserIdentifier"=>"");
+$this->printRowAsTableWithSkipping($item,$toSkip);
 
 $id=$item->getAttributeValue("id");
 ?>

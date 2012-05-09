@@ -300,6 +300,49 @@ class Controller{
 		echo "</select></td></tr>";
 	}
 
+	public function printRowAsTableWithSkipping($object,$toSkip){
+
+		$row=$object->getAttributes();
+		$columnNames=$object->getFieldNames();
+
+		$keys=array_keys($row);
+
+		echo "<table><caption></caption><tbody>";
+	
+		foreach($keys as $key){
+			if(array_key_exists($key,$toSkip)){
+				continue;
+			}
+
+			$value=$row[$key];
+
+			if($object->mustSkipAttribute($key)){
+				continue;
+			}
+
+			$name=$key;
+			if(array_key_exists($key,$columnNames)){
+				$name=$columnNames[$key];
+			}
+		
+			echo "<tr>";
+			echo "<td class=\"tableContentCell\">$name</td>";
+
+			echo  "<td class=\"tableContentCell\">";
+
+			if($object->isLinkedAttribute($key)){
+				echo $object->getAttributeLink($key);
+			}else{
+				echo $value;
+			}
+
+			echo "</td>";
+			echo "</tr>";
+		}
+
+		echo "</tbody></table>";
+	}
+
 	public function printRowAsTable($object){
 
 		$row=$object->getAttributes();
@@ -333,13 +376,40 @@ class Controller{
 			}
 
 			echo "</td>";
-
 			echo "</tr>";
 		}
 
 		echo "</tbody></table>";
 	}
 
+	public function startTable(){
+		echo "<table><caption></caption><tbody>";
+	}
+
+	public function endTable(){
+		echo "</tbody></table>";
+	}
+
+	public function printTableRow($object,$key){
+
+		$columnNames=$object->getFieldNames();
+	
+		$name=$key;
+		if(array_key_exists($key,$columnNames)){
+			$name=$columnNames[$key];
+		}
+
+		$row=$object->getAttributes();
+		$value=$row[$key];
+
+		echo "<tr>";
+		echo "<td class=\"tableContentCell\">$name</td>";
+
+		echo  "<td class=\"tableContentCell\">";
+
+		echo "</td>";
+		echo "</tr>";
+	}
 }
 
 ?>

@@ -3,7 +3,10 @@
 // Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
-$core->makeButton("?controller=MemberManagement&action=add","Ajouter un membre");
+if($isLoaner||$isManager){
+	$core->makeButton("?controller=MemberManagement&action=add","Ajouter un membre");
+}
+
 echo "<br />";
 echo "<br />";
 echo "Nombre de membres: ".count($list)."<br /><br />";

@@ -21,18 +21,12 @@ point de service <?php echo $place->getName(); ?>.
 }else{
 
 $this->startForm("?controller=LoanManagement&action=add_save");
-
 $this->renderHiddenFieldWithValue("memberIdentifier","Membre",$member->getName(),$member->getId());
-
 $this->renderHiddenFieldWithValue("placeIdentifier","Point de service",$place->getName(),$place->getId());
-
 $this->renderHiddenFieldWithValue("bikeIdentifier","Vélo",$bike->getName(),$bike->getId());
-
-$this->addTextFieldWithValue("Début du prêt","startingDate",$startingDate);
-$this->addTextFieldWithValue("Retour du prêt","expectedEndingDate",$endingDate);
-
+$this->renderHiddenFieldWithValue("startingDate","Début du prêt",$startingDate,$startingDate);
+$this->renderHiddenFieldWithValue("expectedEndingDate","Retour du prêt",$endingDate,$endingDate);
 $this->renderHiddenFieldWithValue("actualEndingDate","","",$startingDate);
-
 $this->endForm();
 
 }

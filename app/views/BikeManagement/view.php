@@ -30,6 +30,10 @@ $core->makeButton("?controller=RepairManagement&action=list&bikeIdentifier=$id",
 
 <?php
 
+if(count($places)==0){
+	echo "Le vélo n'est à aucun point de service présentement.<br />";
+}
+
 foreach($places as $item2){
 
 	$id=$item2->getId();
@@ -46,7 +50,7 @@ foreach($places as $item2){
 $id=$item->getAttributeValue("id");
 
 if($item->canBeMoved()){
-	if($isAdministrator){
+	if($isManager){
 		$core->makeButton("?controller=BikePlaceManagement&action=add&bikeIdentifier=$id","déplacer un vélo");
 	}
 }else{

@@ -16,6 +16,11 @@ class MemberManagement extends Controller{
 
 		$list=Member::findAll($core,"Member");
 
+		$user=User::findOne($core,"User",$_SESSION['id']);
+		$isLoaner=$user->isLoaner();
+		$isManager=$user->isManager();
+
+
 		include($this->getView(__CLASS__,__METHOD__));
 	}
 

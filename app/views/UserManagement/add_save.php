@@ -12,7 +12,7 @@ if(!$valid){
 
 ?>
 
-L'opérateur n'a pas été créé. Les mots de passe doivent être identiques.
+L'utilisateur n'a pas été créé. Les mots de passe doivent être identiques.
 Le mot de passe doit aussi avoir au moins 8 symboles.
 
 <?php
@@ -21,7 +21,7 @@ Le mot de passe doit aussi avoir au moins 8 symboles.
 
 ?>
 
-L'opérateur a été ajouté.
+L'utilisateur a été ajouté.
 
 <?php
 

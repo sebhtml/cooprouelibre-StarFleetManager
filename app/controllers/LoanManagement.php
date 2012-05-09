@@ -224,6 +224,9 @@ class LoanManagement extends Controller{
 		$core->setPageTitle("Voir un prêt");
 
 		$item=Loan::findWithIdentifier($core,"Loan",$_GET['id']);
+		$place=$item->getPlace();
+		$user=User::findOne($core,"User",$_SESSION['id']);
+		$isLoaner=$place->isLoaner($user);
 
 		$columnNames=Loan::getFieldNames();
 		

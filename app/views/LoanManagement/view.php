@@ -5,17 +5,19 @@
 
 if($item->isActive()){
 
+$toSkip=array("actualEndingDate"=>"","returnUserIdentifier"=>"")
 ?>
 
-Le prêt est en cours.
+<b>Le prêt est en cours.</b>
 
 <?php
 }else{
 
+$toSkip=array();
 
 ?>
 
-Le prêt est terminé.
+<b>Le prêt est terminé.</b>
 
 <?php
 }
@@ -23,7 +25,7 @@ Le prêt est terminé.
 echo "<br />";
 echo "<br />";
 
-$this->printRowAsTable($item);
+$this->printRowAsTableWithSkipping($item,$toSkip);
 
 $id=$item->getAttributeValue("id");
 
@@ -33,7 +35,7 @@ $id=$item->getAttributeValue("id");
 
 <?php
 
-if($item->isActive()){
+if($item->isActive() && $isLoaner){
 	$core->makeButton("?controller=LoanManagement&action=return_validate&id=$id","Terminer le prêt");
 }
 
