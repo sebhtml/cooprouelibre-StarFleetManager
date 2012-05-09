@@ -320,7 +320,8 @@ class Model{
 
 
 	public function getLink(){
-		return "<a href=\"?controller={$this->m_model}Management&action=view&id={$this->getId()}\">{$this->getName()}</a>";
+		return $this->getName();
+		//return "<a href=\"?controller={$this->m_model}Management&action=view&id={$this->getId()}\">{$this->getName()}</a>";
 	}
 
 }

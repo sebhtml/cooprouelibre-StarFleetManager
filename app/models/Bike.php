@@ -151,7 +151,7 @@ class Bike extends Model{
 		$id=$this->getAttribute($name);
 		$object=User::findOne($this->m_core,"User",$id);
 
-		return "<a href=\"?controller=UserManagement&action=view&id=$id\">{$object->getName()}</a>";
+		return $object->getLink();
 	}
 
 }
