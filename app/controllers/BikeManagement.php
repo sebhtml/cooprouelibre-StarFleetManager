@@ -66,6 +66,41 @@ class BikeManagement extends Controller{
 		include($this->getView(__CLASS__,__METHOD__));
 	}
 
+	public function call_edit($core){
+		$identifier=$_GET["id"];
+
+		$item=Bike::findOne($core,"Bike",$identifier);
+
+		$core->setPageTitle("Éditer un vélo");
+		
+		$user=User::findOne($core,"User",$_SESSION['id']);
+		$isAdministrator=$user->isAdministrator();
+
+		if(!$isAdministrator){
+			return;
+		}
+
+		include($this->getView(__CLASS__,__METHOD__));
+	}
+
+	public function call_editSave($core){
+
+
+		$core->setPageTitle("Éditer un vélo");
+		
+		$user=User::findOne($core,"User",$_SESSION['id']);
+		$isAdministrator=$user->isAdministrator();
+
+		if(!$isAdministrator){
+			return;
+		}
+
+		Bike::updateRow($core,"Bike",$_POST,$_POST['id']);
+
+		include($this->getView(__CLASS__,__METHOD__));
+	}
+
+
 };
 
 ?>

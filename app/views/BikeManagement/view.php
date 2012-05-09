@@ -13,9 +13,12 @@ $id=$item->getAttributeValue("id");
 
 <?php
 
+if($isAdministrator){
+	$core->makeButton("?controller=BikeManagement&action=edit&id={$item->getId()}","Éditer");
+}
+
 $core->makeButton("?controller=LoanManagement&action=list&bikeIdentifier=$id","Voir les prêts");
 
-echo "<br />";
 
 $core->makeButton("?controller=RepairManagement&action=list&bikeIdentifier=$id","Voir les réparations");
 

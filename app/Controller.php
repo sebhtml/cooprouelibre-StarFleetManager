@@ -192,9 +192,7 @@ class Controller{
 
 			}elseif($finder->isFilledField($field)){
 				
-				$value=$finder->getFilledValue($core,$field);
-
-				$this->renderHiddenFieldWithValue($field,$fieldName,$value[1],$value[0]);
+				$this->renderHiddenFieldWithValue($field,$fieldName,$values[$field],$values[$field]);
 			}else{
 				$this->addTextFieldWithValue($fieldName,$field,$values[$field]);
 			}
