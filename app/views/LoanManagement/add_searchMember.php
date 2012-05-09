@@ -26,6 +26,12 @@ $this->startForm("?controller=LoanManagement&action=add_selectMember");
 $this->addTextField("Nom du membre","query");
 $this->endForm();
 
+echo "<br /><br />";
+
+$available=count($items);
+
+echo "Il y a {$available} membres qui peuvent louer un vélo présentement.<br />";
+
 }
 
 ?>
