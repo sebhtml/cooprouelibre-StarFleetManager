@@ -59,7 +59,7 @@ $core->makeButton("?controller=BikeManagement&action=list","vélos");
 if($isAdministrator){
 $core->makeButton("?controller=RepairManagement&action=list","réparations");
 $core->makeButton("?controller=LoanManagement&action=list","prêts");
-$core->makeButton("?controller=UserManagement&action=list","opérateurs");
+$core->makeButton("?controller=UserManagement&action=list","utilisateurs");
 }
 //$core->makeButton("?controller=Entertainment&action=viewSchema","entrailles");
 

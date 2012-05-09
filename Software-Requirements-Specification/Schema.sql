@@ -5,6 +5,7 @@ create table TablePrefix_User(
 	md5Password	char(32) not null,	
 	firstName	varchar(100) not null,
 	lastName	varchar(100) not null,
+	email	varchar(255) not null unique,
 
 	isAdministrator bool not null
 ) ENGINE = InnoDB  CHARACTER SET utf8 COLLATE utf8_general_ci;

@@ -5,11 +5,11 @@
 // License: GPLv3
 
 
-// $this->printRowAsTable($item);
+$this->printRowAsTable($item);
 
-if(array_key_exists("id",$_SESSION) && $_SESSION["id"]==$item->getAttributeValue("id")){
+if($allowed){
 
-	$core->makeButton("?controller=UserManagement&action=selfEdit","changer son profil");
+	$core->makeButton("?controller=UserManagement&action=edit&id={$item->getId()}","changer son profil");
 }
 
 ?>

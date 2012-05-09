@@ -4,7 +4,7 @@
 // License: GPLv3
 
 if($isAdministrator){
-	$core->makeButton("?controller=UserManagement&action=add","Ajouter un opérateur");
+	$core->makeButton("?controller=UserManagement&action=add","Ajouter un utilisateur");
 
 }
 
