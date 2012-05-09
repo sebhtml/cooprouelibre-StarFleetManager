@@ -145,7 +145,7 @@ class Model{
 
 			$value=$attributeValues[$field];
 
-			$value=$core->getConnection()->espaceString($value);
+			$value=$core->getConnection()->escapeString($value);
 
 			//echo "Field: $field, Value: $value";
 
@@ -254,7 +254,7 @@ class Model{
 
 			$value=$attributeValues[$field];
 
-			$value=$core->getConnection()->espaceString($value);
+			$value=$core->getConnection()->escapeString($value);
 
 			if($type=="varchar(255)" || $type=="date" || $type="char(1)"){
 				

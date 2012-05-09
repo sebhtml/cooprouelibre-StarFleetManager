@@ -8,7 +8,7 @@
 
 <s>Initial codebase, MVC framework</s><br />
 
-<h1>2012-05-02 Iteration 2</h1>
+<h1><s>2012-05-02 Iteration 2</s></h1>
 
 <br /><br />
 
@@ -34,7 +34,7 @@
 <s>peut pas avoir plus d'un vélo à la fois<br /></s>
 <s>bike without current loans and without repairs not done can be loaned<br /></s>
 
-<h1>2012-05-02 schedules</h2>
+<h1><s>2012-05-02 schedules</s></h2>
 
 <s>
 3 new tables:<br />
@@ -60,20 +60,20 @@ pour chaque jour de la semaine: (lundi au dimanche)<br />
 
 <br /><br />
 
-<h2>2012-05-06 polissage</h2>
+<h1><s>2012-05-06 polissage</s></h2>
 
 <s>complete view pages<br /></s>
 <s>bikePlaces<br /></s>
 <s>ajouter opérateur<br /></s>
 
 
-<h1>2012-05-07 10h00</h1>
+<h1><s>2012-05-07 10h00</s></h1>
 
 <s>-Meeting with client<br /></s>
 <s>-planning<br /></s>
 
 
-<h1>2012-05-08 Schema changes</h1> 
+<h1><s>2012-05-08 Schema changes</s></h1> 
 
 <s>- modify Schema to incorporate <b>all schema changes in all milestones</b><br /></s>
 <s>- a member belongs to a list of place <br /></s>
@@ -83,7 +83,6 @@ pour chaque jour de la semaine: (lundi au dimanche)<br />
 <s>-éditer son profil<br /></s>
 <s>-durée prêt jusqu'à 24 heures<br /></s>
 <s>- liste de pièce de remplacement (nom, coût unitaire)<br /></s>
--Est-ce possible d'ajouter un option recherche par nom, prénom et par # de membre pour les prêts.  Si on a 1000 personne et qu'on veut trouver le membre 528 c'est vraiment compliquer avec un menu déroulant.<br />
 <s>- ajouter la grandeur d'un vélo <br /></s>
 <s>-Lors de faire le prêt, les options concernant le vélo devraient être seulement son numéro et ça grandeur <br /></s>
 
@@ -95,7 +94,22 @@ le responsable entre un nouveau membre que ce passe-t-il ?)</s><br />
 
 <s>-edit closed day<br /></s>
 
-<h2>2012-05-09 interface mini</h2>
+<h1>2012-05-09 divers</h1>
+
+<s>- Est-ce possible d'ajouter un option recherche par nom, prénom et par # de membre pour les prêts.  Si on a 1000 personne et qu'on veut trouver le membre 528 c'est vraiment compliquer avec un menu déroulant.<br /></s>
+- Si on choisi de regarder un vélo, on voit un des 3 "états" possible : Prêt en
+cours, disponible ou Présentement en réparation<br />
+- lorsque l'on va dans les prêts, il est peut-être pas utile de voir les prêts qui
+sont terminés (juste mettre le nombre total de prêt terminé et le nombre total de prêts)<br />
+- s'assurer que l'heure soit bonne<br />
+- Lors de l'inscription des membres avoir un alerte si la date n'est pas 0000-00-00
+et qu'il n'y a pas de @ dans l'adresse email<br />
+- aussi chercher si des membres avec le même nom existe<br />
+- On peut ajouter une réparation à un vélo qui est en cours de prêt, ce qui ne
+devrait pas pouvoir arriver puisqu'on a pas le vélo<br />
+
+
+<br />
 
 <s>- enlever les liens dans les tableaux générés<br /></s>
 
@@ -108,32 +122,21 @@ le responsable entre un nouveau membre que ce passe-t-il ?)</s><br />
 <s>- Ajouter des membres<br /></s>
 <s>- Faire des prêts<br /></s>
 <s>- Faire des retours (fin de prêt)<br /></s>
-- Réparation = Mettre le numéro du Vélo et Un text box ouvert pour mettre une mini
-description.  Cela entraîne que le vélo ne puisse plus être louer en attendant la
-réparation<b>Type "à inspecter"</b><br /> 
-- Le PEPS ne peut pas annuler un retard<br />
 
 
 <s>-Les employés de la coop, ne devraient pas pouvoir faire des locations de vélo se
 trouvant au PEPS (Le nom d'utilisateur et son mot de passe devraient être relier à
 un point de service)<br /></s>
 
-- Si on choisi de regarder un vélo, on voit un des 3 "états" possible : Prêt en
-cours, disponible ou Présentement en réparation<br />
-- lorsque l'on va dans les prêts, il est peut-être pas utile de voir les prêts qui
-sont terminés (juste mettre le nombre total de prêt terminé et le nombre total de prêts)<br />
-- s'assurer que l'heure soit bonne<br />
+
+<h2>2012-05-10 retards</h2>
+
 - penality: 1 day per hour<br />
 - Il a droit à 3 retards. Après, barré du système automatiquement (disons pour 1 année)<br />
 - débarrer un membre par un administrateur<br />
 
+- Le PEPS ne peut pas annuler un retard<br />
 
-
-<h1>2012-05-10 retards</h1>
-
-- Lors de l'inscription des membres avoir un alerte si la date n'est pas 0000-00-00
-et qu'il n'y a pas de @ dans l'adresse email<br />
-- aussi chercher si des membres avec le même nom existe<br />
 <br />
 <s>- Il y aurait donc 4 type "d'utilisateur du logiciel"<br />
        - Les administrateurs<br />
@@ -143,6 +146,7 @@ et qu'il n'y a pas de @ dans l'adresse email<br />
 <s>- add right table (0= MANAGER, 1= LOAN_OPERATOR, 2= MECHANIC, 3= VIEWER) for a user and a place<br /></s>
 <br />
 
+<h2>2012-05-10 réparations</h2>
 
 -temps pour réparation (minutes)<br />
 Interface de réparation<br />
@@ -165,10 +169,10 @@ s'affiche automatiquement selon les pièces sélectionnées.<br />
        - Encore une fois, un admin devrait avoir accès à une option pour pouvoir
 ajouter de nouvelle pièce avec le prix lui étant relié et aussi bloqué des
 pièces back order <br />
+- Réparation = Mettre le numéro du Vélo et Un text box ouvert pour mettre une mini
+description.  Cela entraîne que le vélo ne puisse plus être louer en attendant la
+réparation<b>Type "à inspecter"</b><br /> 
      
-- On peut ajouter une réparation à un vélo qui est en cours de prêt, ce qui ne
-devrait pas pouvoir arriver puisqu'on a pas le vélo<br />
-
 - Une fois les vélos hors d'usage (genre les vieux vélos de l'année prochaine ou si
 un vélo est vélo) permettre de le mettre hors service et de dire la raison.  Ceci
 serait seulement pour but de statistique et ça presse vraiment pas d'avoir cette

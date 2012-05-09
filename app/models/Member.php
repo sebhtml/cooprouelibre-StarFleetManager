@@ -69,6 +69,48 @@ class Member extends Model{
 
 	}
 
+	public static function getMembersThatCanLoanABikeWithKeywords($core,$words){
+		if(count($words)==0){
+			return array();
+		}
+
+		$tableMember=$core->getTablePrefix()."Member";
+		$tableLoan=$core->getTablePrefix()."Loan";
+
+		$fields=array("firstname","lastname");
+
+		$keyWordQuery=" and ( ";
+
+		$first=true;
+		foreach($fields as $field){
+			foreach($words as $word1){
+
+				$word=$core->getConnection()->escapeString($word1);
+
+				if($first){
+					$first=false;
+
+				}else{
+					$keyWordQuery.=" or ";
+				}
+
+				$keyWordQuery.=" $field like '%$word%' ";
+			}
+		}
+
+		$keyWordQuery.=" ) ; ";
+
+		$query="select * from $tableMember where not exists (select * from $tableLoan where memberIdentifier=$tableMember.id and startingDate = actualEndingDate ) $keyWordQuery  ; ";
+
+		//echo $query;
+
+		$list=$core->getConnection()->query($query)->getRows();
+		
+		return Member::makeObjectsFromRows($core,$list,"Member");
+
+	}
+
+
 
 	public function findAllReturnedLateLoans($core){
 

@@ -83,7 +83,7 @@ class Driver{
 		return mysql_insert_id($this->m_connection);
 	}
 
-	public function espaceString($string){
+	public function escapeString($string){
 		return mysql_real_escape_string($string);
 	}
 }

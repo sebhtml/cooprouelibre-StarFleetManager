@@ -62,12 +62,34 @@ class LoanManagement extends Controller{
 		include($this->getView(__CLASS__,__METHOD__));
 	}
 
+
+	public function call_add_searchMember($core){
+
+		$core->setPageTitle("Quel membre veut emprunter un vélo ?");
+
+		$items=Member::getMembersThatCanLoanABike($core);
+
+		include($this->getView(__CLASS__,__METHOD__));
+	}
+
+
+
 	public function call_add_selectMember($core){
 
 		$core->setPageTitle("Quel membre veut emprunter un vélo ?");
 
+		$items=NULL;
+		$words=NULL;
 
-		$items=Member::getMembersThatCanLoanABike($core);
+		$all=Member::getMembersThatCanLoanABike($core);
+
+		if(array_key_exists('query',$_POST)){
+			$words=explode(" ",$_POST['query']);
+
+			$items=Member::getMembersThatCanLoanABikeWithKeywords($core,$words);
+		}else{
+			$items=$all;
+		}
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}
