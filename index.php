@@ -12,6 +12,7 @@ include("app/Controller.php");
 include("app/configuration.php");
 
 include("app/models/Right.php");
+include("app/models/Part.php");
 include("app/models/Member.php");
 include("app/models/Loan.php");
 include("app/models/Repair.php");
@@ -29,6 +30,7 @@ include("app/controllers/Dashboard.php");
 include("app/controllers/BikeManagement.php");
 include("app/controllers/LoanManagement.php");
 include("app/controllers/RepairManagement.php");
+include("app/controllers/PartManagement.php");
 include("app/controllers/MemberManagement.php");
 include("app/controllers/PlaceManagement.php");
 include("app/controllers/UserManagement.php");
@@ -57,6 +59,7 @@ $core->registerController(new RightManagement());
 $core->registerController(new Scheduling());
 $core->registerController(new Entertainment());
 $core->registerController(new PlaceManagement());
+$core->registerController(new PartManagement());
 $core->registerController(new ClosedDayManagement());
 $core->registerController(new BikePlaceManagement());
 

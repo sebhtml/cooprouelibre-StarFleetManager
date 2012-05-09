@@ -298,3 +298,18 @@ create table TablePrefix_Repair(
 ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 
+create table TablePrefix_RepairPart(
+	id	integer auto_increment,
+		primary key(id),
+
+	userIdentifier	integer not null,
+		index userIdentifier_index (userIdentifier),
+		foreign key (userIdentifier) references TablePrefix_User(id),
+
+	repairIdentifier	integer not null,
+		index repairIdentifier_index (repairIdentifier),
+		foreign key (repairIdentifier) references TablePrefix_Repair(id)
+
+) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci ;
+
+

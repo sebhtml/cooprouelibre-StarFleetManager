@@ -6,16 +6,12 @@
 class Dashboard extends Controller{
 	public function registerController($core){
 		$core->registerControllerName("Dashboard",$this);
-		$core->secureController("Dashboard");
+		//$core->secureController("Dashboard");
 	}
 
-	public function call_view($core){
+	public function call_help($core){
 
-		$core->setPageTitle("Tableau de bord");
-
-		if($core->debugMode()){
-			echo "Calling call_view";
-		}
+		$core->setPageTitle("Aide");
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}

@@ -32,10 +32,14 @@ if($username!=NULL){
 
 	$core->makeButton("?controller=UserManagement&action=view&id=$identifier",$username);
 	$core->makeButton("?controller=Authentification&action=logout","se déconnecter");
-	echo "<br />";
 
+}else{
+
+	$core->makeButton("?controller=Authentification&action=login","Se connecter");
 }
 
+	$core->makeButton("?controller=Dashboard&action=help","aide");
+	echo "<br />";
 ?>
 
 &nbsp;
@@ -47,23 +51,30 @@ if($username!=NULL){
 
 <?php
 
-if($username!=NULL){
+if($isLoaner || $isManager){
 
 $core->makeButton("?controller=PlaceManagement&action=list","points de service");
 $core->makeButton("?controller=MemberManagement&action=list","membres");
 
-if($isAdministrator){
+}
+
+if($isManager){
 $core->makeButton("?controller=BikeManagement&action=list","vélos");
 }
 
+if($isMechanic){
+	$core->makeButton("?controller=RepairManagement&action=list","réparations");
+}
+
+if($isManager){
+	$core->makeButton("?controller=LoanManagement&action=list","prêts");
+}
+
 if($isAdministrator){
-$core->makeButton("?controller=RepairManagement&action=list","réparations");
-$core->makeButton("?controller=LoanManagement&action=list","prêts");
-$core->makeButton("?controller=UserManagement&action=list","utilisateurs");
+	$core->makeButton("?controller=UserManagement&action=list","administration");
 }
 //$core->makeButton("?controller=Entertainment&action=viewSchema","entrailles");
 
-}
 
 ?>
 

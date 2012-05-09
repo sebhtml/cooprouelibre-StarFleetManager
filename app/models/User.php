@@ -80,6 +80,59 @@ class User extends Model{
 	}
 
 
+	public function isMechanic(){
+
+		$right=RIGHT_MECHANIC;
+		$table=$this->m_core->getTablePrefix()."Right";
+
+		$query= "select * from $table where userIdentifier = {$this->getId()} and rightNumber= $right ; ";
+
+		$list=Right::findAllWithQuery($this->m_core,$query,"Right");
+
+		return count($list)!=0;
+
+	}
+
+	public function isManager(){
+
+		$right=RIGHT_MANAGER;
+		$table=$this->m_core->getTablePrefix()."Right";
+
+		$query= "select * from $table where userIdentifier = {$this->getId()} and rightNumber= $right ; ";
+
+		$list=Right::findAllWithQuery($this->m_core,$query,"Right");
+
+		return count($list)!=0;
+
+	}
+
+
+	public function isViewer(){
+
+		$right=RIGHT_VIEWER;
+		$table=$this->m_core->getTablePrefix()."Right";
+
+		$query= "select * from $table where userIdentifier = {$this->getId()} and rightNumber= $right ; ";
+
+		$list=Right::findAllWithQuery($this->m_core,$query,"Right");
+
+		return count($list)!=0;
+
+	}
+
+	public function isLoaner(){
+
+		$right=RIGHT_LOAN_OPERATOR;
+		$table=$this->m_core->getTablePrefix()."Right";
+
+		$query= "select * from $table where userIdentifier = {$this->getId()} and rightNumber= $right ; ";
+
+		$list=Right::findAllWithQuery($this->m_core,$query,"Right");
+
+		return count($list)!=0;
+
+	}
+
 }
 
 ?>

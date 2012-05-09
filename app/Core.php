@@ -142,12 +142,22 @@ class Core{
 		$username=NULL;
 		$identifier=NULL;
 
+		$isAdministrator=false;
+		$isMechanic=false;
+		$isManager=false;
+		$isViewer=false;
+		$isLoaner=false;
+
 		if(array_key_exists("id",$_SESSION)){
 			$user=User::findWithIdentifier($this,"User",$_SESSION['id']);
 
 			$username=$user->getAttribute("username");
 			$identifier=$_SESSION['id'];
 			$isAdministrator=$user->isAdministrator();
+			$isMechanic=$user->isMechanic();
+			$isManager=$user->isManager();
+			$isLoaner=$user->isLoaner();
+			$isViewer=$user->isViewer();
 		}
 		
 		$core=$this;
@@ -156,7 +166,7 @@ class Core{
 		$CONFIG_style=$this->m_sheet;
 
 		$softwareName="cooprouelibre-StarFleetManager";
-		$softwareVersion="v1.0.1";
+		$softwareVersion="v1.0.1-devel";
 
 		include("app/views/Template/template.php");
 	}

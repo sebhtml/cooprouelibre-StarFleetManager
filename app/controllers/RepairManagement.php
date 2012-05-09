@@ -31,6 +31,10 @@ class RepairManagement extends Controller{
 			$listDone=Repair::findAllRepairsDone($core);
 		}
 
+		$user=User::findOne($core,"User",$_SESSION['id']);
+
+		$isMechanic=$user->isMechanic();
+
 		include($this->getView(__CLASS__,__METHOD__));
 	}
 
