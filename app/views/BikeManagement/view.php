@@ -20,6 +20,8 @@ if($isAdministrator){
 $core->makeButton("?controller=LoanManagement&action=list&bikeIdentifier=$id","Voir les prêts");
 
 
+$core->makeButton("?controller=RepairManagement&action=add&bikeIdentifier=$id","Ajouter une réparation");
+
 $core->makeButton("?controller=RepairManagement&action=list&bikeIdentifier=$id","Voir les réparations");
 
 ?>
@@ -53,15 +55,27 @@ if($item->canBeMoved()){
 	if($isManager){
 		$core->makeButton("?controller=BikePlaceManagement&action=add&bikeIdentifier=$id","déplacer un vélo");
 	}
-}else{
+}
+
 
 ?>
 
-
-
-Le vélo est présentement emprunté.
+<h1>État du vélo</h2>
 
 <?php
+
+if($item->isLoaned()){
+
+
+echo "Le vélo est présentement emprunté.";
+
+}elseif($item->hasRepairs()){
+
+echo "Le vélo a des réparations à faire.";
+
+}else{
+
+echo "Le vélo est disponible.";
 
 }
 

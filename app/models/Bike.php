@@ -154,6 +154,30 @@ class Bike extends Model{
 		return $object->getLink();
 	}
 
+	public function isLoaned(){
+		$core=$this->m_core;
+		$table=$core->getTablePrefix()."Loan";
+
+		$id=$this->getId();
+
+		// get active loans
+
+		$query=" select * from $table where bikeIdentifier = $id and actualEndingDate = startingDate limit 1 ;";
+
+		$item=Loan::findOneWithQuery($core,$query,"Loan");
+
+		return $item!=NULL;
+	}
+
+	public function hasRepairs(){
+		$items=$this->findAllRepairsToDo($this->m_core);
+
+		return count($items)!=0;
+	}
+
+	public function isAvailable(){
+		return !$this->isLoaned() && !$this->hasRepairs();
+	}
 }
 
 ?>
