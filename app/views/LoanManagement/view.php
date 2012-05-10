@@ -8,19 +8,34 @@ if($item->isActive()){
 $toSkip=array("actualEndingDate"=>"","returnUserIdentifier"=>"")
 ?>
 
-<b>Le prêt est en cours.</b>
+Le prêt est en cours.<br />
 
 <?php
+
+if($item->isLate()){
+
+	echo "Le prêt est en retard.<br />";
+}
+
 }else{
 
 $toSkip=array();
 
 ?>
 
-<b>Le prêt est terminé.</b>
+Le prêt est terminé.<br />
 
 <?php
+
+if($item->isLate()){
+	echo "Le prêt s'est terminé avec un retard.<br />";
+}else{
+
+	echo "Le prêt s'est terminé à l'heure prévu.";
 }
+
+}
+
 
 echo "<br />";
 echo "<br />";

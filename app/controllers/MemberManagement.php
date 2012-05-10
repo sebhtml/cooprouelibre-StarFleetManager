@@ -72,6 +72,9 @@ class MemberManagement extends Controller{
 		
 		$user=User::findOne($core,"User",$_SESSION['id']);
 		$isAdministrator=$user->isAdministrator();
+		$isManager=$user->isManager();
+
+		$memberLocks=$member->getLocks();
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}
@@ -101,6 +104,37 @@ class MemberManagement extends Controller{
 	
 		include($this->getView(__CLASS__,__METHOD__));
 	}
+
+	public function call_cancelLock($core){
+
+		$core->setPageTitle("Annuler un bloquage");
+
+		include($this->getView(__CLASS__,__METHOD__));
+	}
+
+	public function call_cancelLockSave($core){
+
+		$core->setPageTitle("Annuler un bloquage");
+
+		$user=User::findOne($core,"User",$_SESSION['id']);
+		$isManager=$user->isManager();
+
+		if(!$isManager){
+			return;
+		}
+
+		$memberLock=MemberLock::findOne($core,"MemberLock",$_GET['id']);
+		$data=$memberLock->getAttributes();
+
+		$data['lifted']=1;
+		$data['explanation']=$_POST['explanation'];
+		$data['userIdentifier']=$_SESSION['id'];
+
+		MemberLock::updateRow($core,"MemberLock",$data,$_GET['id']);
+
+		include($this->getView(__CLASS__,__METHOD__));
+	}
+
 
 };
 

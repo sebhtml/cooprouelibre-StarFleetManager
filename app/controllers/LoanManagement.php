@@ -281,6 +281,27 @@ class LoanManagement extends Controller{
 		$item=Loan::findWithIdentifier($core,"Loan",$_GET['id']);
 
 		$columnNames=Loan::getFieldNames();
+	
+		$memberLock=NULL;
+
+		if($item->isLate()){
+			$hours=$item->getLateHours();
+
+			$data=array();
+			$data["memberIdentifier"]=$item->getAttribute("memberIdentifier");
+			$now=time();
+
+			// for each hour late, we ban one day
+			$endingPoint=$now+ $hours*24*60*60;
+			
+			$data["startingDate"]=date("Y-m-d H:i:s",$now);
+			$data["endingDate"]=date("Y-m-d H:i:s",$endingPoint);
+			$data["lifted"]=0;
+			$data["explanation"]="";
+			$data["userIdentifier"]=$_SESSION['id'];
+
+			$memberLock=MemberLock::insertRow($core,"MemberLock",$data);
+		}
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}

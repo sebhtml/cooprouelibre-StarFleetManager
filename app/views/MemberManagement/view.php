@@ -21,5 +21,22 @@ $core->makeButton("?controller=LoanManagement&action=list&memberIdentifier=$memb
 
 ?>
 
+<h1>Bloquages</h1>
 
+<?php
 
+foreach($memberLocks as $i){
+	echo $i->getAttribute("startingDate")." au ".$i->getAttribute("endingDate");
+
+	if($i->getAttribute("lifted")){
+		echo " annulé par ".$i->getUser()->getName().", raison: ".$i->getAttribute("explanation");
+
+	}elseif($isManager){
+
+		$core->makeButton("?controller=MemberManagement&action=cancelLock&id={$i->getId()}","annuler");
+	}
+
+	echo "<br />";
+}
+
+?>

@@ -59,9 +59,14 @@ class Member extends Model{
 
 	public static function getMembersThatCanLoanABike($core){
 		$tableMember=$core->getTablePrefix()."Member";
+		$tableMemberLock=$core->getTablePrefix()."MemberLock";
 		$tableLoan=$core->getTablePrefix()."Loan";
 
-		$query="select * from $tableMember where not exists (select * from $tableLoan where memberIdentifier=$tableMember.id and startingDate = actualEndingDate ) ; ";
+		$now=$core->getCurrentTime();
+
+		$query="select * from $tableMember where not exists (select * from $tableLoan where memberIdentifier=$tableMember.id and startingDate = actualEndingDate ) 
+			and 
+			not exists ( select * from $tableMemberLock where memberIdentifier = $tableMember.id and startingDate <= '$now' and '$now' <= endingDate and lifted = false ); ";
 
 		$list=$core->getConnection()->query($query)->getRows();
 		
@@ -70,10 +75,16 @@ class Member extends Model{
 	}
 
 	public static function getMembersThatCanLoanABikeWithKeywords($core,$words){
+
 		if(count($words)==0){
 			return array();
 		}
 
+		if(count($words)==1 && trim($words[0])==""){
+			return array();
+		}
+
+		$tableMemberLock=$core->getTablePrefix()."MemberLock";
 		$tableMember=$core->getTablePrefix()."Member";
 		$tableLoan=$core->getTablePrefix()."Loan";
 
@@ -85,7 +96,11 @@ class Member extends Model{
 		foreach($fields as $field){
 			foreach($words as $word1){
 
-				$word=$core->getConnection()->escapeString($word1);
+				$word=trim($core->getConnection()->escapeString($word1));
+
+				if($word==""){
+					continue;
+				}
 
 				if($first){
 					$first=false;
@@ -98,9 +113,12 @@ class Member extends Model{
 			}
 		}
 
-		$keyWordQuery.=" ) ; ";
+		$keyWordQuery.=" )  ";
 
-		$query="select * from $tableMember where not exists (select * from $tableLoan where memberIdentifier=$tableMember.id and startingDate = actualEndingDate ) $keyWordQuery  ; ";
+		$now=$core->getCurrentTime();
+		$query="select * from $tableMember where not exists (select * from $tableLoan where memberIdentifier=$tableMember.id and startingDate = actualEndingDate ) $keyWordQuery  
+			and 
+			not exists ( select * from $tableMemberLock where memberIdentifier = $tableMember.id and startingDate <= '$now' and '$now' <= endingDate and lifted = false ); ";
 
 		//echo $query;
 
@@ -173,6 +191,16 @@ class Member extends Model{
 
 		return false;
 	}
+
+	public function getLocks(){
+
+		$table=$this->m_core->getTablePrefix()."MemberLock";
+
+		$query= "select * from $table where  memberIdentifier = {$this->getId()} ";
+		
+		return MemberLock::findAllWithQuery($this->m_core,$query,"MemberLock");
+	}
+
 
 
 

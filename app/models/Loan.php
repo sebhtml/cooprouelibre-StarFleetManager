@@ -126,6 +126,28 @@ class Loan extends Model{
 		return Place::findOne($this->m_core,"Place",$this->getAttribute("placeIdentifier"));
 	}
 
+	public function isLate(){
+		$planned=strtotime($this->getAttribute("expectedEndingDate"));
+		$actual=strtotime($this->getAttribute("actualEndingDate"));
+
+		if($this->getAttribute("actualEndingDate")==$this->getAttribute("startingDate")){
+			$actual=time();
+		}
+
+		return $actual > $planned;
+	}
+
+	public function getLateHours(){
+		$planned=strtotime($this->getAttribute("expectedEndingDate"));
+		$actual=strtotime($this->getAttribute("actualEndingDate"));
+
+		$difference=$actual-$planned;
+
+		$hours=$difference/(60*60.0);
+
+		return ceil($hours);
+	}
+
 
 }
 

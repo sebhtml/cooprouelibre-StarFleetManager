@@ -5,6 +5,9 @@
 
 class MemberLock extends Model{
 
+	public function getUser(){
+		return User::findOne($this->m_core,"User",$this->getAttribute("userIdentifier"));
+	}
 }
 
 ?>
