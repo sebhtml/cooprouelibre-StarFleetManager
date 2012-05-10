@@ -133,6 +133,35 @@ class User extends Model{
 
 	}
 
+	public function getAvailableBikesForRepair(){
+
+		$core=$this->m_core;
+
+		$tableMember=$core->getTablePrefix()."Member";
+		$tableLoan=$core->getTablePrefix()."Loan";
+		$tableBike=$core->getTablePrefix()."Bike";
+		$tableRepair=$core->getTablePrefix()."Repair";
+		$tableBikePlace=$core->getTablePrefix()."BikePlace";
+		$tableRight=$this->m_core->getTablePrefix()."Right";
+
+		$userIdentifier=$this->getId();
+
+		$query= "select * from $tableBike where 
+			 not exists (select * from $tableLoan where bikeIdentifier=$tableBike.id and startingDate = actualEndingDate ) 
+
+			 and exists ( select * from $tableRight where userIdentifier = $userIdentifier and placeIdentifier  in 
+				(select placeIdentifier from $tableBikePlace where bikeIdentifier = $tableBike.id 
+					and startingDate = (select max(startingDate) from $tableBikePlace where bikeIdentifier = $tableBike.id ) ) ) ; ";
+		
+		// echo $query;
+
+		$list=$core->getConnection()->query($query)->getRows();
+
+		return Bike::makeObjectsFromRows($core,$list,"Bike");
+
+	}
+
+
 }
 
 ?>

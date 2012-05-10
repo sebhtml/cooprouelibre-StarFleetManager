@@ -43,6 +43,9 @@ class RepairManagement extends Controller{
 
 		$core->setPageTitle("Ajouter une réparation");
 
+		$user=User::findOne($core,"User",$_SESSION['id']);
+		$bikes=$user->getAvailableBikesForRepair();
+
 		include($this->getView(__CLASS__,__METHOD__));
 	}
 

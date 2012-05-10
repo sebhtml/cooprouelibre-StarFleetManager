@@ -17,7 +17,8 @@ class Repair extends Model{
 		
 		if($field=="bikeIdentifier"){
 		
-			$items=Bike::findAll($core,"Bike");
+			$user=User::findOne($core,"User",$_SESSION['id']);
+			$items=$user->getAvailableBikesForRepair();
 
 			$output=array();
 	
@@ -71,6 +72,7 @@ class Repair extends Model{
 		$names["repairIsCompleted"]="Complétée";
 		$names["completionDate"]="Date et heure de complétion";
 		$names["completionUserIdentifier"]="Opérateur pour la complétion";
+		$names["minutes"]="Opérateur pour la complétion";
 		
 		
 		return $names;
