@@ -209,9 +209,11 @@ class Repair extends Model{
 
 		return RepairPart::getObjectsInRelation($this->m_core,"RepairPart","repairIdentifier",$this->getId());
 
-
 	}
 
+	public function getBike(){
+		return Bike::findOne($this->m_core,"Bike",$this->getAttribute("bikeIdentifier"));
+	}
 
 }
 

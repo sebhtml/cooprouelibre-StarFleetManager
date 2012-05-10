@@ -48,7 +48,16 @@ class PartManagement extends Controller{
 		$core->setPageTitle($item->getName());
 		$user=User::findOne($core,"User",$_SESSION['id']);
 		$isMechanic=$user->isMechanic();
-		$transactions=array();
+		$transactions=$item->getPartTransactions();
+
+		$table=array();
+		foreach($transactions as $i){
+			$data=$i->getAttributes();
+			$data['userIdentifier']=User::findOne($core,"User",$data['userIdentifier'])->getLink();
+			array_push($table,$data);
+		}
+
+		$balance=$item->getBalance();
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}
@@ -85,6 +94,51 @@ class PartManagement extends Controller{
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}
+
+
+	public function call_addTransaction($core){
+
+		$core->setPageTitle("Ajouter une transaction");
+
+		$part=Part::findOne($core,"Part",$_GET['id']);
+		$now=$core->getCurrentTime();
+
+		include($this->getView(__CLASS__,__METHOD__));
+	}
+
+	public function call_addTransactionSave($core){
+
+		$user=User::findOne($core,"User",$_SESSION['id']);
+		$isMechanic=$user->isMechanic();
+
+		if(!$isMechanic){
+			return;
+		}
+
+		$core->setPageTitle("Ajouter une transaction");
+
+		$part=Part::findOne($core,"Part",$_POST['partIdentifier']);
+
+		$change=(double)$_POST['partChange'];
+		$balance=$part->getBalance();
+		$balance+=$change;
+
+		$valid=true;
+
+		if($balance < 0 || $change == 0){
+			$valid=false;
+		}else{
+
+			$_POST['balance']=$balance;
+			$_POST['userIdentifier']=$_SESSION['id'];
+
+			PartTransaction::insertRow($core,"PartTransaction",$_POST);
+
+		}
+	
+		include($this->getView(__CLASS__,__METHOD__));
+	}
+
 
 
 };

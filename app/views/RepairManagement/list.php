@@ -3,12 +3,14 @@
 // Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
+/*
 if(count($bikes)>0){
 	$core->makeButton("?controller=RepairManagement&action=add","Ajouter une réparation");
 }else{
 
 	echo "Il n'y a pas de vélos !<br />";
 }
+*/
 
 if($isMechanic){
 	$core->makeButton("?controller=PartManagement&action=list","Pièces de rechange");

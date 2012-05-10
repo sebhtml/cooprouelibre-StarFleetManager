@@ -22,7 +22,21 @@ La réparation a été faite.
 
 <?php
 
+
+
+
 }
+
+$bike=$item->getBike();
+$places=$bike->getBikePlaces();
+
+if(count($places)==0){
+	echo "Le vélo est à aucun point de service.<br />";
+}else{
+	echo "Le vélo est au point de service ".$bike->getCurrentPlace()->getAttribute("name")."<br />";
+}
+
+echo "<br /><br />";
 
 $this->printRowAsTable($item);
 

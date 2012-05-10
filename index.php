@@ -13,6 +13,7 @@ include("app/configuration.php");
 
 include("app/models/Right.php");
 include("app/models/Part.php");
+include("app/models/PartTransaction.php");
 include("app/models/RepairPart.php");
 include("app/models/Member.php");
 include("app/models/Loan.php");

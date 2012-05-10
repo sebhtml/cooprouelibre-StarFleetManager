@@ -177,7 +177,7 @@ class RepairManagement extends Controller{
 			return;
 		}
 
-		$items=Part::findAll($core,"Part");
+		$items=Part::findAvailableParts($core);
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}
@@ -193,9 +193,15 @@ class RepairManagement extends Controller{
 			return;
 		}
 
+		$part=Part::findOne($core,"Part",$_POST['partIdentifier']);
+
 		$_POST['repairIdentifier']=$_GET['id'];
 
 		RepairPart::insertRow($core,"RepairPart",$_POST);
+
+		$change=-1;
+		$part->runTransaction($change);
+
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}

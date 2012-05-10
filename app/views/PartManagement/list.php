@@ -10,7 +10,7 @@ $core->makeButton("?controller=PartManagement&action=add","Ajouter une pièce");
 echo "<br /><br />";
 foreach($parts as $i){
 
-	echo "<a href=\"?controller=PartManagement&action=view&id={$i->getId()}\">{$i->getName()}</a><br />";
+	echo "<a href=\"?controller=PartManagement&action=view&id={$i->getId()}\">{$i->getName()}</a> (quantité: {$i->getBalance()})<br />";
 }
 
 ?>
