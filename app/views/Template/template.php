@@ -62,6 +62,10 @@ if($isManager || $isMechanic){
 $core->makeButton("?controller=BikeManagement&action=list","vélos");
 }
 
+if($isViewer){
+	$core->makeButton("?controller=Statistics&action=list","statistiques");
+}
+
 if($isMechanic){
 	$core->makeButton("?controller=RepairManagement&action=list","réparations");
 }

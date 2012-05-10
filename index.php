@@ -41,6 +41,7 @@ include("app/controllers/RightManagement.php");
 include("app/controllers/Authentification.php");
 include("app/controllers/Entertainment.php");
 include("app/controllers/Scheduling.php");
+include("app/controllers/Statistics.php");
 include("app/controllers/ClosedDayManagement.php");
 include("app/controllers/BikePlaceManagement.php");
 
@@ -60,6 +61,7 @@ $core->registerController(new RepairManagement());
 $core->registerController(new LoanManagement());
 $core->registerController(new RightManagement());
 $core->registerController(new Scheduling());
+$core->registerController(new Statistics());
 $core->registerController(new Entertainment());
 $core->registerController(new PlaceManagement());
 $core->registerController(new PartManagement());
