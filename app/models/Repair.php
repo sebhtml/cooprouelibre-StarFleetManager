@@ -205,6 +205,13 @@ class Repair extends Model{
 		}
 	}
 
+	public function getRepairParts(){
+
+		return RepairPart::getObjectsInRelation($this->m_core,"RepairPart","repairIdentifier",$this->getId());
+
+
+	}
+
 
 }
 

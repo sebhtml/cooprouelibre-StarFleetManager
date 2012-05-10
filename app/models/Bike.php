@@ -60,7 +60,7 @@ class Bike extends Model{
 
 	public function getBikePlaces(){
 
-		return Schedule::getObjectsInRelation($this->m_core,"BikePlace","bikeIdentifier",$this->getId());
+		return BikePlace::getObjectsInRelation($this->m_core,"BikePlace","bikeIdentifier",$this->getId());
 	}
 
 	public function canBeMoved(){

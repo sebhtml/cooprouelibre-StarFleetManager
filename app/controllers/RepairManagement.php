@@ -67,6 +67,8 @@ class RepairManagement extends Controller{
 
 		$item=Repair::findWithIdentifier($core,"Repair",$identifier);
 
+		$repairParts=$item->getRepairParts();
+
 		$core->setPageTitle($item->getName());
 		$columnNames=$item->getFieldNames();
 
@@ -163,6 +165,42 @@ class RepairManagement extends Controller{
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}
+
+	public function call_addPart($core){
+
+		$core->setPageTitle("Ajouter un pièce pour une réparation");
+
+		$user=User::findOne($core,"User",$_SESSION['id']);
+		$isMechanic=$user->isMechanic();
+
+		if(!$isMechanic){
+			return;
+		}
+
+		$items=Part::findAll($core,"Part");
+
+		include($this->getView(__CLASS__,__METHOD__));
+	}
+
+	public function call_addPartSave($core){
+
+		$core->setPageTitle("Ajouter un pièce pour une réparation");
+
+		$user=User::findOne($core,"User",$_SESSION['id']);
+		$isMechanic=$user->isMechanic();
+
+		if(!$isMechanic){
+			return;
+		}
+
+		$_POST['repairIdentifier']=$_GET['id'];
+
+		RepairPart::insertRow($core,"RepairPart",$_POST);
+
+		include($this->getView(__CLASS__,__METHOD__));
+	}
+
+
 };
 
 ?>

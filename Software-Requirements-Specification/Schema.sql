@@ -300,9 +300,9 @@ create table TablePrefix_RepairPart(
 	id	integer auto_increment,
 		primary key(id),
 
-	userIdentifier	integer not null,
-		index userIdentifier_index (userIdentifier),
-		foreign key (userIdentifier) references TablePrefix_User(id),
+	partIdentifier	integer not null,
+		index partIdentifier_index (partIdentifier),
+		foreign key (partIdentifier) references TablePrefix_Part(id),
 
 	repairIdentifier	integer not null,
 		index repairIdentifier_index (repairIdentifier),

@@ -64,6 +64,8 @@ Ils peuvent<br />
 <ul><li>ajouter un horaire pour leur point de service,</li>
 <li>ajouter un membre,</li>
 <li>éditer un membre,</li>
+<li>débloquer un membre,</li>
+<li>bloquer un membre,</li>
 <li>ajouter un vélo,</li>
 <li>éditer un vélo,</li>
 <li>déplacer un vélo.</li>
