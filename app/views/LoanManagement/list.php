@@ -7,18 +7,8 @@
 
 ?>
 
-<br /><br />
-
 <h1>Prêts en cours sans retard</h1>
 
-<?php
-
-echo "Nombre de prêts: ".count($listActiveNotLate);
-
-?>
-
-
-<br /><br />
 
 <?php
 
@@ -29,18 +19,14 @@ foreach($listActiveNotLate as $i){
 	echo "<a href=\"?controller=LoanManagement&action=view&id=$id\">$name</a><br />";
 }
 
+if(count($listActiveNotLate)==0){
+echo "Aucun.";
+}
+
 ?>
 
 <h1>Prêts en cours avec retard</h1>
 
-<?php
-
-echo "Nombre de prêts: ".count($listActiveLate);
-
-?>
-
-
-<br /><br />
 
 <?php
 
@@ -51,21 +37,24 @@ foreach($listActiveLate as $i){
 	echo "<a href=\"?controller=LoanManagement&action=view&id=$id\">$name</a><br />";
 }
 
-?>
-
-<h1>Prêts terminés sans retard</h1>
-
-<?php
-
-echo "Nombre de prêts: ".count($listReturnedNotLate);
-
+if(count($listActiveLate)==0){
+echo "Aucun.";
+}
 ?>
 
 
-<br /><br />
+<?php
+
+//<h1>Prêts terminés sans retard</h1>
+//echo "Nombre de prêts: ".count($listReturnedNotLate);
+
+?>
+
+
 
 <?php
 
+/*
 foreach($listReturnedNotLate as $i){
 	$id=$i->getId();
 	$name=$i->getName();
@@ -73,21 +62,22 @@ foreach($listReturnedNotLate as $i){
 	echo "<a href=\"?controller=LoanManagement&action=view&id=$id\">$name</a><br />";
 }
 
-?>
-
-<h1>Prêts terminés avec retard</h1>
-
-<?php
-
-echo "Nombre de prêts: ".count($listReturnedLate);
-
+*/
 ?>
 
 
-<br /><br />
+<?php
+
+//<h1>Prêts terminés avec retard</h1>
+//echo "Nombre de prêts: ".count($listReturnedLate);
+
+?>
+
+
 
 <?php
 
+/*
 foreach($listReturnedLate as $i){
 	$id=$i->getId();
 	$name=$i->getName();
@@ -95,6 +85,23 @@ foreach($listReturnedLate as $i){
 	echo "<a href=\"?controller=LoanManagement&action=view&id=$id\">$name</a><br />";
 }
 
-
+*/
 
 ?>
+
+
+<h1>Statistiques</h1>
+
+<?php
+
+$total=count($listActiveNotLate)+count($listActiveLate)+count($listReturnedNotLate)+count($listReturnedLate);
+$returned=count($listReturnedNotLate)+count($listReturnedLate);
+$active=count($listActiveLate)+count($listActiveNotLate);
+
+echo "Nombre de prêts en cours: ".$active."<br />";
+echo "Nombre de prêts terminés: ".$returned."<br />";
+echo "Nombre total de prêts: ".$total."<br />";
+
+?>
+
+
