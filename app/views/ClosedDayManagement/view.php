@@ -15,8 +15,9 @@ $this->printRowAsTable($item);
 
 <?php
 
-
+if($isManager){
 $core->makeButton("?controller=ClosedDayManagement&action=remove&id={$item->getId()}","supprimer");
+}
 
 ?>
 

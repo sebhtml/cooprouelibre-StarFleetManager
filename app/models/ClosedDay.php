@@ -44,6 +44,9 @@ class ClosedDay extends Model{
 
 	}
 
+	public function getPlace(){
+		return Place::findOne($this->m_core,"Place",$this->getAttribute("placeIdentifier"));
+	}
 
 }
 

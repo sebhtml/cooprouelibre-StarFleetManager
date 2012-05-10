@@ -19,6 +19,10 @@ class ClosedDayManagement extends Controller{
 		$core->setPageTitle($item->getName());
 		$columnNames=$item->getFieldNames();
 		
+		$user=User::findOne($core,"User",$_SESSION['id']);
+
+		$isManager=$item->getPlace()->isManager($user);
+
 		$id=$item->getAttributeValue("id");
 		$name=$item->getAttributeValue("name");
 
