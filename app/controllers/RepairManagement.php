@@ -32,7 +32,6 @@ class RepairManagement extends Controller{
 		}
 
 		$user=User::findOne($core,"User",$_SESSION['id']);
-
 		$isMechanic=$user->isMechanic();
 
 		include($this->getView(__CLASS__,__METHOD__));
@@ -55,6 +54,7 @@ class RepairManagement extends Controller{
 
 		$_POST['completionDate']=$_POST['creationDate'];
 		$_POST['completionUserIdentifier']=$_POST['userIdentifier'];
+		$_POST['minutes']=0;
 
 		Repair::insertRow($core,"Repair",$_POST);
 	
@@ -69,6 +69,9 @@ class RepairManagement extends Controller{
 
 		$core->setPageTitle($item->getName());
 		$columnNames=$item->getFieldNames();
+
+		$user=User::findOne($core,"User",$_SESSION['id']);
+		$isMechanic=$user->isMechanic();
 		
 		include($this->getView(__CLASS__,__METHOD__));
 	}
@@ -89,16 +92,27 @@ class RepairManagement extends Controller{
 	}
 
 	public function call_complete_save($core){
-		$getData=$core->getGetData();
-		$identifier=$getData["id"];
+		$identifier=$_GET["id"];
 
-		$item=Repair::findWithIdentifier($core,"Repair",$identifier);
-		$date=$_POST['completionDate'];
+		$item=Repair::findOne($core,"Repair",$identifier);
+
+		$data=$item->getAttributes();
+
+		$data['completionDate']=$_POST['completionDate'];
+		$data['completionUserIdentifier']=$_SESSION['id'];
+		$data['minutes']=$_POST['minutes'];
 
 		$user=User::findOne($core,"User",$_SESSION['id']);
+		$isMechanic=$user->isMechanic();
 
-		$item->complete($date,$user);
-		$item=Repair::findWithIdentifier($core,"Repair",$identifier);
+		if(!$isMechanic){
+			return;
+		}
+
+		
+		Repair::updateRow($core,"Repair",$data,$_GET['id']);
+
+		$item=Repair::findOne($core,"Repair",$identifier);
 
 		$core->setPageTitle("Réparation complétée.");
 		$columnNames=$item->getFieldNames();
@@ -106,10 +120,49 @@ class RepairManagement extends Controller{
 		$currentTime=$core->getCurrentTime();
 
 		include($this->getView(__CLASS__,__METHOD__));
-
 	}
 
+	public function call_listTypes($core){
 
+		$core->setPageTitle("Types de réparations");
+
+		$items=RepairType::findAll($core,"RepairType");
+
+		$user=User::findOne($core,"User",$_SESSION['id']);
+		$isMechanic=$user->isMechanic();
+
+		include($this->getView(__CLASS__,__METHOD__));
+	}
+
+	public function call_addType($core){
+
+		$core->setPageTitle("Ajouter un type de réparation");
+
+		$user=User::findOne($core,"User",$_SESSION['id']);
+		$isMechanic=$user->isMechanic();
+
+		if(!$isMechanic){
+			return;
+		}
+
+		include($this->getView(__CLASS__,__METHOD__));
+	}
+
+	public function call_addTypeSave($core){
+
+		$core->setPageTitle("Ajouter un type de réparation");
+
+		$user=User::findOne($core,"User",$_SESSION['id']);
+		$isMechanic=$user->isMechanic();
+
+		if(!$isMechanic){
+			return;
+		}
+
+		RepairType::insertRow($core,"RepairType",$_POST);
+
+		include($this->getView(__CLASS__,__METHOD__));
+	}
 };
 
 ?>

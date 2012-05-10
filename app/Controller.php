@@ -178,7 +178,7 @@ class Controller{
 
 			//echo "Field= $field";
 
-			if($finder->isSelectField($field)){
+			if($finder->isSelectField($core,$field)){
 				
 				$list=$finder->getSelectOptions($core,$field);
 
@@ -190,7 +190,7 @@ class Controller{
 				
 				$this->renderSelectorWithDefault($field,$fieldName,$list,$values[$field]);
 
-			}elseif($finder->isFilledField($field)){
+			}elseif($finder->isFilledField($core,$field)){
 				
 				$this->renderHiddenFieldWithValue($field,$fieldName,$values[$field],$values[$field]);
 			}else{
@@ -234,7 +234,7 @@ class Controller{
 
 			//echo "Field= $field";
 
-			if($finder->isSelectField($field)){
+			if($finder->isSelectField($core,$field)){
 				
 				$list=$finder->getSelectOptions($core,$field);
 
@@ -246,7 +246,7 @@ class Controller{
 				
 				$this->renderSelector($field,$fieldName,$list);
 
-			}elseif($finder->isFilledField($field)){
+			}elseif($finder->isFilledField($core,$field)){
 				
 				$value=$finder->getFilledValue($core,$field);
 

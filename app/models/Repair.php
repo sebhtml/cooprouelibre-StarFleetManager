@@ -5,9 +5,15 @@
 
 class Repair extends Model{
 
-	public function isSelectField($field){
-		if($field=="bikeIdentifier"){
-			return true;
+	public function isSelectField($core,$field){
+
+
+		if($field=="repairTypeIdentifier"){
+			$user=User::findOne($core,"User",$_SESSION['id']);
+
+			if($user->isManager() || $user->isMechanic()){
+				return true;
+			}
 		}
 
 		return false;
@@ -30,21 +36,53 @@ class Repair extends Model{
 			}
 	
 			return $output;
+
+		}elseif($field=="repairTypeIdentifier"){
+		
+			$items=RepairType::findAll($core,"RepairType");
+
+			$output=array();
+	
+			foreach($items as $i){
+				$key=$i->getAttributeValue("id");
+				$value=$i->getName();
+
+				$output[$key]=$value;
+			}
+	
+			return $output;
+
 		}
 
 		return array();
 	}
 
-	public function isFilledField($field){
+	public function isFilledField($core,$field){
 
-		if($field=="creationDate" || $field == "userIdentifier"  || $field=="completionDate"|| $field=="completionUserIdentifier"){
+		if($field=="creationDate" || $field == "userIdentifier"  || $field=="completionDate"|| $field=="completionUserIdentifier"|| $field=="bikeIdentifier"){
 			return true;
+		}
+
+		if($field=="minutes"){
+			return true;
+		}
+
+
+		if($field=="repairTypeIdentifier"){
+			$user=User::findOne($core,"User",$_SESSION['id']);
+
+			if(!$user->isManager() || !$user->isMechanic()){
+				return true;
+			}
 		}
 
 		return false;
 	}
 
 	public function getFilledValue($core,$field){
+
+		$user=User::findOne($core,"User",$_SESSION['id']);
+
 		if($field=="creationDate"){
 			$time=$core->getCurrentTime();
 			return array($time,$time);
@@ -52,14 +90,26 @@ class Repair extends Model{
 		}elseif($field=="userIdentifier"){
 			
 
-			$user=User::findOne($core,"User",$_SESSION['id']);
 	
 			return array($user->getAttributeValue("id"),$user->getName());
 
-		}else if($field=="completionDate" || $field=="completionUserIdentifier"){
+		}else if($field=="completionDate" || $field=="completionUserIdentifier" || $field=="minutes"){
+
 			return array(0,"-");
 
+		}elseif($field=="bikeIdentifier"){
+			
+			$bike=Bike::findOne($core,"Bike",$_GET['bikeIdentifier']);
+
+			return array($bike->getId(),$bike->getName());
+
+		}elseif($field=="repairTypeIdentifier"){
+
+			$item=RepairType::getDefault($core);
+
+			return array($item->getId(),$item->getName());
 		}
+
 		return "NULL";
 	}
 
@@ -72,8 +122,8 @@ class Repair extends Model{
 		$names["repairIsCompleted"]="Complétée";
 		$names["completionDate"]="Date et heure de complétion";
 		$names["completionUserIdentifier"]="Opérateur pour la complétion";
-		$names["minutes"]="Opérateur pour la complétion";
-		
+		$names["minutes"]="Minutes";
+		$names["repairTypeIdentifier"]="Type de réparation";
 		
 		return $names;
 	}
@@ -121,7 +171,7 @@ class Repair extends Model{
 	}
 
 	public function isLinkedAttribute($name){
-		if($name=="userIdentifier" || $name=="bikeIdentifier"|| $name=="completionUserIdentifier"){
+		if($name=="userIdentifier" || $name=="bikeIdentifier"|| $name=="completionUserIdentifier"|| $name == "repairTypeIdentifier"){
 			return true;
 		}else{
 			return false;
@@ -144,6 +194,12 @@ class Repair extends Model{
 		}elseif($name=="bikeIdentifier"){
 			$id=$this->getAttribute($name);
 			$object=Bike::findOne($this->m_core,"Bike",$id);
+
+			return $object->getLink();
+
+		}elseif($name=="repairTypeIdentifier"){
+			$id=$this->getAttribute($name);
+			$object=RepairType::findOne($this->m_core,"RepairType",$id);
 
 			return $object->getLink();
 		}

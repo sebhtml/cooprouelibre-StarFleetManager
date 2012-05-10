@@ -227,8 +227,6 @@ create table TablePrefix_RepairType (
 ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 
-insert into TablePrefix_RepairType (name) values ('Autre');
-
 
 create table TablePrefix_Part (
 
@@ -312,4 +310,8 @@ create table TablePrefix_RepairPart(
 
 ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
+
+
+
+insert into TablePrefix_RepairType (name) values ('Autre');
 

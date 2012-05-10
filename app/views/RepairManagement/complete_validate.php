@@ -13,7 +13,10 @@ $id=$item->getAttributeValue("id");
 <?php
 
 $this->startForm("?controller=RepairManagement&action=complete_save&id=$id");
-$this->addTextFieldWithValue("Date de complétion","completionDate",$currentTime);
+
+$this->renderHiddenFieldWithValue("completionDate","Date de complétion",$currentTime,$currentTime);
+
+$this->addTextFieldWithValue("Temps requis en minutes","minutes",15);
 $this->endForm();
 
 

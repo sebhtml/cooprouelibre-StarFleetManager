@@ -58,7 +58,7 @@ $core->makeButton("?controller=MemberManagement&action=list","membres");
 
 }
 
-if($isManager){
+if($isManager || $isMechanic){
 $core->makeButton("?controller=BikeManagement&action=list","vélos");
 }
 

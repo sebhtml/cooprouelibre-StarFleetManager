@@ -16,6 +16,7 @@ include("app/models/Part.php");
 include("app/models/Member.php");
 include("app/models/Loan.php");
 include("app/models/Repair.php");
+include("app/models/RepairType.php");
 include("app/models/User.php");
 include("app/models/Bike.php");
 include("app/models/Place.php");

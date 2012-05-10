@@ -34,7 +34,7 @@ $id=$item->getId();
 
 <?php
 
-if($item->isActive()){
+if($item->isActive() && $isMechanic){
 
 	$core->makeButton("?controller=RepairManagement&action=complete_validate&id=$id","Compléter la réparation");
 }

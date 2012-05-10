@@ -17,7 +17,17 @@ foreach($list as $i){
 	$id=$i->getAttributeValue("id");
 	$name=$i->getName();
 
-	echo "<a href=\"?controller=BikeManagement&action=view&id=$id\">$name</a><br />";
+	echo "<a href=\"?controller=BikeManagement&action=view&id=$id\">$name</a> ";
+
+	if($i->isLoaned()){
+		echo "prêté";
+	}elseif($i->hasRepairs()){
+		echo "en réparation";
+	}else{
+		echo "disponible";
+	}
+
+	echo "<br />";
 }
 
 ?>
