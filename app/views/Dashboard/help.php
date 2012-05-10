@@ -30,12 +30,25 @@ Le système de gestion permet de gérer <br />
 Les types d'utilisateurs sont<br />
 
 <ul>
-<li>les administrateurs du système,</li>
+<li>les prêteurs à un point de service,</li>
 <li>les gestionnaires de point de service,</li>
 <li>les mécaniciens,</li>
-<li>les prêteurs à un point de service,</li>
 <li>les observateurs à un point de service.</li>
+<li>les administrateurs du système,</li>
 </ul>
+
+
+<h2>Prêteurs</h2>
+
+Ils peuvent<br />
+<ul>
+<li>prêter un vélo,</li>
+<li>terminer un prêt de vélo,</li>
+<li>ajouter un membre,</li>
+<li>ajouter une réparation à un vélo.</li>
+</ul>
+
+
 
 <h2>Administrateurs</h2>
 
@@ -50,8 +63,9 @@ Ils peuvent<br />
 Ils peuvent<br />
 <ul><li>ajouter un horaire pour leur point de service,</li>
 <li>ajouter un membre,</li>
-<li>ajouter un droit à un utilisateur,</li>
+<li>éditer un membre,</li>
 <li>ajouter un vélo,</li>
+<li>éditer un vélo,</li>
 <li>déplacer un vélo.</li>
 </ul>
 
@@ -63,19 +77,10 @@ Ils peuvent<br />
 <ul>
 <li>gérer les pièces,</li>
 <li>gérer les inventaires,</li>
-<li>réparer un vélo.</li>
+<li>compléter une réparation,</li>
+<li>remplacer une pièce d'un vélo.</li>
 </ul>
 
-
-
-<h2>Prêteurs</h2>
-
-Ils peuvent<br />
-<ul><li>
- prêter un vélo,</li>
-<li>ajouter un membre,</li>
-<li>signaler un vélo.</li>
-</ul>
 
 
 <h2>Observateurs</h2>
