@@ -12,4 +12,6 @@ $CONFIG_DATABASE_TABLE_PREFIX="TablePrefix_";
 $CONFIG_logo="logo.jpg";
 $CONFIG_style="sheet.css";
 
+date_default_timezone_set('America/Montreal');
+
 ?>
