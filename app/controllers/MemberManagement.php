@@ -32,11 +32,31 @@ class MemberManagement extends Controller{
 		include($this->getView(__CLASS__,__METHOD__));
 	}
 
+	private function validate($data){
+		if(!strpos($data['email'],'@')){
+			echo "Le courriel est invalide.";
+			return false;
+		}
+
+		$tokens=explode("-",$_POST['dateOfBirth']);
+
+		if(count($tokens)!=3){
+			echo "La date de naissance doit être entrée dans le format aaaa-mm-jj.";
+			return false;
+		}
+
+		return true;
+	}
+
 	public function call_add_save($core){
 
 		$core->setPageTitle("Sauvegarder un membre");
 
-		Member::insertRow($core,"Member",$core->getPostData());
+		if(!$this->validate($_POST)){
+			return;
+		}
+
+		Member::insertRow($core,"Member",$_POST);
 	
 		include($this->getView(__CLASS__,__METHOD__));
 	}
