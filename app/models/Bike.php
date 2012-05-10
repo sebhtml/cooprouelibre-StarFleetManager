@@ -5,11 +5,44 @@
 
 class Bike extends Model{
 
+	public function isSelectField($core,$field){
+		return $field=="bikeSex" || $field=="bikeSize";
+	}
+
+	public function getSelectOptions($core,$field){
+
+		//echo "Member.getSelectOptions $field";
+
+		if($field=="bikeSex"){
+			return array('F' => 'Femme','M' => 'Homme');
+		}
+
+		if($field=="bikeSize"){
+			return array(
+					0 => 'petit',
+					1 => 'moyen',
+					2 => 'grand',
+			
+				);
+		}
+
+		return array();
+	}
+
+	public function getSex(){
+		if($this->getAttribute("bikeSex")=='F'){
+			return "Femme";
+		}else{
+			return "Homme";
+		}
+	}
+
 	public function getFieldNames(){
 		$names=array();
 		$names["bikeIdentifier"]="Numéro de vélo";
 		$names["vendorName"]="Manufacturier";
 		$names["modelName"]="Modèle";
+		$names["bikeSex"]="Sexe";
 		$names["serialNumber"]="Numéro de série";
 		$names["acquisitionDate"]="Date d'acquisition (aaaa-mm-jj)";
 		
@@ -19,12 +52,22 @@ class Bike extends Model{
 		return $names;
 	}
 
+	public function getSize(){
+		$values= array(
+					0 => 'petit',
+					1 => 'moyen',
+					2 => 'grand',
+				);
+
+		return $values[$this->getAttribute("bikeSize")];
+	}
+
 	public function getName(){
-		return "vélo #".$this->getAttribute("bikeIdentifier").", taille ".$this->getAttribute("bikeSize");
+		return "vélo #".$this->getAttribute("bikeIdentifier")." (".$this->getSex().", ".$this->getSize().")";
 		//return $this->getAttributeValue("vendorName")." ".$this->getAttributeValue("modelName").;
 	}
 
-	public function isFilledField($field){
+	public function isFilledField($core,$field){
 		return $field=="userIdentifier"|| $field=="acquisitionDate";
 	}
 
@@ -139,7 +182,7 @@ class Bike extends Model{
 	}
 
 	public function isLinkedAttribute($name){
-		if($name=="userIdentifier"){
+		if($name=="userIdentifier" || $name=="bikeSex" || $name=="bikeSize"){
 			return true;
 		}else{
 			return false;
@@ -147,11 +190,17 @@ class Bike extends Model{
 	}
 
 
-	public function getAttributeLink($name){
-		$id=$this->getAttribute($name);
-		$object=User::findOne($this->m_core,"User",$id);
+	public function getAttributeLink($field){
+		if($field=="userIdentifier"){
+			$id=$this->getAttribute($field);
+			$object=User::findOne($this->m_core,"User",$id);
 
-		return $object->getLink();
+			return $object->getLink();
+		}elseif($field=="bikeSex"){
+			return $this->getSex();
+		}elseif($field=="bikeSize"){
+			return $this->getSize();
+		}
 	}
 
 	public function isLoaned(){

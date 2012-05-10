@@ -104,7 +104,7 @@ class Model{
 		return array();
 	}
 
-	public function isSelectField($field){
+	public function isSelectField($core,$field){
 		return false;
 	}
 
@@ -192,7 +192,7 @@ class Model{
 		return $this->getAttributeValue("id");
 	}
 
-	public function isFilledField($field){
+	public function isFilledField($core,$field){
 		return false;
 	}
 

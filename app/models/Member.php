@@ -21,7 +21,7 @@ class Member extends Model{
 		return $names;
 	}
 
-	public function isSelectField($field){
+	public function isSelectField($core,$field){
 		return $field=="sex";
 	}
 
@@ -40,7 +40,7 @@ class Member extends Model{
 		return $this->getAttributeValue("firstName")." ".$this->getAttributeValue("lastName")." (#".$this->getId().")";
 	}
 
-	public function isFilledField($field){
+	public function isFilledField($core,$field){
 		return $field=="userIdentifier";
 	}
 

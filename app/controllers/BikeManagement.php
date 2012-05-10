@@ -76,9 +76,9 @@ class BikeManagement extends Controller{
 		$core->setPageTitle("Éditer un vélo");
 		
 		$user=User::findOne($core,"User",$_SESSION['id']);
-		$isAdministrator=$user->isAdministrator();
+		$isManager=$user->isManager();
 
-		if(!$isAdministrator){
+		if(!$isManager){
 			return;
 		}
 
@@ -91,9 +91,9 @@ class BikeManagement extends Controller{
 		$core->setPageTitle("Éditer un vélo");
 		
 		$user=User::findOne($core,"User",$_SESSION['id']);
-		$isAdministrator=$user->isAdministrator();
+		$isManager=$user->isManager();
 
-		if(!$isAdministrator){
+		if(!$isManager){
 			return;
 		}
 

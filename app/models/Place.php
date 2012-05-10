@@ -29,7 +29,7 @@ class Place extends Model{
 
 
 
-	public function isFilledField($field){
+	public function isFilledField($core,$field){
 		return $field=="userIdentifier";
 	}
 

@@ -13,7 +13,7 @@ $id=$item->getAttributeValue("id");
 
 <?php
 
-if($isAdministrator){
+if($isManager){
 	$core->makeButton("?controller=BikeManagement&action=edit&id={$item->getId()}","Éditer");
 }
 
@@ -61,7 +61,7 @@ if($item->canBeMoved()){
 
 ?>
 
-<h1>État du vélo</h2>
+<h1>État du vélo</h1>
 
 <?php
 
