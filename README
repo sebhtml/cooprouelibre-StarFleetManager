@@ -4,3 +4,6 @@ Software-Requirements-Specification/Schema.sql
 in your database.
 
 Then, create a user in the database.
+
+
+- The code was designed, created and edited by Sébastien Boisvert.
