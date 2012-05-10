@@ -135,6 +135,34 @@ class MemberManagement extends Controller{
 		include($this->getView(__CLASS__,__METHOD__));
 	}
 
+	public function call_addLock($core){
+
+		$core->setPageTitle("Ajouter un bloquage");
+
+		include($this->getView(__CLASS__,__METHOD__));
+	}
+
+	public function call_addLockSave($core){
+
+		$core->setPageTitle("Ajouter un bloquage");
+
+		$user=User::findOne($core,"User",$_SESSION['id']);
+		$isManager=$user->isManager();
+
+		if(!$isManager){
+			return;
+		}
+
+		$_POST['memberIdentifier']=$_GET['id'];
+		$_POST['lifted']=0;
+		$_POST['explanation']="";
+		$_POST['userIdentifier']=$_SESSION['id'];
+
+		MemberLock::insertRow($core,"MemberLock",$_POST);
+
+		include($this->getView(__CLASS__,__METHOD__));
+	}
+
 
 };
 

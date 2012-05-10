@@ -23,7 +23,17 @@ $core->makeButton("?controller=LoanManagement&action=list&memberIdentifier=$memb
 
 <h1>Bloquages</h1>
 
+
+
 <?php
+
+if($isManager){
+
+	$core->makeButton("?controller=MemberManagement&action=addLock&id=$memberIdentifier","bloquer le membre");
+
+	echo "<br /><br />";
+}
+
 
 foreach($memberLocks as $i){
 	echo $i->getAttribute("startingDate")." au ".$i->getAttribute("endingDate");
