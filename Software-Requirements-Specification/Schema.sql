@@ -46,6 +46,7 @@ create table TablePrefix_Bike(
 	acquisitionDate	date not null,
 
 	bikeSize   integer not null,
+	bikeSex char not null,
 
 	userIdentifier	integer not null,
 		index userIdentifier_index (userIdentifier),
