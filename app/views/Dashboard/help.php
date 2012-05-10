@@ -17,6 +17,7 @@ Le système de gestion permet de gérer <br />
 <li> les membres,</li>
 <li> les vélos,</li>
 <li>les prêts de vélo,</li>
+<li>les bloquages de membres,</li>
 <li>les réparations,</li>
 <li>les pièces,</li>
 <li>les inventaires de pièces,</li>
@@ -82,6 +83,11 @@ Ils peuvent<br />
 Ils peuvent<br />
 <ul><li>
  voir les statistiques.</li></ul>
+
+
+<h2>Retards et bloquages</h2>
+
+Pour chaque heure de retard, le membre est bloqué 1 journée.
 
 <h2>Création, édition, et distribution du logiciel</h2>
 

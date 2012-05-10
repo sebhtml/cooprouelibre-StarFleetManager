@@ -48,6 +48,7 @@ class User extends Model{
 			"username" => "Nom d'utilisateur",
 			"md5Password" => "Mot de passe",
 			"firstName" => "Prénom",
+			"email" => "Courriel",
 			"lastName" => "Nom de famille",
 			"isAdministrator" => "Est un administrateur du système ?"
 		);
