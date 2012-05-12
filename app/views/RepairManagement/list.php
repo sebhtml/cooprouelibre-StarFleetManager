@@ -12,10 +12,15 @@ if(count($bikes)>0){
 }
 */
 
-if($isMechanic){
+if(!$hasBike && $isMechanic){
 	$core->makeButton("?controller=PartManagement&action=list","Pièces de rechange");
 	$core->makeButton("?controller=RepairManagement&action=listTypes","Types de réparation");
+}elseif($hasBike && $isMechanic){
+
+
 }
+
+
 
 echo "<br />";
 echo "<br />";

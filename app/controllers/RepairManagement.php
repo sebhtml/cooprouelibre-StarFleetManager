@@ -14,6 +14,7 @@ class RepairManagement extends Controller{
 
 
 		$bikes=Bike::findAll($core,"Bike");
+		$hasBike=false;
 
 		if(array_key_exists("bikeIdentifier",$_GET)){
 
@@ -23,6 +24,8 @@ class RepairManagement extends Controller{
 
 			$listToDo=$item->findAllRepairsToDo($core);
 			$listDone=$item->findAllRepairsDone($core);
+			$hasBike=true;
+
 		}else{
 
 			$core->setPageTitle("Voir toutes les réparations");
