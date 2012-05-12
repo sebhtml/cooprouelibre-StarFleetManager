@@ -60,7 +60,7 @@ $id=$item->getId();
 <?php
 
 if(count($repairParts)==0){
-	echo "Aucune.";
+	echo "Aucune.<br />";
 }
 
 
@@ -74,6 +74,8 @@ foreach($repairParts  as $i){
 
 	$total+=$value;
 }
+
+echo "<br />";
 
 echo "Prix de la réparation: $total $";
 

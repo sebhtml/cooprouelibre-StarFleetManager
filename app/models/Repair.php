@@ -171,7 +171,8 @@ class Repair extends Model{
 	}
 
 	public function isLinkedAttribute($name){
-		if($name=="userIdentifier" || $name=="bikeIdentifier"|| $name=="completionUserIdentifier"|| $name == "repairTypeIdentifier"){
+		if($name=="userIdentifier" || $name=="bikeIdentifier"|| $name=="completionUserIdentifier"|| $name == "repairTypeIdentifier"
+				|| $name=="completionDate" || $name=="minutes"){
 			return true;
 		}else{
 			return false;
@@ -189,7 +190,29 @@ class Repair extends Model{
 			$id=$this->getAttribute($name);
 			$object=User::findOne($this->m_core,"User",$id);
 
-			return $object->getLink();
+			if($this->isActive()){
+				return "-";
+			}else{
+				return $object->getLink();
+			}
+
+		}elseif($name=="completionDate"){
+			$id=$this->getAttribute($name);
+
+			if($this->isActive()){
+				return "-";
+			}else{
+				return $id;
+			}
+
+		}elseif($name=="minutes"){
+			$id=$this->getAttribute($name);
+
+			if($this->isActive()){
+				return "-";
+			}else{
+				return $id;
+			}
 
 		}elseif($name=="bikeIdentifier"){
 			$id=$this->getAttribute($name);
