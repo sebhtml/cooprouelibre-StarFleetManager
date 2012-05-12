@@ -13,7 +13,7 @@ echo "Nombre de membres: ".count($list)."<br /><br />";
 
 foreach($list as $i){
 	$id=$i->getAttributeValue('id');
-	$name=$i->getName();
+	$name=$i->getName()." ".$i->getAttribute("email");
 
 	echo "<a href=\"?controller=MemberManagement&action=view&id=$id\">$name</a><br />";
 }
