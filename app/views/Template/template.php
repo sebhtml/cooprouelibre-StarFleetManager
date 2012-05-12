@@ -39,6 +39,16 @@ if($username!=NULL){
 }
 
 	$core->makeButton("?controller=Dashboard&action=help","aide");
+
+
+if($isViewer){
+	$core->makeButton("?controller=Statistics&action=list","statistiques");
+}
+
+if($isAdministrator){
+	$core->makeButton("?controller=UserManagement&action=list","administration");
+}
+
 	echo "<br />";
 ?>
 
@@ -62,10 +72,6 @@ if($isManager || $isMechanic){
 $core->makeButton("?controller=BikeManagement&action=list","vélos");
 }
 
-if($isViewer){
-	$core->makeButton("?controller=Statistics&action=list","statistiques");
-}
-
 if($isMechanic){
 	$core->makeButton("?controller=RepairManagement&action=list","réparations");
 }
@@ -74,9 +80,7 @@ if($isManager){
 	$core->makeButton("?controller=LoanManagement&action=list","prêts");
 }
 
-if($isAdministrator){
-	$core->makeButton("?controller=UserManagement&action=list","administration");
-}
+
 //$core->makeButton("?controller=Entertainment&action=viewSchema","entrailles");
 
 
