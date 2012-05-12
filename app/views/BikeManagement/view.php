@@ -10,24 +10,15 @@ $id=$item->getAttributeValue("id");
 ?>
 
 <br />
+<br />
 
 <?php
-
 if($isManager){
 	$core->makeButton("?controller=BikeManagement&action=edit&id={$item->getId()}","Éditer");
 }
 
-$core->makeButton("?controller=LoanManagement&action=list&bikeIdentifier=$id","Voir les prêts");
-
-if(!$item->isLoaned()){
-$core->makeButton("?controller=RepairManagement&action=add&bikeIdentifier=$id","Ajouter une réparation");
-}
-
-$core->makeButton("?controller=RepairManagement&action=list&bikeIdentifier=$id","Voir les réparations");
-
 ?>
 
-<br />
 
 <h2>Historique de l'endroit du vélo</h2>
 
@@ -81,4 +72,29 @@ echo "Le vélo est disponible.";
 }
 
 
+
+
 ?>
+
+<br />
+<br />
+
+<h1>Prêts</h1>
+<?php
+
+$core->makeButton("?controller=LoanManagement&action=list&bikeIdentifier=$id","Voir les prêts");
+
+?>
+
+<h1>Réparations</h1>
+
+<?php
+if(!$item->isLoaned()){
+$core->makeButton("?controller=RepairManagement&action=add&bikeIdentifier=$id","Ajouter une réparation");
+}
+
+$core->makeButton("?controller=RepairManagement&action=list&bikeIdentifier=$id","Voir les réparations");
+
+?>
+
+
