@@ -48,6 +48,10 @@ foreach($items as $item){
 	$memberIdentifier=$item->getId();
 	$memberName=$item->getName();
 
+	if(count($items)>1){
+		$memberName=$item->getName()." ".$item->getAttribute("email");
+	}
+
 	echo "<option class=\"tableContentCell\" value=\"$memberIdentifier\" >$memberName</option>";
 
 }
