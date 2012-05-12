@@ -3,6 +3,12 @@
 // Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
+?>
+
+<h1>État de la réparation</h1>
+
+<?php
+
 if($item->isActive()){
 
 ?>
@@ -36,22 +42,18 @@ if(count($places)==0){
 	echo "Le vélo est au point de service ".$bike->getCurrentPlace()->getAttribute("name")."<br />";
 }
 
-echo "<br /><br />";
+
+?>
+
+<h1>Informations sur la réparation</h1>
+
+<?php
 
 $this->printRowAsTable($item);
 
 $id=$item->getId();
 
-echo "<br /><br />";
-
-if($item->isActive() && $isMechanic){
-
-	$core->makeButton("?controller=RepairManagement&action=complete_validate&id=$id","Compléter la réparation");
-}
-
 ?>
-
-<br /><br />
 
 <h1>Pièces remplacées</h1>
 
@@ -61,7 +63,6 @@ if(count($repairParts)==0){
 	echo "Aucune.";
 }
 
-echo "<br /><br />";
 
 $total=0;
 
@@ -74,7 +75,6 @@ foreach($repairParts  as $i){
 	$total+=$value;
 }
 
-echo "<br /><br />";
 echo "Prix de la réparation: $total $";
 
 echo "<br /><br />";
@@ -88,4 +88,19 @@ if($item->isActive() && $isMechanic){
 
 
 
+
+
+
+if($item->isActive() && $isMechanic){
+
 ?>
+<h1>Complétion</h1>
+
+<?php
+
+	$core->makeButton("?controller=RepairManagement&action=complete_validate&id=$id","Compléter la réparation");
+}
+
+?>
+
+
