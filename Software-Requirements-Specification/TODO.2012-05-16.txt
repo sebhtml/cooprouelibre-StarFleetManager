@@ -1,4 +1,10 @@
 
 - ne pas compter les heures où la coop est fermée dans les heures de retard.
+
 - ajouter un bouton "voir tous les prêts" dans la page des prêts.
 
+- Donc, est-ce possible que les champs obligatoires soient : Prénom, Nom et Téléphone, et que les autres soient des champs facultatifs qu’ils pourront remplir plus tard?
+
+- Pour le champs «adresse», est-il possible de le remplacer par «Adresse permanente»? En cas de vol, c’est cette adresse qui nous permettra de retrouver la personne ici.
+
+- mettre des liens dans statistiques
