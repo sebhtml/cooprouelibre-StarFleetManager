@@ -1,4 +1,6 @@
 
+- ajouter creationDate pour Member
+
 - ne pas compter les heures où la coop est fermée dans les heures de retard.
 
 - ajouter un bouton "voir tous les prêts" dans la page des prêts.
