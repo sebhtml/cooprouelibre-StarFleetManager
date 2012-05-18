@@ -3,6 +3,9 @@ To install, update app/configuration.php and dump the schema
 Software-Requirements-Specification/Schema.sql
 in your database.
 
+Then, dump all the SQL migration files into your database too.
+
+
 Then, create a user in the database.
 
 

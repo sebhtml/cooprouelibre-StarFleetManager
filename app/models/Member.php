@@ -17,6 +17,7 @@ class Member extends Model{
 		$names["phoneNumber"]="Téléphone";
 		$names["email"]="Courriel";
 		$names["userIdentifier"]="Créateur";
+		$names["creationTime"]="Date de création";
 		
 		return $names;
 	}
@@ -41,7 +42,7 @@ class Member extends Model{
 	}
 
 	public function isFilledField($core,$field){
-		return $field=="userIdentifier";
+		return $field=="userIdentifier" || $field=="creationTime";
 	}
 
 	public function getFilledValue($core,$field){
@@ -49,7 +50,11 @@ class Member extends Model{
 		if($field=="userIdentifier"){
 			$user=User::findWithIdentifier($core,"User",$_SESSION['id']);
 			return array($user->getId(),$user->getName());
+		}elseif($field=="creationTime"){
+			$item=$core->getCurrentTime();
+			return array($item,$item);
 		}
+
 	}
 
 /*
