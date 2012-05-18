@@ -27,7 +27,10 @@ class Place extends Model{
 		return ClosedDay::getObjectsInRelation($this->m_core,"ClosedDay","placeIdentifier",$this->getId());
 	}
 
+	public function getLoans(){
 
+		return Loan::getObjectsInRelation($this->m_core,"Loan","placeIdentifier",$this->getId());
+	}
 
 	public function isFilledField($core,$field){
 		return $field=="userIdentifier";

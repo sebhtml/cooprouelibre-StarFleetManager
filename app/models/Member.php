@@ -207,6 +207,11 @@ class Member extends Model{
 	}
 
 
+	public function getLoans(){
+
+		return Loan::getObjectsInRelation($this->m_core,"Loan","memberIdentifier",$this->getId());
+	}
+
 
 
 }

@@ -10,6 +10,46 @@ class LoanManagement extends Controller{
 		$core->secureController("LoanManagement");
 	}
 
+
+	public function call_listAll($core){
+
+		if(array_key_exists("placeIdentifier",$_GET)){
+
+			$item=Place::findOne($core,"Place",$_GET['placeIdentifier']);
+
+			$core->setPageTitle("Voir les prêts pour le point de service ".$item->getName());
+
+			$items=$item->getLoans();
+
+		}elseif(array_key_exists("memberIdentifier",$_GET)){
+
+			$item=Member::findOne($core,"Member",$_GET['memberIdentifier']);
+
+			$core->setPageTitle("Voir les prêts pour le membre ".$item->getName());
+
+			$items=$item->getLoans();
+		}elseif(array_key_exists("bikeIdentifier",$_GET)){
+
+			$item=Bike::findOne($core,"Bike",$_GET['bikeIdentifier']);
+
+			$core->setPageTitle("Voir les prêts pour le vélo ".$item->getName());
+
+			$items=$item->getLoans();
+
+
+		}else{
+
+			$core->setPageTitle("Voir tous les prêts");
+
+			$items=Loan::findAll($core,"Loan");
+
+		}
+
+		include($this->getView(__CLASS__,__METHOD__));
+	}
+
+
+
 	public function call_list($core){
 
 		if(array_key_exists("placeIdentifier",$_GET)){

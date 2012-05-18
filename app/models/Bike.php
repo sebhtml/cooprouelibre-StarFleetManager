@@ -227,6 +227,13 @@ class Bike extends Model{
 	public function isAvailable(){
 		return !$this->isLoaned() && !$this->hasRepairs();
 	}
+
+	public function getLoans(){
+
+		return Loan::getObjectsInRelation($this->m_core,"Loan","bikeIdentifier",$this->getId());
+	}
+
+
 }
 
 ?>

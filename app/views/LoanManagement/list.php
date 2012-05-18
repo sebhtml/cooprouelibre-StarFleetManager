@@ -102,6 +102,19 @@ echo "Nombre de prêts en cours: ".$active."<br />";
 echo "Nombre de prêts terminés: ".$returned."<br />";
 echo "Nombre total de prêts: ".$total."<br />";
 
+if(array_key_exists("placeIdentifier",$_GET)){
+
+	$core->makeButton("?controller=LoanManagement&action=listAll&placeIdentifier={$_GET["placeIdentifier"]}","Voir tous les prêts");
+}elseif(array_key_exists("bikeIdentifier",$_GET)){
+
+	$core->makeButton("?controller=LoanManagement&action=listAll&bikeIdentifier={$_GET['bikeIdentifier']}","Voir tous les prêts");
+}elseif(array_key_exists("memberIdentifier",$_GET)){
+
+	$core->makeButton("?controller=LoanManagement&action=listAll&memberIdentifier={$_GET['memberIdentifier']}","Voir tous les prêts");
+}else{
+
+	$core->makeButton("?controller=LoanManagement&action=listAll","Voir tous les prêts");
+}
 ?>
 
 
