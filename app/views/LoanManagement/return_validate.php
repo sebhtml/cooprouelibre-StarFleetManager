@@ -14,7 +14,13 @@ $id=$item->getAttributeValue("id");
 <?php
 
 $this->startForm("?controller=LoanManagement&action=return_save&id=$id");
-$this->renderHiddenFieldWithValue("actualEndingDate","Date de retour",$currentTime,$currentTime);
+
+if($isAdministrator){
+
+	$this->addTextFieldWithValue("Date de retour","actualEndingDate",$currentTime);
+}else{
+	$this->renderHiddenFieldWithValue("actualEndingDate","Date de retour",$currentTime,$currentTime);
+}
 $this->endForm();
 
 

@@ -14,7 +14,7 @@
 - [DONE] Donc, est-ce possible que les champs obligatoires soient : Prénom, Nom et Téléphone, et que les autres soient des champs facultatifs qu’ils pourront remplir plus tard?
    ('ajouter un membre rapidement') ( 20 min)
 
-- ne pas compter les heures où la coop est fermée dans les heures de retard. (1 hour)
+- [DONE] ne pas compter les heures où la coop est fermée dans les heures de retard. (1 hour)
 
 - version v1.3.0 ( 5 min)
 
