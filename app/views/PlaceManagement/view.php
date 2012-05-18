@@ -10,7 +10,10 @@ $this->printRowAsTable($item);
 <br />
 
 <?php
-$core->makeButton("?controller=LoanManagement&action=add_searchMember","Ajouter un prêt");
+
+if($isLoaner){
+	$core->makeButton("?controller=LoanManagement&action=add_searchMember","Ajouter un prêt");
+}
 
 $core->makeButton("?controller=LoanManagement&action=list&placeIdentifier=$placeIdentifier","Voir les prêts");
 $core->makeButton("?controller=BikeManagement&action=list&placeIdentifier=$placeIdentifier","Voir les vélos");

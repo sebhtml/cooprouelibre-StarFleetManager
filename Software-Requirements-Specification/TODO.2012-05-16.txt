@@ -9,7 +9,7 @@
 
 - [DONE] les prêteurs peuvent éditer un membre ( 10 min)
 
-- mettre des liens dans statistiques ( 20 min)
+- [DONE] mettre des liens dans statistiques ( 20 min)
 
 - Donc, est-ce possible que les champs obligatoires soient : Prénom, Nom et Téléphone, et que les autres soient des champs facultatifs qu’ils pourront remplir plus tard?
    ('ajouter un membre rapidement') ( 20 min)
@@ -18,4 +18,8 @@
 
 - version v1.3.0 ( 5 min)
 
+- deploy new code
 
+- migration
+
+- create observer user

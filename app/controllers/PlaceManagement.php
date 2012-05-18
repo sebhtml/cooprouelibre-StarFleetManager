@@ -57,6 +57,7 @@ class PlaceManagement extends Controller{
 		$user=User::findOne($core,"User",$_SESSION['id']);
 		$place=$item;
 		$isManager=$place->isManager($user);
+		$isLoaner=$place->isLoaner($user);
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}

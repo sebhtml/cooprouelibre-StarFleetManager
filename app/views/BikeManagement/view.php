@@ -89,7 +89,8 @@ $core->makeButton("?controller=LoanManagement&action=list&bikeIdentifier=$id","V
 <h1>Réparations</h1>
 
 <?php
-if(!$item->isLoaned()){
+
+if(!$item->isLoaned() && ( $isLoaner || $isMechanic)  ){
 $core->makeButton("?controller=RepairManagement&action=add&bikeIdentifier=$id","Ajouter une réparation");
 }
 
