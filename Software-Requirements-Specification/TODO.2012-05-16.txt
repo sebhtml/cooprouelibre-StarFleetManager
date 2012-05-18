@@ -16,7 +16,7 @@
 
 - [DONE] ne pas compter les heures où la coop est fermée dans les heures de retard. (1 hour)
 
-- version v1.3.0 ( 5 min)
+- [DONE] version v1.3.0 ( 5 min)
 
 - deploy new code
 
