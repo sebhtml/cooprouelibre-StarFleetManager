@@ -4,6 +4,12 @@
 // License: GPLv3
 
 if($isLoaner||$isManager){
+	$core->makeButton("?controller=MemberManagement&action=addFast","Ajouter un membre rapidement");
+}
+
+echo "<br />";
+
+if($isLoaner||$isManager){
 	$core->makeButton("?controller=MemberManagement&action=add","Ajouter un membre");
 }
 

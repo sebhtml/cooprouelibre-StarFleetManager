@@ -11,7 +11,7 @@
 
 - [DONE] mettre des liens dans statistiques ( 20 min)
 
-- Donc, est-ce possible que les champs obligatoires soient : Prénom, Nom et Téléphone, et que les autres soient des champs facultatifs qu’ils pourront remplir plus tard?
+- [DONE] Donc, est-ce possible que les champs obligatoires soient : Prénom, Nom et Téléphone, et que les autres soient des champs facultatifs qu’ils pourront remplir plus tard?
    ('ajouter un membre rapidement') ( 20 min)
 
 - ne pas compter les heures où la coop est fermée dans les heures de retard. (1 hour)

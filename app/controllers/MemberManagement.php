@@ -24,10 +24,17 @@ class MemberManagement extends Controller{
 		include($this->getView(__CLASS__,__METHOD__));
 	}
 
+	public function call_addFast($core){
+
+		$core->setPageTitle("Ajouter un membre rapidement");
+
+		include($this->getView(__CLASS__,__METHOD__));
+	}
+
+
 	public function call_add($core){
 
 		$core->setPageTitle("Ajouter un membre");
-
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}
@@ -48,6 +55,25 @@ class MemberManagement extends Controller{
 		return true;
 	}
 
+	public function call_addFast_save($core){
+
+		$core->setPageTitle("Sauvegarder un membre rapidement");
+
+		$_POST['memberIdentifier']='0';
+		$_POST['dateOfBirth']='1024-08-04';
+		$_POST['sex']='F';
+		$_POST['physicalAddress']='0';
+		$_POST['email']=md5($core->getCurrentTime().$_SESSION['id']).'@0.com';
+		$_POST['userIdentifier']=$_SESSION['id'];
+		$_POST['creationTime']=$core->getCurrentTime();
+		
+		$item=Member::insertRow($core,"Member",$_POST);
+	
+		include($this->getView(__CLASS__,__METHOD__));
+	}
+
+
+
 	public function call_add_save($core){
 
 		$core->setPageTitle("Sauvegarder un membre");
@@ -56,7 +82,7 @@ class MemberManagement extends Controller{
 			return;
 		}
 
-		Member::insertRow($core,"Member",$_POST);
+		$item=Member::insertRow($core,"Member",$_POST);
 	
 		include($this->getView(__CLASS__,__METHOD__));
 	}
@@ -96,6 +122,10 @@ class MemberManagement extends Controller{
 		$isLoaner=$user->isLoaner();
 
 		if(!$isLoaner){
+			return;
+		}
+
+		if(!$this->validate($_POST)){
 			return;
 		}
 
