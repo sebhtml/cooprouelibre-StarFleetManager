@@ -185,7 +185,10 @@ class Loan extends Model{
 		}
 
 		$value=($upperBound - strtotime($closingTime));
-		$closedSeconds+= $value;
+
+		if($actualDate!=$plannedDay){ // there are no closed hours if it is the same day.
+			$closedSeconds+= $value;
+		}
 
 		//echo "Closed seconds on day 0:".$value."<br />";
 
@@ -210,8 +213,10 @@ class Loan extends Model{
 			$value1=(strtotime($openingTime) - strtotime("00:00:00"));
 			$value2=(strtotime("23:59:59") - strtotime($closingTime));
 
-			$closedSeconds+= $value1;
-			$closedSeconds+= $value2;
+			if($actualDate!=$plannedDay){
+				$closedSeconds+= $value1;
+				$closedSeconds+= $value2;
+			}
 
 			$tomorrow=date("Y-m-d",strtotime($tomorrow)+24*60*60);
 	
@@ -239,7 +244,9 @@ class Loan extends Model{
 			$upperBound=$rightNow;
 		}
 
-		$closedSeconds+= ($upperBound - strtotime("00:00:00"));
+		if($plannedDay!=$actualDate){
+			$closedSeconds+= ($upperBound - strtotime("00:00:00"));
+		}
 
 		$difference-=$closedSeconds;
 
