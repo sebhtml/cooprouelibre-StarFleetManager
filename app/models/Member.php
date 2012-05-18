@@ -13,7 +13,7 @@ class Member extends Model{
 		$names["lastName"]="Nom de famille";
 		$names["dateOfBirth"]="Date de naissance (aaaa-mm-jj)";
 		$names["sex"]="Sexe";
-		$names["physicalAddress"]="Adresse";
+		$names["physicalAddress"]="Adresse permanente";
 		$names["phoneNumber"]="Téléphone";
 		$names["email"]="Courriel";
 		$names["userIdentifier"]="Créateur";

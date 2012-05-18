@@ -3,7 +3,7 @@
 
 - [DONE] ajouter creationDate pour Member (5 min)
 
-- Pour le champs «adresse», est-il possible de le remplacer par «Adresse permanente»? En cas de vol, c’est cette adresse qui nous permettra de retrouver la personne ici. (1 min)
+- [DONE] Pour le champs «adresse», est-il possible de le remplacer par «Adresse permanente»? En cas de vol, c’est cette adresse qui nous permettra de retrouver la personne ici. (1 min)
 
 - ajouter un bouton "voir tous les prêts" dans la page des prêts. (10 min)
 
