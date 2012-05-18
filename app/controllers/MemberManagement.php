@@ -73,6 +73,7 @@ class MemberManagement extends Controller{
 		$user=User::findOne($core,"User",$_SESSION['id']);
 		$isAdministrator=$user->isAdministrator();
 		$isManager=$user->isManager();
+		$isLoaner=$user->isLoaner();
 
 		$memberLocks=$member->getLocks();
 
@@ -92,9 +93,9 @@ class MemberManagement extends Controller{
 	public function call_editSave($core){
 
 		$user=User::findOne($core,"User",$_SESSION['id']);
-		$isAdministrator=$user->isAdministrator();
+		$isLoaner=$user->isLoaner();
 
-		if(!$isAdministrator){
+		if(!$isLoaner){
 			return;
 		}
 

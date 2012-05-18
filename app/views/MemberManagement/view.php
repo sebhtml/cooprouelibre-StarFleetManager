@@ -13,7 +13,7 @@ $memberIdentifier=$member->getId();
 
 <?php
 
-if($isAdministrator){
+if($isLoaner){
 	$core->makeButton("?controller=MemberManagement&action=edit&id=$memberIdentifier","Éditer");
 }
 

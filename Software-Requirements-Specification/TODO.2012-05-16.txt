@@ -7,7 +7,7 @@
 
 - [DONE] ajouter un bouton "voir tous les prêts" dans la page des prêts. (10 min)
 
-- les prêteurs peuvent éditer un membre ( 10 min)
+- [DONE] les prêteurs peuvent éditer un membre ( 10 min)
 
 - mettre des liens dans statistiques ( 20 min)
 
