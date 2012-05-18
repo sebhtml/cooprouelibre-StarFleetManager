@@ -132,7 +132,9 @@ class Repair extends Model{
 
 		$bike=Bike::findWithIdentifier($this->m_core,"Bike",$this->getAttribute("bikeIdentifier"));
 
-		return $this->getAttribute("creationDate")." ".$bike->getName()." ".$this->getAttribute("description");
+		$repairType=RepairType::findOne($this->m_core,"RepairType",$this->getAttribute("repairTypeIdentifier"));
+
+		return $this->getAttribute("creationDate")." ".$bike->getName()." ".$repairType->getName();
 	}
 
 

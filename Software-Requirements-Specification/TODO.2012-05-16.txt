@@ -1,12 +1,21 @@
 
-- ajouter creationDate pour Member
+- [DONE] montrer le type d'une réparation dans to_s (1 min)
 
-- ne pas compter les heures où la coop est fermée dans les heures de retard.
+- ajouter creationDate pour Member (5 min)
 
-- ajouter un bouton "voir tous les prêts" dans la page des prêts.
+- Pour le champs «adresse», est-il possible de le remplacer par «Adresse permanente»? En cas de vol, c’est cette adresse qui nous permettra de retrouver la personne ici. (1 min)
+
+- ajouter un bouton "voir tous les prêts" dans la page des prêts. (10 min)
+
+- ne pas compter les heures où la coop est fermée dans les heures de retard. (1 hour)
 
 - Donc, est-ce possible que les champs obligatoires soient : Prénom, Nom et Téléphone, et que les autres soient des champs facultatifs qu’ils pourront remplir plus tard?
+   ('ajouter un membre rapidement') ( 20 min)
 
-- Pour le champs «adresse», est-il possible de le remplacer par «Adresse permanente»? En cas de vol, c’est cette adresse qui nous permettra de retrouver la personne ici.
+- les prêteurs peuvent éditer un membre ( 10 min)
 
-- mettre des liens dans statistiques
+- mettre des liens dans statistiques ( 20 min)
+
+- version v1.3.0 ( 5 min)
+
+
