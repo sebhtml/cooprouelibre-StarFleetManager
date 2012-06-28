@@ -121,6 +121,15 @@ class Loan extends Model{
 		}
 
 	}
+	public function getBike(){
+		return Bike::findOne($this->m_core,"Bike",$this->getAttribute("bikeIdentifier"));
+	}
+
+
+	public function getMember(){
+		return Member::findOne($this->m_core,"Member",$this->getAttribute("memberIdentifier"));
+	}
+
 
 	public function getPlace(){
 		return Place::findOne($this->m_core,"Place",$this->getAttribute("placeIdentifier"));

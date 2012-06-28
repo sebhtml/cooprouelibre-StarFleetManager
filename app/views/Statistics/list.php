@@ -29,4 +29,17 @@ if($isViewer){
 	$core->makeButton("?controller=LoanManagement&action=list","prêts");
 }
 
+
 ?>
+
+<br />
+
+<?php
+
+if($isViewer){
+	$core->makeButton("?controller=Statistics&action=report","rapport");
+}
+
+?>
+
+

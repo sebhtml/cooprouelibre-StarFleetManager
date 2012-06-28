@@ -175,8 +175,160 @@ class Place extends Model{
 		$list=$core->getConnection()->query($query)->getRows();
 
 		return Bike::makeObjectsFromRows($core,$list,"Bike");
-
 	}
+
+	public function getMembersForPeriod($start,$end){
+
+		$core=$this->m_core;
+
+		$tableMember=$core->getTablePrefix()."Member";
+		$tableLoan=$core->getTablePrefix()."Loan";
+		$tableBike=$core->getTablePrefix()."Bike";
+		$tableRepair=$core->getTablePrefix()."Repair";
+		$tableBikePlace=$core->getTablePrefix()."BikePlace";
+
+		$placeIdentifier=$this->getId();
+
+		$query= "select * from $tableMember where  exists (
+			select * from $tableLoan where placeIdentifier = $placeIdentifier and '$start' <= startingDate and startingDate <= '$end'
+			and memberIdentifier = $tableMember.id
+		)
+		order by lastName asc 
+ ; ";
+		
+		$list=$core->getConnection()->query($query)->getRows();
+
+		return Member::makeObjectsFromRows($core,$list,"Member");
+	}
+
+	public function getRepairsForPeriod($start,$end){
+
+		$core=$this->m_core;
+
+		$tableMember=$core->getTablePrefix()."Member";
+		$tableLoan=$core->getTablePrefix()."Loan";
+		$tableBike=$core->getTablePrefix()."Bike";
+		$tableRepair=$core->getTablePrefix()."Repair";
+		$tableBikePlace=$core->getTablePrefix()."BikePlace";
+
+		$placeIdentifier=$this->getId();
+
+		$query= "select * from $tableRepair where '$start' <= creationDate and creationDate <= '$end' and 
+			bikeIdentifier in
+		 (
+			select bikeIdentifier from $tableLoan where placeIdentifier = $placeIdentifier and '$start' <= startingDate and startingDate <= '$end'
+		)
+ ; ";
+		
+		$list=$core->getConnection()->query($query)->getRows();
+
+		//echo $query;
+
+		return Repair::makeObjectsFromRows($core,$list,"Repair");
+	}
+
+
+
+	public function getLoanedBikesForPeriod($start,$end){
+
+		$core=$this->m_core;
+
+		$tableMember=$core->getTablePrefix()."Member";
+		$tableLoan=$core->getTablePrefix()."Loan";
+		$tableBike=$core->getTablePrefix()."Bike";
+		$tableRepair=$core->getTablePrefix()."Repair";
+		$tableBikePlace=$core->getTablePrefix()."BikePlace";
+
+		$placeIdentifier=$this->getId();
+
+		$query= "select * from $tableBike where  exists (
+			select * from $tableLoan where placeIdentifier = $placeIdentifier and '$start' <= startingDate and startingDate <= '$end'
+			and bikeIdentifier = $tableBike.id
+		)
+ ; ";
+		
+		$list=$core->getConnection()->query($query)->getRows();
+
+		//echo $query;
+
+		return Bike::makeObjectsFromRows($core,$list,"Bike");
+	}
+
+	public function getLoansForPeriod($start,$end){
+
+		$core=$this->m_core;
+
+		$tableMember=$core->getTablePrefix()."Member";
+		$tableLoan=$core->getTablePrefix()."Loan";
+		$tableBike=$core->getTablePrefix()."Bike";
+		$tableRepair=$core->getTablePrefix()."Repair";
+		$tableBikePlace=$core->getTablePrefix()."BikePlace";
+
+		$placeIdentifier=$this->getId();
+
+		$query= "select * from $tableLoan where  placeIdentifier = $placeIdentifier and '$start' <= startingDate and startingDate <= '$end'
+		order by startingDate asc
+ ; ";
+		
+		$list=$core->getConnection()->query($query)->getRows();
+
+		//echo $query;
+
+		return Loan::makeObjectsFromRows($core,$list,"Loan");
+	}
+
+
+	public function getLoansForBikeAndPeriod($bike,$start,$end){
+
+		$core=$this->m_core;
+
+		$tableMember=$core->getTablePrefix()."Member";
+		$tableLoan=$core->getTablePrefix()."Loan";
+		$tableBike=$core->getTablePrefix()."Bike";
+		$tableRepair=$core->getTablePrefix()."Repair";
+		$tableBikePlace=$core->getTablePrefix()."BikePlace";
+
+		$placeIdentifier=$this->getId();
+		$bikeIdentifier=$bike->getId();
+
+		$query= "select * from $tableLoan where  placeIdentifier = $placeIdentifier and '$start' <= startingDate and startingDate <= '$end'
+			and bikeIdentifier = $bikeIdentifier
+ ; ";
+		
+		$list=$core->getConnection()->query($query)->getRows();
+
+		//echo $query;
+
+		return Loan::makeObjectsFromRows($core,$list,"Loan");
+	}
+
+
+	public function getLoansForMemberAndPeriod($item,$start,$end){
+
+		$core=$this->m_core;
+
+		$tableMember=$core->getTablePrefix()."Member";
+		$tableLoan=$core->getTablePrefix()."Loan";
+		$tableBike=$core->getTablePrefix()."Bike";
+		$tableRepair=$core->getTablePrefix()."Repair";
+		$tableBikePlace=$core->getTablePrefix()."BikePlace";
+
+		$placeIdentifier=$this->getId();
+		$itemIdentifier=$item->getId();
+
+		$query= "select * from $tableLoan where  placeIdentifier = $placeIdentifier and '$start' <= startingDate and startingDate <= '$end'
+			and memberIdentifier = $itemIdentifier
+ ; ";
+		
+		$list=$core->getConnection()->query($query)->getRows();
+
+		//echo $query;
+
+		return Loan::makeObjectsFromRows($core,$list,"Loan");
+	}
+
+
+
 
 	public function isLinkedAttribute($name){
 		if($name=="userIdentifier"){

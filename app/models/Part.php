@@ -6,7 +6,7 @@
 class Part extends Model{
 
 	public function getName(){
-		return $this->getAttribute("name");
+		return $this->getAttribute("name")." (".$this->getAttribute("value")." $)";
 	}
 
 	public function getFieldNames(){

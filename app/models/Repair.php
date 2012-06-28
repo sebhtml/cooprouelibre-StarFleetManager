@@ -240,6 +240,10 @@ class Repair extends Model{
 		return Bike::findOne($this->m_core,"Bike",$this->getAttribute("bikeIdentifier"));
 	}
 
+	public function getRepairType(){
+		return RepairType::findOne($this->m_core,"RepairType",$this->getAttribute("repairTypeIdentifier"));
+	}
+
 }
 
 ?>
