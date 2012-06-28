@@ -166,7 +166,7 @@ class Core{
 		$CONFIG_style=$this->m_sheet;
 
 		$softwareName="cooprouelibre-StarFleetManager";
-		$softwareVersion="v1.3.0";
+		$softwareVersion="v1.3.1";
 
 		include("app/views/Template/template.php");
 	}
