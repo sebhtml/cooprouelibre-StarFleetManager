@@ -166,7 +166,10 @@ class Core{
 		$CONFIG_style=$this->m_sheet;
 
 		$softwareName="cooprouelibre-StarFleetManager";
-		$softwareVersion="v1.4.0";
+		$softwareVersion="v1.6.0";
+
+		$rows=$this->m_databaseConnection->getFetchedRows();
+		$queries=$this->m_databaseConnection->getProcessedSQLQueries();
 
 		include("app/views/Template/template.php");
 	}

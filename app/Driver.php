@@ -7,8 +7,9 @@
 class Result{
 
 	private $m_result;
+	private $m_driver;
 
-	public function __construct($result){
+	public function __construct($result,$driver){
 
 		//echo "Building result with $result<br />";
 
@@ -17,12 +18,15 @@ class Result{
 		}
 
 		$this->m_result=$result;
+		$this->m_driver=$driver;
 	}
 
 	public function getRow(){
 		if(!$this->m_result){
 			return false;
 		}
+
+		$this->m_driver->addRow();
 
 		return mysql_fetch_assoc($this->m_result);
 	}
@@ -42,6 +46,8 @@ class Result{
 class Driver{
 
 	private $m_connection;
+	private $m_queries;
+	private $m_rows;
 
 	public function connect($host,$user,$password,$database){
 		$this->m_connection=mysql_pconnect($host,$user,$password);
@@ -53,6 +59,9 @@ class Driver{
 		}
 
 		mysql_select_db($database,$this->m_connection);
+		
+		$this->m_rows=0;
+		$this->m_queries=0;
 	}
 
 	public function query($query){
@@ -76,7 +85,9 @@ class Driver{
 			echo "</div>";
 		}
 
-		return new Result($result);
+		$this->m_queries++;
+
+		return new Result($result,$this);
 	}
 
 	public function getInsertedIdentifier(){
@@ -85,6 +96,18 @@ class Driver{
 
 	public function escapeString($string){
 		return mysql_real_escape_string($string);
+	}
+
+	public function addRow(){
+		$this->m_rows++;
+	}
+
+	public function getFetchedRows(){
+		return $this->m_rows;
+	}
+
+	public function getProcessedSQLQueries(){
+		return $this->m_queries;
 	}
 }
 

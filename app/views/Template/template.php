@@ -110,7 +110,14 @@ Le <a href="https://github.com/sebhtml/cooprouelibre-StarFleetManager">code sour
 <a href="http://www.gnu.org/licenses/gpl-3.0.html">Licence publique générale GNU, version 3</a>.
 </small>
 </div>
-
+<div>
+<br />
+<i>
+<?php echo $queries ; ?> requêtes SQL exécutées; <?php echo $rows; ?> lignes obtenues 
+</i>
+<br />
+</div>
+</div>
 </div>
 
 
