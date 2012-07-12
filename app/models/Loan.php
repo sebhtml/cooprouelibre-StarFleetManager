@@ -266,6 +266,20 @@ class Loan extends Model{
 		return ceil($hours);
 	}
 
+	public function getSeconds(){
+
+		$start=$this->getAttribute("startingDate");
+		$end=$this->getAttribute("actualEndingDate");
+
+		$seconds=strtotime($end) - strtotime($start);
+
+		return $seconds;
+	}
+
+	public function getHours(){
+
+		return sprintf("%.2f",$this->getSeconds()/(60*60));
+	}
 
 }
 
