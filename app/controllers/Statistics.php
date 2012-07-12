@@ -82,7 +82,7 @@ class Statistics extends Controller{
 		$seconds=$left;
 		$meanLoanLength=$hours." heures, ".$minutes." minutes, ".$seconds." secondes";
 */
-		$meanLoanLength=$left/(60*60);
+		$meanLoanLength=sprintf("%.2f",$left/(60*60));
 
 		$meanNumberOfLoansPerDay=0;
 
@@ -123,16 +123,16 @@ class Statistics extends Controller{
 
 		$all=$men+$women;
 
-		$menRatio=0;
+		$manRatio=0;
 
 		if($all>0){
-			$menRatio=sprintf("%.2f",100.0*$men/$all);
+			$manRatio=sprintf("%.2f",100.0*$men/$all);
 		}
 
-		$womenRatio=0;
+		$womanRatio=0;
 
 		if($all>0){
-			$womenRatio=sprintf("%.2f",100.0*$women/$all);
+			$womanRatio=sprintf("%.2f",100.0*$women/$all);
 		}
 
 		$theKeys=array_keys($loansPerDay);
@@ -153,7 +153,13 @@ class Statistics extends Controller{
 
 		$maximumLoansForAMember=0;
 
+		$manLoans=0;
+		$womanLoans=0;
+
 		foreach($members as $item){
+
+			$sex=$item->getAttribute("sex");
+
 
 			$loans=$place->getLoansForMemberAndPeriod($item,$start,$end);
 
@@ -163,7 +169,23 @@ class Statistics extends Controller{
 			if($count> $maximumLoansForAMember){
 				$maximumLoansForAMember=$count;
 			}
+
+			if($sex=='M'){
+				$manLoans+=$count;
+			}elseif($sex=='F'){
+				$womanLoans+=$count;
+			}
+
 		
+		}
+
+		$womanLoanRatio=0;
+		$manLoanRatio=0;
+		$all=$manLoans+$womanLoans;
+
+		if($all>0){
+			$womanLoanRatio=sprintf("%.2f",$womanLoans/$all*100);
+			$manLoanRatio=sprintf("%.2f",$manLoans/$all*100);
 		}
 		
 		include($this->getView(__CLASS__,__METHOD__));

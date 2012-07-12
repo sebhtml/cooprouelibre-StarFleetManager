@@ -39,8 +39,10 @@ retourner à la <a href="#contents">Navigation</a><br /><br />
 <tr><td class="tableContentCell">Nombre moyen de prêts par semaine</td><td class="tableContentCell"><?php echo $meanNumberOfLoansPerWeek; ?></td></tr>
 <tr><td class="tableContentCell">Nombre moyen de prêts par vélo</td><td class="tableContentCell"><?php echo $meanNumberOfLoansPerBike; ?></td></tr>
 <tr><td class="tableContentCell">Nombre moyen de prêts par membre</td><td class="tableContentCell"><?php echo $meanNumberOfLoansPerMember; ?></td></tr>
-<tr><td class="tableContentCell">Pourcentage de femmes</td><td class="tableContentCell"><?php echo $womenRatio; ?></td></tr>
-<tr><td class="tableContentCell">Pourcentage d'hommes</td><td class="tableContentCell"><?php echo $menRatio; ?></td></tr>
+<tr><td class="tableContentCell">Pourcentage de femmes</td><td class="tableContentCell"><?php echo $womanRatio; ?></td></tr>
+<tr><td class="tableContentCell">Pourcentage d'hommes</td><td class="tableContentCell"><?php echo $manRatio; ?></td></tr>
+<tr><td class="tableContentCell">Pourcentage de prêts de femmes</td><td class="tableContentCell"><?php echo $womanLoanRatio; ?></td></tr>
+<tr><td class="tableContentCell">Pourcentage de prêts d'hommes</td><td class="tableContentCell"><?php echo $manLoanRatio; ?></td></tr>
 <tr><td class="tableContentCell">Nombre le plus élevé de prêts pour une journée</td><td class="tableContentCell"><?php echo $maximumLoansForADay; ?></td></tr>
 <tr><td class="tableContentCell">Nombre le plus élevé de prêts pour un membre</td><td class="tableContentCell"><?php echo $maximumLoansForAMember; ?></td></tr>
 <tr><td class="tableContentCell">Nombre total de vélo-heures consommés par les membres</td><td class="tableContentCell"><?php echo $bikeHours; ?></td></tr>
