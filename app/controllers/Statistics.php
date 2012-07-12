@@ -84,10 +84,29 @@ class Statistics extends Controller{
 */
 		$meanLoanLength=$left/(60*60);
 
-		$meanNumberOfLoansPerDay=sprintf("%.2f",$numberOfLoans/$days);
-		$meanNumberOfLoansPerBike=sprintf("%.2f",$numberOfLoans/$numberOfBikes);
-		$meanNumberOfLoansPerMember=sprintf("%.2f",$numberOfLoans/$numberOfMembers);
-		$meanNumberOfLoansPerWeek=sprintf("%.2f",$numberOfLoans*7/$days);
+		$meanNumberOfLoansPerDay=0;
+
+		if($days > 0){
+			$meanNumberOfLoansPerDay=sprintf("%.2f",$numberOfLoans/$days);
+		}
+
+		$meanNumberOfLoansPerBike=0;
+
+		if($numberOfBikes>0){
+			$meanNumberOfLoansPerBike=sprintf("%.2f",$numberOfLoans/$numberOfBikes);
+		}
+
+		$meanNumberOfLoansPerMember=0;
+
+		if($numberOfMembers>0){
+			$meanNumberOfLoansPerMember=sprintf("%.2f",$numberOfLoans/$numberOfMembers);
+		}
+
+		$meanNumberOfLoansPerWeek=0;
+
+		if($days>0){
+			$meanNumberOfLoansPerWeek=sprintf("%.2f",$numberOfLoans*7/$days);
+		}
 
 		$men=0;
 		$women=0;
@@ -104,8 +123,17 @@ class Statistics extends Controller{
 
 		$all=$men+$women;
 
-		$menRatio=sprintf("%.2f",100.0*$men/$all);
-		$womenRatio=sprintf("%.2f",100.0*$women/$all);
+		$menRatio=0;
+
+		if($all>0){
+			$menRatio=sprintf("%.2f",100.0*$men/$all);
+		}
+
+		$womenRatio=0;
+
+		if($all>0){
+			$womenRatio=sprintf("%.2f",100.0*$women/$all);
+		}
 
 		$theKeys=array_keys($loansPerDay);
 
