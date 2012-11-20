@@ -1,0 +1,28 @@
+From: Carl Level
+
+Bonjour,
+
+Voilà pas mal ce qui est à faire, je suis désolé d'avoir rajouter du stock mais l'université à préciser qu'ils voulaient ça.
+
+ 1- Avoir le nombre de prêt pour chaque jour de la semaine ou une moyenne # de pret/ jour ouvert les lundi, mardi etc...
+
+ 2- Avoir le nombre de prêt fait par tranche d'age des usager
+
+ 3- avoir le nombre d'usager par tranche d'age
+
+ 4- avoir le nombre de fois où il n'avait plus de vélo disponible
+
+ 5- avoir le nombre de temps où nous n'avions plus de vélo disponible
+
+ 6- Avoir les réparations par groupes, genre nombre de crevaison, nombre d'ajustement de vitesse, nombre d'ajustement de freins etc...
+
+ 7- Avoir le coût pour chaque groupes de réparation
+
+ 8 - Nombre de prêts de jour et leur duré moyenne
+
+ 9 - Nombre de prêts de soir et leur duré moyenne
+
+ 10 - Nombre de prêts de fin de semaine et leur duré moyenne
+
+ 11- Avoir les moyennes de duré des prêts sans les retard.
+________________________________________
