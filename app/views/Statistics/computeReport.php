@@ -11,6 +11,7 @@
 <ul>
 <li><a href="#metrics">Indicateurs</a></li>
 <li><a href="#loanFrequenciecs">Distribution des fréquences de prêts par membre</a></li>
+<li><a href="#loansPerWeekDay">Nombre de prêts par jour de la semaine</a></li>
 <li><a href="#loansPerDay">Nombre de prêts par jour</a></li>
 <li><a href="#bikes">Vélos avec au moins un prêt pour la période</a></li>
 <li><a href="#members">Membres avec au moins un prêt pour la période</a></li>
@@ -48,6 +49,88 @@ retourner à la <a href="#contents">Navigation</a><br /><br />
 <tr><td class="tableContentCell">Nombre total de vélo-heures consommés par les membres</td><td class="tableContentCell"><?php echo $bikeHours; ?></td></tr>
 </tbody>
 </table>
+
+<h1><a name="loansPerWeekDay"></a>Nombre de prêts par jour de la semaine</h1>
+retourner à la <a href="#contents">Navigation</a><br /><br />
+
+<table>
+<caption></caption>
+<tbody>
+<tr>
+<th class="tableHeaderCell">Jour de la semaine</th>
+<th class="tableHeaderCell">Nombre de jours</th>
+<th class="tableHeaderCell">Nombre total de prêts</th>
+<th class="tableHeaderCell">Nombre moyen de prêts</th>
+</tr>
+<?php
+
+$theKeys=(array_keys($loansPerDay));
+sort($theKeys);
+
+$table=array();
+$table[1]="lundi";
+$table[2]="mardi";
+$table[3]="mercredi";
+$table[4]="jeudi";
+$table[5]="vendredi";
+$table[6]="samedi";
+$table[7]="dimanche";
+
+$totalForWeekDays=array();
+$totalForWeekDays[1]=0;
+$totalForWeekDays[2]=0;
+$totalForWeekDays[3]=0;
+$totalForWeekDays[4]=0;
+$totalForWeekDays[5]=0;
+$totalForWeekDays[6]=0;
+$totalForWeekDays[7]=0;
+
+$countForWeekDays=array();
+$countForWeekDays[1]=0;
+$countForWeekDays[2]=0;
+$countForWeekDays[3]=0;
+$countForWeekDays[4]=0;
+$countForWeekDays[5]=0;
+$countForWeekDays[6]=0;
+$countForWeekDays[7]=0;
+
+
+foreach($theKeys as $object){
+
+
+	$dayOfWeek=date("N",strtotime($object));
+
+	$totalForWeekDays[$dayOfWeek]+=$loansPerDay[$object];
+	$countForWeekDays[$dayOfWeek]++;
+
+}
+
+$i=1;
+while($i<=7){
+
+	echo "<tr>";
+	echo "<td class=\"tableContentCell\">".$table[$i]."</td>";
+	echo "<td class=\"tableContentCell\">".$countForWeekDays[$i]."</td>";
+	echo "<td class=\"tableContentCell\">".$totalForWeekDays[$i]."</td>";
+
+	$average=$totalForWeekDays[$i];
+
+	if($countForWeekDays[$i]!=0)
+		$average/=$countForWeekDays[$i];
+
+	$average=sprintf("%.0f",$average);
+
+	echo "<td class=\"tableContentCell\">".$average."</td>";
+	echo "</tr>";
+	
+	$i++;
+}
+
+?>
+
+</tbody></table>
+
+
 
 <h1><a name="loansPerDay"></a>Nombre de prêts par jour</h1>
 retourner à la <a href="#contents">Navigation</a><br /><br />
