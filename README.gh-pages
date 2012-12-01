@@ -1,0 +1,34 @@
+Initially, the only reference is usually 'master' (along with its remote twin).
+
+seb@godzilla$ git branch -a
+* master
+  remotes/origin/master
+
+
+To serve all the content of the branch 'refs/heads/master' on github pages, a symbolic reference called 'refs/heads/gh-pages' must be created.
+
+
+seb@godzilla$ git symbolic-ref "refs/heads/gh-pages" "refs/heads/master"
+
+
+Then you can list the branches.
+
+seb@godzilla$ git branch -a
+  gh-pages -> master
+* master
+  remotes/origin/master
+
+
+The next thing you need to do is to push the references.
+
+seb@godzilla$ git push --mirror
+
+
+The gh-pages reference is now on the remote site too.
+
+seb@godzilla$ git branch -a
+  gh-pages -> master
+* master
+  remotes/origin/gh-pages
+  remotes/origin/master
+
