@@ -25,7 +25,7 @@ class Model{
 	}
 
 	public function getAttributeValue($field){
-		return $this->m_attributes[$field];
+		return $this->getAttribute($field);
 	}
 
 	public function getAttribute($field){

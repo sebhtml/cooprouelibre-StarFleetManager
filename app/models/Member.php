@@ -212,7 +212,16 @@ class Member extends Model{
 		return Loan::getObjectsInRelation($this->m_core,"Loan","memberIdentifier",$this->getId());
 	}
 
+	public function getAgeAtDate($date){
+		$point1=strtotime($this->getAttributeValue("dateOfBirth"));
+		$point2=strtotime($date);
 
+		$seconds=$point2-$point1;
+
+		$years=$seconds/(365.25*24*60*60);
+
+		return (int)$years;
+	}
 
 }
 

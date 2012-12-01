@@ -14,6 +14,7 @@
 <li><a href="#loansPerWeekDay">Nombre de prêts par jour de la semaine</a></li>
 <li><a href="#loansPerDay">Nombre de prêts par jour</a></li>
 <li><a href="#bikes">Vélos avec au moins un prêt pour la période</a></li>
+<li><a href="#loansByAge">Nombre de prêts par tranches d'âge</a></li>
 <li><a href="#members">Membres avec au moins un prêt pour la période</a></li>
 <li><a href="#loans">Prêts de vélos</a></li>
 <li><a href="#repairs">Réparations</a></li>
@@ -193,6 +194,71 @@ foreach($bikes as $item){
 echo "</table>";
 
 ?>
+
+
+<h1><a name="loansByAge"></a>Nombre de prêts par tranches d'âge</h1>
+retourner à la <a href="#contents">Navigation</a><br /><br />
+
+<?php
+
+echo "<table><tbody>";
+echo "<tr><th class=\"tableHeaderCell\">Âge minimal</th>";
+echo "<th class=\"tableHeaderCell\">Âge maximal</th><th class=\"tableHeaderCell\">Prêts</th></tr>";
+
+$loansPerAge=array();
+
+foreach($members as $item){
+
+	$loans=$loansForMember[$item->getId()];
+
+	foreach($loans as $loan){
+		$start=$loan->getAttribute("startingDate");
+
+		$age=$item->getAgeAtDate($start);
+
+		if(!array_key_exists($age,$loansPerAge)){
+			$loansPerAge[$age]=0;
+		}
+
+		$loansPerAge[$age]++;
+	}
+	
+}
+
+$i=0;
+$maximumAge=200;
+$windowWidth=3;
+
+while($i<=$maximumAge){
+
+	$sum=0;
+	$startingPoint=$i;
+	$endingPoint=$i+$windowWidth-1;
+
+	while($i<$endingPoint){
+		if(!array_key_exists($i,$loansPerAge)){
+			$i++;
+			continue;
+		}
+
+		$frequency=$loansPerAge[$i];
+		$sum+=$frequency;
+		$i++;
+	}
+
+	if($sum==0)
+		continue;
+
+	echo "<tr><td class=\"tableContentCell\">".$startingPoint."</td>";
+	echo "<td class=\"tableContentCell\">".$endingPoint."</td>";
+	echo "<td class=\"tableContentCell\">".$sum."</td></tr>";
+
+}
+
+echo "</tbody></table>";
+
+?>
+
 
 
 
