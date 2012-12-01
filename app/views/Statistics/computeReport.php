@@ -14,6 +14,7 @@
 <li><a href="#loansPerWeekDay">Nombre de prêts par jour de la semaine</a></li>
 <li><a href="#loansPerDay">Nombre de prêts par jour</a></li>
 <li><a href="#bikes">Vélos avec au moins un prêt pour la période</a></li>
+<li><a href="#membersByAge">Nombre de membres par tranches d'âge</a></li>
 <li><a href="#loansByAge">Nombre de prêts par tranches d'âge</a></li>
 <li><a href="#members">Membres avec au moins un prêt pour la période</a></li>
 <li><a href="#loans">Prêts de vélos</a></li>
@@ -195,6 +196,74 @@ echo "</table>";
 
 ?>
 
+<h1><a name="membersByAge"></a>Nombre de membres par tranches d'âge</h1>
+retourner à la <a href="#contents">Navigation</a><br /><br />
+
+<?php
+
+echo "<table><tbody>";
+echo "<tr><th class=\"tableHeaderCell\">Âge minimal</th>";
+echo "<th class=\"tableHeaderCell\">Âge maximal</th><th class=\"tableHeaderCell\">Nombre de membres</th></tr>";
+
+$membersPerAge=array();
+
+foreach($members as $item){
+
+	$loans=$loansForMember[$item->getId()];
+
+	foreach($loans as $loan){
+		$start=$loan->getAttribute("startingDate");
+
+		$age=$item->getAgeAtDate($start);
+
+		if(!array_key_exists($age,$membersPerAge)){
+			$membersPerAge[$age]=0;
+		}
+
+		$membersPerAge[$age]++;
+
+// Only use the first loan to compute the age of the member
+
+		break;
+	}
+}
+
+$i=0;
+$maximumAge=200;
+$windowWidth=3;
+
+while($i<=$maximumAge){
+
+	$sum=0;
+	$startingPoint=$i;
+	$endingPoint=$i+$windowWidth-1;
+
+	while($i<$endingPoint){
+		if(!array_key_exists($i,$membersPerAge)){
+			$i++;
+			continue;
+		}
+
+		$frequency=$membersPerAge[$i];
+		$sum+=$frequency;
+		$i++;
+	}
+
+	if($sum==0)
+		continue;
+
+	echo "<tr><td class=\"tableContentCell\">".$startingPoint."</td>";
+	echo "<td class=\"tableContentCell\">".$endingPoint."</td>";
+	echo "<td class=\"tableContentCell\">".$sum."</td></tr>";
+
+}
+
+echo "</tbody></table>";
+
+?>
+
+
+
 
 <h1><a name="loansByAge"></a>Nombre de prêts par tranches d'âge</h1>
 retourner à la <a href="#contents">Navigation</a><br /><br />
@@ -203,7 +272,7 @@ retourner à la <a href="#contents">Navigation</a><br /><br />
 
 echo "<table><tbody>";
 echo "<tr><th class=\"tableHeaderCell\">Âge minimal</th>";
-echo "<th class=\"tableHeaderCell\">Âge maximal</th><th class=\"tableHeaderCell\">Prêts</th></tr>";
+echo "<th class=\"tableHeaderCell\">Âge maximal</th><th class=\"tableHeaderCell\">Nombre de prêts</th></tr>";
 
 $loansPerAge=array();
 
