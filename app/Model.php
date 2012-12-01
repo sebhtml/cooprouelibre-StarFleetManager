@@ -108,7 +108,7 @@ class Model{
 		return false;
 	}
 
-	public function getSelectOptions($field){
+	public function getSelectOptions($core,$field){
 
 		echo "Hi!";
 		return array();
