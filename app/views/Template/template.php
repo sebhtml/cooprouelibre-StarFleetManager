@@ -105,17 +105,12 @@ echo $pageContent ;
 <div class="text">
 <small>
 <?php echo $softwareName." ".$softwareVersion ; ?> 
-© 2012 <a href="http://cooprouelibre.org">Coop Roue-Libre</a>. Tous droits réservés.<br />
-Le <a href="https://github.com/sebhtml/cooprouelibre-StarFleetManager">code source de ce logiciel</a> est distribué sous la 
+© 2012 <a href="http://cooprouelibre.com">Coop Roue-Libre</a>.<br />
+Ce <a href="https://github.com/sebhtml/cooprouelibre-StarFleetManager">logiciel libre</a> est distribué sous la 
 <a href="http://www.gnu.org/licenses/gpl-3.0.html">Licence publique générale GNU, version 3</a>.
 </small>
 </div>
 <div>
-<br />
-<i>
-<?php echo $queries ; ?> requêtes SQL exécutées; <?php echo $rows; ?> lignes obtenues 
-</i>
-<br />
 </div>
 </div>
 </div>
