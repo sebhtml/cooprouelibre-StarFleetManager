@@ -249,7 +249,7 @@ class Statistics extends Controller{
 				if(count($busyBikes)==$availableBikes){
 					$endingTime=$time;
 
-					array_push($returnValues,[$lastStart,$endingTime]);
+					array_push($returnValues,array($lastStart,$endingTime));
 				}
 
 				unset($busyBikes[$bike]);
@@ -279,8 +279,8 @@ class Statistics extends Controller{
 			$start=strtotime($item->getAttributeValue("startingDate"));
 			$end=strtotime($item->getAttributeValue("actualEndingDate"));
 
-			array_push($events,[$start,$bikeNumber,$LOAN_START]);
-			array_push($events,[$end,$bikeNumber,$LOAN_END]);
+			array_push($events,array($start,$bikeNumber,$LOAN_START));
+			array_push($events,array($end,$bikeNumber,$LOAN_END));
 		}
 
 
@@ -307,12 +307,12 @@ class Statistics extends Controller{
 			if($type==$LOAN_START){
 				$busyBikes[$bike]=true;
 
-				array_push($returnValues,[$time,count($busyBikes)]);
+				array_push($returnValues,array($time,count($busyBikes)));
 			}elseif($type==$LOAN_END){
 
 				unset($busyBikes[$bike]);
 
-				array_push($returnValues,[$time,count($busyBikes)]);
+				array_push($returnValues,array($time,count($busyBikes)));
 			}
 		}
 
