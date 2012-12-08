@@ -12,6 +12,7 @@
 <li><a href="#metrics">Indicateurs</a></li>
 <li><a href="#loanFrequenciecs">Distribution des fréquences de prêts par membre</a></li>
 <li><a href="#loansPerWeekDay">Nombre de prêts par jour de la semaine</a></li>
+<li><a href="#metricsByLoanType">Métriques par type de prêts</a></li>
 <li><a href="#loansPerDay">Nombre de prêts par jour</a></li>
 <li><a href="#bikes">Vélos avec au moins un prêt pour la période</a></li>
 <li><a href="#membersByAge">Nombre de membres par tranches d'âge</a></li>
@@ -131,6 +132,92 @@ while($i<=7){
 ?>
 
 </tbody></table>
+
+<h1><a name="metricsByLoanType"></a>Métriques par type de prêts</h1>
+retourner à la <a href="#contents">Navigation</a><br /><br />
+
+<?php
+
+$loanCountSameDayNotLate=0;
+$loanSumSameDayNotLate=0;
+$loanCountSameDay=0;
+$loanSumSameDay=0;
+
+$loanCountNextDayNotLate=0;
+$loanSumNextDayNotLate=0;
+$loanCountNextDay=0;
+$loanSumNextDay=0;
+
+$loanCountOtherDayNotLate=0;
+$loanSumOtherDayNotLate=0;
+$loanCountOtherDay=0;
+$loanSumOtherDay=0;
+
+foreach($loanList as $item){
+
+	$loanLength=$item->getHours();
+	
+	if($item->isSameDayLoan()){
+		$loanCountSameDay++;
+		$loanSumSameDay+=$loanLength;
+	}elseif($item->isNextDayLoan()){
+		$loanCountNextDay++;
+		$loanSumNextDay+=$loanLength;
+	}elseif($item->isOtherDayLoan()){
+		$loanCountOtherDay++;
+		$loanSumOtherDay+=$loanLength;
+	}
+
+
+	if(!$item->isLate()){
+		if($item->isSameDayLoan()){
+			$loanCountSameDayNotLate++;
+			$loanSumSameDayNotLate+=$loanLength;
+		}elseif($item->isNextDayLoan()){
+			$loanCountNextDayNotLate++;
+			$loanSumNextDayNotLate+=$loanLength;
+		}elseif($item->isOtherDayLoan()){
+			$loanCountOtherDayNotLate++;
+			$loanSumOtherDayNotLate+=$loanLength;
+		}
+	}
+}
+
+?>
+
+<table>
+<caption></caption>
+<tbody>
+<tr><th class="tableHeaderCell">Type de prêts</th><th class="tableHeaderCell">Nombre de prêts</th>
+<th class="tableHeaderCell">Durée moyenne (heures)</th>
+<th class="tableHeaderCell">Durée moyenne (heures; excluant les retards)</th>
+</tr>
+
+<tr>
+	<td class="tableContentCell">Prêt de jour (termine la même journée)</td>
+	<td class="tableContentCell"><?php echo $loanCountSameDay; ?></td>
+	<td class="tableContentCell"><?php printf("%.2f",$loanSumSameDay/$loanCountSameDay); ?></td>
+	<td class="tableContentCell"><?php printf("%.2f",$loanSumSameDayNotLate/$loanCountSameDayNotLate);?></td>
+</tr>
+
+<tr>
+	<td class="tableContentCell">Prêt de soir (termine la journée suivante)</td>
+	<td class="tableContentCell"><?php echo $loanCountNextDay; ?></td>
+	<td class="tableContentCell"><?php printf("%.2f",$loanSumNextDay/$loanCountNextDay); ?></td>
+	<td class="tableContentCell"><?php printf("%.2f",$loanSumNextDayNotLate/$loanCountNextDayNotLate);?></td>
+</tr>
+
+<tr>
+	<td class="tableContentCell">Prêt de fin de semaine (termine au moins après la journée suivante)</td>
+	<td class="tableContentCell"><?php echo $loanCountOtherDay; ?></td>
+	<td class="tableContentCell"><?php printf("%.2f",$loanSumOtherDay/$loanCountOtherDay); ?></td>
+	<td class="tableContentCell"><?php printf("%.2f",$loanSumOtherDayNotLate/$loanCountOtherDayNotLate);?></td>
+</tr>
+
+
+</tbody></table>
+
+
 
 
 

@@ -281,6 +281,26 @@ class Loan extends Model{
 		return sprintf("%.2f",$this->getSeconds()/(60*60));
 	}
 
+	public function isSameDayLoan(){
+		
+		$start=strtotime($this->getAttribute("startingDate"));
+		$end=strtotime($this->getAttribute("actualEndingDate"));
+
+		return date("Y-m-d",$start) == date("Y-m-d",$end);
+	}
+
+	public function isNextDayLoan(){
+
+		$start=strtotime($this->getAttribute("startingDate"));
+		$nextDay=$start+24*60*60;
+		$end=strtotime($this->getAttribute("actualEndingDate"));
+		
+		return date("Y-m-d",$nextDay) == date("Y-m-d",$end);
+	}
+
+	public function isOtherDayLoan(){
+		return !$this->isSameDayLoan() && !$this->isNextDayLoan();
+	}
 }
 
 ?>
