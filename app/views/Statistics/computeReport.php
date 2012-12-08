@@ -17,6 +17,8 @@
 <li><a href="#bikes">Vélos avec au moins un prêt pour la période</a></li>
 <li><a href="#membersByAge">Nombre de membres par tranches d'âge</a></li>
 <li><a href="#loansByAge">Nombre de prêts par tranches d'âge</a></li>
+<li><a href="#periodsWithoutAvailableBikes">Période sans vélos disponibles</a></li>
+<li><a href="#loanPlot">Graphique des vélos prêtés dans le temps</a></li>
 <li><a href="#members">Membres avec au moins un prêt pour la période</a></li>
 <li><a href="#repairCosts">Coût des réparations par groupe</a></li>
 <li><a href="#loans">Prêts de vélos (liste)</a></li>
@@ -416,7 +418,157 @@ echo "</tbody></table>";
 
 ?>
 
+<h1><a name="periodsWithoutAvailableBikes"></a>Périodes sans vélos disponibles</h1>
+retourner à la <a href="#contents">Navigation</a><br /><br />
 
+<?php
+
+echo "<table><caption>Périodes sans vélos disponibles</caption><tbody>";
+echo "<tr><th class=\"tableHeaderCell\">Période</th><th class=\"tableHeaderCell\">Début</th>";
+echo "<th class=\"tableHeaderCell\">Fin</th><th class=\"tableHeaderCell\">Durée (heures)</th></tr>";
+
+$itemIterator=1;
+
+echo count($periodsWithoutBikes);
+
+foreach($periodsWithoutBikes as $item){
+
+	$start=$item[0];
+	$end=$item[1];
+	$duration=($end-$start)/60/60;
+
+	echo "<tr><th class=\"tableHeaderCell\">$itemIterator</th><th class=\"tableHeaderCell\">$start</th>";
+	echo "<th class=\"tableHeaderCell\">$end</th><th class=\"tableHeaderCell\">$duration</th></tr>";
+
+	$itemIterator++;
+}
+
+echo "</tbody></table>";
+
+?>
+
+<h1><a name="loanPlot"></a>Graphique des vélos prêtés dans le temps</h1>
+retourner à la <a href="#contents">Navigation</a><br /><br />
+
+
+<?php
+
+$minimumX=false;
+$maximumX=false;
+$minimumY=false;
+$maximumY=false;
+
+foreach($loanData as $item){
+	$x=$item[0];
+	$y=$item[1];
+
+	if($maximumX==false || $x>$maximumX)
+		$maximumX=$x;
+	if($minimumX==false || $x<$minimumX)
+		$minimumX=$x;
+	if($maximumY==false || $y>$maximumY)
+		$maximumY=$y;
+	if($minimumY==false || $y<$minimumY)
+		$minimumY=$y;
+		
+}
+
+/*
+echo "LOANS.".count($loanData);
+echo "MAXI.".count($maxi);
+echo "LOANS.".count($loanData);
+*/
+
+$canvasWidth=800;
+$canvasHeight=500;
+$zone=35;
+?>
+
+<br />
+<br />
+<br />
+<br />
+
+<div>
+<div>Nombre de vélos prêtés dans le temps. Axe horizontal: temps. Axe vertical: nombre de vélos prêtés. </div>
+
+<canvas id="myCanvas" width="<?php echo $canvasWidth; ?>" height="<?php echo $canvasHeight; ?>"></canvas> 
+
+<script>
+
+function drawLine(context,x1,y1,x2,y2){
+	context.beginPath();
+	context.moveTo(x1,y1);
+	context.lineTo(x2,y2);
+	context.stroke();
+}
+
+var theCanvas=document.getElementById("myCanvas");
+var ctx=theCanvas.getContext("2d");
+var width=theCanvas.width;
+var height=theCanvas.height;
+
+//ctx.fillStyle="#FF0000";
+//ctx.fillRect(0,0,150,75);
+ctx.strokeStyle="#000000";
+ctx.lineWidth=1;
+//ctx.fillRect(0,0,150,75);
+ctx.beginPath();
+ctx.rect(0,0,width,height);
+ctx.stroke();
+
+zone=<?php echo $zone;?>;
+
+drawLine(ctx,zone,height-zone,width-zone,height-zone);
+drawLine(ctx,zone,height-zone,zone,zone);
+<?php 
+
+if(count($loanData)>=2){
+
+echo "ctx.fillText(($maximumY-$minimumY)/2+$minimumY,$zone/4,$canvasHeight-$canvasHeight/2+$zone);";
+echo "ctx.fillText(($maximumY-$minimumY)/4+$minimumY,$zone/4,$canvasHeight-$canvasHeight/4+$zone);";
+echo "ctx.fillText(3*($maximumY-$minimumY)/4+$minimumY,$zone/4,$canvasHeight-3*$canvasHeight/4+$zone);";
+echo "ctx.fillText(4*($maximumY-$minimumY)/4+$minimumY,$zone/4,$canvasHeight-4*$canvasHeight/4+$zone);";
+
+echo "ctx.fillText('".date("Y-m-d",($maximumX-$minimumX)*0+$minimumX)."',$canvasWidth*0+$zone*1,$canvasHeight-$zone/4);";
+echo "ctx.fillText('".date("Y-m-d",3*($maximumX-$minimumX)/4+$minimumX)."',3*$canvasWidth/4+$zone*1,$canvasHeight-$zone/4);";
+echo "ctx.fillText('".date("Y-m-d",($maximumX-$minimumX)/2+$minimumX)."',$canvasWidth/2+$zone*1,$canvasHeight-$zone/4);";
+echo "ctx.fillText('".date("Y-m-d",($maximumX-$minimumX)/4+$minimumX)."',$canvasWidth/4+$zone*1,$canvasHeight-$zone/4);";
+
+}
+?>
+
+<?php
+
+function normalizeValue($rawValue,$rawMinimum,$rawMaximum,$virtualMaximum){
+
+	return ((0.0+$rawValue-$rawMinimum)/($rawMaximum-$rawMinimum))*$virtualMaximum;
+}
+
+$lastX=false;
+$lastY=false;
+foreach($loanData as $item){
+
+	$currentX=$item[0];
+	$currentY=$item[1];
+
+	if($lastX!=false && $lastY!=false){
+		
+		$virtualX1=normalizeValue($lastX,$minimumX,$maximumX,$canvasWidth-2*$zone);
+		$virtualY1=normalizeValue($lastY,$minimumY,$maximumY,$canvasHeight-2*$zone);
+		$virtualX2=normalizeValue($currentX,$minimumX,$maximumX,$canvasWidth-2*$zone);
+		$virtualY2=normalizeValue($currentY,$minimumY,$maximumY,$canvasHeight-2*$zone);
+
+		echo "drawLine(ctx,zone+$virtualX1,zone+$virtualY1,zone+$virtualX2,zone+$virtualY2);";
+	}
+
+	$lastX=$currentX;
+	$lastY=$currentY;
+}
+
+?>
+
+</script> 
 
 
 <h1><a name="members"></a>Membres avec au moins un prêt pour la période</h1>

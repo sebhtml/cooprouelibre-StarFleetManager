@@ -3,6 +3,10 @@
 // Client: Coop Roue-Libre de l'Université Laval
 // License: GPLv3
 
+function compare($a,$b){
+	return $a[0]>$b[0];
+}
+
 class Statistics extends Controller{
 
 	public function registerController($core){
@@ -188,6 +192,10 @@ class Statistics extends Controller{
 			$manLoanRatio=sprintf("%.2f",$manLoans/$all*100);
 		}
 		
+		$events=$this->getEvents($loanList);
+		$periodsWithoutBikes=$this->getPeriodsWithoutBikes($loanList,$bikes,$events);
+		$loanData=$this->getLoanedBikesInTime($events);
+
 		include($this->getView(__CLASS__,__METHOD__));
 	}
 
@@ -201,6 +209,116 @@ class Statistics extends Controller{
 
 		include($this->getView(__CLASS__,__METHOD__));
 	}
+
+	private function getPeriodsWithoutBikes($loans,$bikes,$events){
+		$returnValues=array();
+
+		$availableBikes=count($bikes);
+
+		$busyBikes=array();
+
+		$processed=0;
+		$lastStart=0;
+		$maximum=0;
+
+		$LOAN_START=0;
+		$LOAN_END=1;
+
+		foreach($events as $event){
+			
+
+			$time=$event[0];
+			$bike=$event[1];
+			$type=$event[2];
+			
+			//echo(date("Y-m-d",$event[0])." busyBikes: ".count($busyBikes)."/".$availableBikes."<br />");
+
+			if($type==$LOAN_START){
+				$busyBikes[$bike]=true;
+
+				if(count($busyBikes)==$availableBikes){
+					$lastStart=$time;
+				}
+		
+				if(count($busyBikes)>$maximum){
+					$maximum=count($busyBikes);
+				}
+
+			}elseif($type==$LOAN_END){
+
+				if(count($busyBikes)==$availableBikes){
+					$endingTime=$time;
+
+					array_push($returnValues,[$lastStart,$endingTime]);
+				}
+
+				unset($busyBikes[$bike]);
+			}
+
+			$processed++;
+
+/*
+			if($processed==10)
+				break;
+*/
+		}
+
+		//echo "Max= ".$maximum;
+
+		return $returnValues;
+	}
+	
+	public function getEvents($loans){
+		$events=array();
+	
+		$LOAN_START=0;
+		$LOAN_END=1;
+
+		foreach($loans as $item){
+			$bikeNumber=(int)$item->getAttributeValue("bikeIdentifier");
+			$start=strtotime($item->getAttributeValue("startingDate"));
+			$end=strtotime($item->getAttributeValue("actualEndingDate"));
+
+			array_push($events,[$start,$bikeNumber,$LOAN_START]);
+			array_push($events,[$end,$bikeNumber,$LOAN_END]);
+		}
+
+
+		usort($events,"compare");
+
+		return $events;
+	}
+
+	private function getLoanedBikesInTime($events){
+		$returnValues=array();
+
+		$busyBikes=array();
+
+		$LOAN_START=0;
+		$LOAN_END=1;
+
+		foreach($events as $event){
+
+			$time=$event[0];
+			$bike=$event[1];
+			$type=$event[2];
+			
+
+			if($type==$LOAN_START){
+				$busyBikes[$bike]=true;
+
+				array_push($returnValues,[$time,count($busyBikes)]);
+			}elseif($type==$LOAN_END){
+
+				unset($busyBikes[$bike]);
+
+				array_push($returnValues,[$time,count($busyBikes)]);
+			}
+		}
+
+		return $returnValues;
+	}
+
 };
 
 ?>
