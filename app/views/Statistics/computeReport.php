@@ -18,8 +18,8 @@
 <li><a href="#membersByAge">Nombre de membres par tranches d'âge</a></li>
 <li><a href="#loansByAge">Nombre de prêts par tranches d'âge</a></li>
 <li><a href="#members">Membres avec au moins un prêt pour la période</a></li>
-<li><a href="#loans">Prêts de vélos</a></li>
-<li><a href="#repairs">Réparations</a></li>
+<li><a href="#loans">Prêts de vélos (liste)</a></li>
+<li><a href="#repairs">Réparations (liste)</a></li>
 
 </ul>
 
@@ -480,7 +480,7 @@ echo "</tbody></table>";
 
 ?>
 
-<h1><a name="loans"></a>Prêts de vélos</h1>
+<h1><a name="loans"></a>Prêts de vélos (liste)</h1>
 retourner à la <a href="#contents">Navigation</a><br /><br />
 
 Nombre de prêts: <?php echo count($loanList); ?><br />
@@ -506,7 +506,7 @@ echo "</table>";
 
 
 
-<h1><a name="repairs"></a>Réparations</h1>
+<h1><a name="repairs"></a>Réparations (liste)</h1>
 retourner à la <a href="#contents">Navigation</a><br /><br />
 
 <h2>Pièces de rechange</h2>
