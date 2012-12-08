@@ -18,6 +18,7 @@
 <li><a href="#membersByAge">Nombre de membres par tranches d'âge</a></li>
 <li><a href="#loansByAge">Nombre de prêts par tranches d'âge</a></li>
 <li><a href="#members">Membres avec au moins un prêt pour la période</a></li>
+<li><a href="#repairCosts">Coût des réparations par groupe</a></li>
 <li><a href="#loans">Prêts de vélos (liste)</a></li>
 <li><a href="#repairs">Réparations (liste)</a></li>
 
@@ -479,6 +480,80 @@ echo "</tbody></table>";
 
 
 ?>
+
+<h1><a name="repairCosts"></a>Coût des réparations par groupe</h1>
+retourner à la <a href="#contents">Navigation</a><br /><br />
+
+<?php
+
+$repairCounts=array();
+$repairCost=array();
+$repairMinutes=array();
+
+foreach($repairs as $item){
+
+	$group=$item->getRepairType()->getName();
+	$minutes=$item->getAttributeValue("minutes");
+
+	$repairTotal=0;
+
+	$replacedParts=$item->getRepairParts();
+
+	$i=0;
+	foreach($replacedParts as $object){
+
+		$realItem=$object->getPart();
+		$repairTotal+=$realItem->getAttributeValue("value");
+
+		$i++;
+	}
+
+	if(!array_key_exists($group,$repairCounts)){
+		$repairCounts[$group]=0;
+		$repairCosts[$group]=0;
+		$repairMinutes[$group]=0;
+	}
+
+	$repairCounts[$group]++;
+	$repairCosts[$group]+=$repairTotal;
+	$repairMinutes[$group]+=(int)$minutes;
+
+}
+
+?>
+
+<table>
+<caption></caption>
+<tbody>
+<tr>
+<th class="tableHeaderCell">Type de réparations</th>
+<th class="tableHeaderCell">Nombre de réparations</th>
+<th class="tableHeaderCell">Coût total ($)</th>
+<th class="tableHeaderCell">Temps total (minutes)</th>
+</tr>
+
+<?php
+
+$theKeys=(array_keys($repairCounts));
+sort($theKeys);
+
+foreach($theKeys as $object){
+
+	echo "<tr>";
+
+	echo "<th class=\"tableHeaderCell\">$object</th>";
+	echo "<th class=\"tableHeaderCell\">${repairCounts[$object]}</th>";
+	echo "<th class=\"tableHeaderCell\">${repairCosts[$object]}</th>";
+	echo "<th class=\"tableHeaderCell\">${repairMinutes[$object]}</th>";
+
+	echo "</tr>";
+}
+
+?>
+
+</tbody></table>
+
+
 
 <h1><a name="loans"></a>Prêts de vélos (liste)</h1>
 retourner à la <a href="#contents">Navigation</a><br /><br />
